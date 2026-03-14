@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Armvet LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --w: #f8f8f4;
+  --g: #c8d4c0;
+  --g2: #e8efe4;
+  --g3: #a8b8a0;
+  --blk: #111110;
+  --blk2: #2a2a28;
+  --mute: #888880;
+  --line: #d8d8d0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Archivo', sans-serif;
+  background: var(--w);
+  color: var(--blk);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── TICKER ─── */
+.ticker {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: var(--blk);
+  height: 28px; overflow: hidden;
+  display: flex; align-items: center;
+}
+.ticker-track {
+  display: flex; gap: 0; white-space: nowrap;
+  animation: tickerMove 30s linear infinite;
+}
+.ticker-track span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--g);
+  padding: 0 2.5rem;
+}
+.ticker-track span.sep { color: var(--g3); }
+@keyframes tickerMove {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 28px; left: 0; right: 0; z-index: 100;
+  background: var(--w);
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: stretch;
+  height: 52px;
+}
+.nav-logo {
+  display: flex; align-items: center;
+  padding: 0 2rem;
+  border-right: 1px solid var(--line);
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1rem; letter-spacing: 0.04em;
+  color: var(--blk); text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.nav-logo sup {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.5rem; letter-spacing: 0.1em;
+  color: var(--g3); margin-left: 0.4rem;
+  vertical-align: super;
+}
+.nav-center {
+  display: flex; align-items: stretch; flex: 1;
+}
+.nav-center a {
+  display: flex; align-items: center;
+  padding: 0 1.1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mute); text-decoration: none;
+  border-right: 1px solid var(--line);
+  transition: background 0.15s, color 0.15s;
+}
+.nav-center a:hover, .nav-center a.active {
+  background: var(--blk); color: var(--w);
+}
+.nav-right {
+  display: flex; align-items: center;
+  margin-left: auto;
+  padding: 0 1.5rem;
+  border-left: 1px solid var(--line);
+}
+.nav-right a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blk); text-decoration: none;
+  border: 1px solid var(--blk);
+  padding: 0.35rem 1rem;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-right a:hover { background: var(--blk); color: var(--w); }
+
+.hamburger {
+  display: none; cursor: pointer;
+  padding: 0 1.2rem;
+  align-items: center; justify-content: center;
+  gap: 5px; flex-direction: column;
+  height: 52px; flex-shrink: 0;
+  border-left: 1px solid var(--line);
+  margin-left: auto;
+}
+.hamburger span { display: block; width: 20px; height: 1.5px; background: var(--blk); transition: all 0.2s; }
+
+/* ─── PAGES ─── */
+.page { display: none; padding-top: 80px; }
+.page.active { display: block; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: calc(100vh - 80px);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  border-bottom: 1px solid var(--line);
+}
+.hero-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.hero-left {
+  padding: 5vw 4vw 5vw 5vw;
+  border-right: 1px solid var(--line);
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.hero-right {
+  background: var(--g2);
+  padding: 5vw 4vw;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  position: relative; overflow: hidden;
+}
+
+.hero-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--mute);
+  margin-bottom: 3rem;
+}
+
+.hero-h1 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(3.5rem, 8vw, 8.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--blk);
+}
+.hero-h1 .italic-word {
+  font-family: 'Archivo', sans-serif;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--blk);
+}
+
+.hero-sub {
+  margin-top: 3rem;
+  font-size: 1rem; font-weight: 300;
+  color: var(--mute); line-height: 1.75;
+  max-width: 400px;
+}
+
+.hero-btns {
+  display: flex; gap: 0; margin-top: 3.5rem;
+  border: 1px solid var(--blk);
+  width: fit-content;
+}
+.hero-btns a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; text-decoration: none;
+  padding: 0.75rem 1.6rem;
+  transition: background 0.15s, color 0.15s;
+}
+.hero-btns a:first-child { background: var(--blk); color: var(--w); border-right: 1px solid var(--blk); }
+.hero-btns a:first-child:hover { background: var(--blk2); }
+.hero-btns a:last-child { color: var(--blk); }
+.hero-btns a:last-child:hover { background: var(--blk); color: var(--w); }
+
+/* hero right content */
+.hero-big-number {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(6rem, 14vw, 16rem);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--g3);
+  position: absolute; bottom: -1rem; right: -0.5rem;
+  pointer-events: none;
+  user-select: none;
+}
+.hero-facts {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; gap: 0;
+  border: 1px solid var(--g);
+}
+.hero-fact {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid var(--g);
+  display: flex; align-items: baseline; gap: 1rem;
+}
+.hero-fact:last-child { border-bottom: none; }
+.hf-val {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.4rem; color: var(--blk);
+  flex-shrink: 0;
+}
+.hf-desc {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+/* hero bottom bar */
+.hero-bottom {
+  border-top: 1px solid var(--line);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.hero-bottom-cell {
+  padding: 1.1rem 2rem;
+  border-right: 1px solid var(--line);
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.hero-bottom-cell:last-child { border-right: none; }
+.hbc-dot {
+  width: 7px; height: 7px;
+  background: var(--g3); flex-shrink: 0;
+}
+.hbc-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.57rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+/* ─── GENERIC ─── */
+.max-w { max-width: 1200px; margin: 0 auto; }
+
+.section-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2.5rem 3rem;
+  border-bottom: 1px solid var(--line);
+}
+.sh-index {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--g3);
+}
+.sh-rule { height: 1px; background: var(--line); }
+.sh-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+h2.display {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  line-height: 0.95; letter-spacing: -0.025em;
+  color: var(--blk);
+}
+h2.display em {
+  font-family: 'Archivo', sans-serif;
+  font-style: italic; font-weight: 300;
+}
+
+p.body {
+  font-size: 0.95rem; font-weight: 300;
+  color: var(--mute); line-height: 1.85;
+}
+
+/* ─── BTN ─── */
+.btn {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; text-decoration: none;
+  padding: 0.75rem 1.6rem; cursor: pointer;
+  border: none; transition: all 0.15s;
+}
+.btn-blk { background: var(--blk); color: var(--w); }
+.btn-blk:hover { background: var(--blk2); }
+.btn-outline { background: transparent; color: var(--blk); border: 1px solid var(--blk); }
+.btn-outline:hover { background: var(--blk); color: var(--w); }
+.btn-green { background: var(--g); color: var(--blk); }
+.btn-green:hover { background: var(--g3); }
+
+/* ─── MISSION ─── */
+.mission-wrap {
+  display: grid; grid-template-columns: 2fr 3fr;
+  border-bottom: 1px solid var(--line);
+}
+.mission-sidebar {
+  padding: 4rem 3rem;
+  border-right: 1px solid var(--line);
+  background: var(--g2);
+}
+.mission-main { padding: 4rem 4rem 4rem 5rem; }
+.pull-quote {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  line-height: 1.2; letter-spacing: -0.02em;
+  color: var(--blk); margin-bottom: 2rem;
+}
+.pull-quote em {
+  font-family: 'Archivo', sans-serif;
+  font-style: italic; font-weight: 300;
+}
+.key-val {
+  display: flex; flex-direction: column;
+  gap: 0; border: 1px solid var(--line); margin-bottom: 2rem;
+}
+.kv-row {
+  display: grid; grid-template-columns: 100px 1fr;
+  border-bottom: 1px solid var(--line);
+}
+.kv-row:last-child { border-bottom: none; }
+.kv-k {
+  padding: 0.85rem 1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.56rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--g3);
+  border-right: 1px solid var(--line);
+  background: var(--w);
+}
+.kv-v {
+  padding: 0.85rem 1rem;
+  font-size: 0.85rem; color: var(--blk2); font-weight: 400;
+}
+
+/* ─── SERVICES ─── */
+.svc-list { border-bottom: 1px solid var(--line); }
+.svc-row {
+  display: grid; grid-template-columns: 80px 1fr 1fr;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.15s;
+  cursor: default;
+}
+.svc-row:last-child { border-bottom: none; }
+.svc-row:hover { background: var(--g2); }
+.svc-n {
+  padding: 2.5rem 2rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.14em;
+  color: var(--g3); border-right: 1px solid var(--line);
+  display: flex; align-items: flex-start; padding-top: 2.8rem;
+}
+.svc-t-col { padding: 2.5rem 2.5rem; border-right: 1px solid var(--line); }
+.svc-d-col { padding: 2.5rem 2.5rem; }
+.svc-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.3rem; letter-spacing: -0.01em;
+  color: var(--blk); line-height: 1.15;
+}
+.svc-cat {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--g3);
+  margin-bottom: 0.6rem;
+}
+.svc-desc { font-size: 0.88rem; font-weight: 300; color: var(--mute); line-height: 1.75; }
+
+/* ─── PAST PERF ─── */
+.perf-wrap { background: var(--blk); }
+.perf-table { width: 100%; border-collapse: collapse; }
+.perf-table td { padding: 1.8rem 2rem; vertical-align: top; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.perf-table tr:last-child td { border-bottom: none; }
+.perf-table tr { transition: background 0.15s; }
+.perf-table tr:hover td { background: rgba(200,212,192,0.05); }
+.pt-idx {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.12em;
+  color: var(--g3); width: 60px;
+}
+.pt-client {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.95rem; color: #fff;
+  width: 220px; line-height: 1.3;
+}
+.pt-detail { font-size: 0.87rem; font-weight: 300; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+/* ─── ABOUT ─── */
+.about-wrap {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--line);
+}
+.about-left {
+  padding: 5rem 4rem;
+  border-right: 1px solid var(--line);
+}
+.about-right {
+  padding: 5rem 4rem;
+  background: var(--g2);
+}
+.founder-strip {
+  display: flex; align-items: stretch;
+  border: 1px solid var(--line);
+  margin-bottom: 2.5rem;
+}
+.fs-accent {
+  width: 6px; background: var(--g3); flex-shrink: 0;
+}
+.fs-body { padding: 1.5rem; }
+.fs-name {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.5rem; letter-spacing: -0.02em;
+  color: var(--blk); line-height: 1;
+}
+.fs-role {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+  margin-top: 0.4rem;
+}
+.fs-contact {
+  display: flex; flex-direction: column; gap: 0.4rem;
+  margin-top: 1rem;
+}
+.fs-cline {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem; color: var(--blk2); letter-spacing: 0.04em;
+}
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 1rem; }
+.tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.53rem; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--line);
+  color: var(--mute);
+}
+
+.about-body { font-size: 0.93rem; font-weight: 300; color: var(--mute); line-height: 1.9; }
+.about-body p { margin-bottom: 1.3rem; }
+.about-body p:first-child { font-size: 1.05rem; color: var(--blk); font-weight: 400; margin-bottom: 1.5rem; }
+.metric-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line); margin-bottom: 2rem;
+}
+.metric {
+  background: var(--w); padding: 1.3rem 1.5rem;
+}
+.metric-val {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.6rem; letter-spacing: -0.02em; color: var(--blk);
+}
+.metric-lbl {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.53rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--g3); margin-top: 0.2rem;
+}
+
+/* ─── CAPABILITY ─── */
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-bottom: 2rem;
+}
+.cap-cell {
+  background: var(--w); padding: 2rem 1.8rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.cap-cell.wide { grid-column: span 3; }
+.cap-lbl {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--g3);
+  margin-bottom: 0.8rem;
+}
+.cap-content { font-size: 0.86rem; font-weight: 300; color: var(--mute); line-height: 1.75; }
+.cap-content strong { color: var(--blk); font-weight: 500; }
+.cap-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
+.cap-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem; letter-spacing: 0.08em;
+  padding: 0.2rem 0.55rem;
+  background: var(--g2); border: 1px solid var(--g);
+  color: var(--blk2);
+}
+
+/* ─── TOOLS ─── */
+.tool-row {
+  border-bottom: 1px solid var(--line);
+}
+.tool-trigger {
+  width: 100%;
+  display: grid; grid-template-columns: 80px 1fr auto;
+  align-items: center; gap: 0;
+  background: none; border: none; cursor: pointer;
+  text-align: left;
+  border-bottom: 1px solid transparent;
+  transition: background 0.15s;
+}
+.tool-trigger:hover { background: var(--g2); }
+.tool-idx {
+  padding: 2rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.14em;
+  color: var(--g3); border-right: 1px solid var(--line);
+  height: 100%; display: flex; align-items: center;
+}
+.tool-head { padding: 2rem 2.5rem; }
+.tool-name {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.2rem; letter-spacing: -0.01em; color: var(--blk);
+}
+.tool-desc { font-family: 'IBM Plex Mono', monospace; font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); margin-top: 0.3rem; }
+.tool-open-btn {
+  padding: 2rem; border-left: 1px solid var(--line);
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--g3);
+  height: 100%; display: flex; align-items: center;
+}
+.tool-panel { display: none; }
+.tool-panel.open {
+  display: grid; grid-template-columns: 80px 1fr 1fr;
+  border-top: 1px solid var(--line);
+  background: var(--g2);
+}
+.tool-panel-spacer { border-right: 1px solid var(--line); }
+.tool-steps { padding: 2.5rem 2.5rem; border-right: 1px solid var(--line); }
+.step { display: grid; grid-template-columns: 2rem 1fr; gap: 0.8rem; margin-bottom: 1.1rem; }
+.step-n { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--g3); padding-top: 0.15rem; }
+.step-t { font-size: 0.88rem; font-weight: 300; color: var(--blk2); line-height: 1.65; }
+.tool-example { padding: 2.5rem 2.5rem; }
+.ex-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g3); margin-bottom: 1.2rem; }
+.ex-item { margin-bottom: 1rem; }
+.ex-k { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); margin-bottom: 0.2rem; }
+.ex-v { font-size: 0.88rem; font-weight: 300; color: var(--blk2); line-height: 1.6; }
+
+/* ─── TRAINING ─── */
+.training-list { border-bottom: 1px solid var(--line); }
+.tc-row {
+  display: grid; grid-template-columns: 80px 1fr 1fr auto;
+  border-bottom: 1px solid var(--line); align-items: stretch;
+  transition: background 0.15s; cursor: default;
+}
+.tc-row:last-child { border-bottom: none; }
+.tc-row:hover { background: var(--g2); }
+.tc-idx {
+  padding: 2rem 1.5rem; border-right: 1px solid var(--line);
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem;
+  letter-spacing: 0.12em; color: var(--g3);
+  display: flex; align-items: flex-start; padding-top: 2.2rem;
+}
+.tc-title-col { padding: 2rem 2.5rem; border-right: 1px solid var(--line); }
+.tc-title { font-family: 'Archivo Black', sans-serif; font-size: 1.1rem; letter-spacing: -0.01em; color: var(--blk); line-height: 1.2; }
+.tc-format { font-family: 'IBM Plex Mono', monospace; font-size: 0.54rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--g3); margin-top: 0.4rem; }
+.tc-desc-col { padding: 2rem 2.5rem; border-right: 1px solid var(--line); }
+.tc-desc { font-size: 0.86rem; font-weight: 300; color: var(--mute); line-height: 1.75; }
+.tc-action { padding: 2rem 2rem; display: flex; align-items: center; }
+.tc-link {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--blk); text-decoration: none; cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--blk); padding-bottom: 1px;
+  transition: color 0.15s;
+}
+.tc-link:hover { color: var(--g3); border-bottom-color: var(--g3); }
+
+/* ─── CONTACT ─── */
+.contact-wrap {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--line);
+}
+.contact-left { padding: 5rem 4rem; border-right: 1px solid var(--line); }
+.contact-right { padding: 5rem 4rem; background: var(--g2); }
+
+.contact-left h2.display { margin-bottom: 1.5rem; }
+.contact-left p.body { max-width: 380px; margin-bottom: 2.5rem; }
+.c-row {
+  display: grid; grid-template-columns: 60px 1fr;
+  border-bottom: 1px solid var(--line);
+}
+.c-row:first-child { border-top: 1px solid var(--line); }
+.c-key {
+  padding: 0.9rem 0.8rem; border-right: 1px solid var(--line);
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.52rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--g3);
+  background: var(--w);
+}
+.c-val { padding: 0.9rem 1.2rem; font-size: 0.88rem; font-weight: 300; color: var(--blk2); }
+.cal-box { margin-top: 2.5rem; padding: 1.8rem; background: var(--blk); }
+.cal-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g3); margin-bottom: 0.5rem; }
+.cal-box p { font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.45); margin-bottom: 1.2rem; }
+
+.form-heading { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.8rem; }
+.form-heading::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+.fg { margin-bottom: 1.1rem; }
+.fg label { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 0.54rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); margin-bottom: 0.4rem; }
+.fg input, .fg textarea, .fg select {
+  width: 100%; padding: 0.7rem 0.9rem;
+  background: var(--w); border: 1px solid var(--line);
+  font-family: 'Archivo', sans-serif; font-size: 0.9rem; font-weight: 300;
+  color: var(--blk); outline: none; border-radius: 0; -webkit-appearance: none;
+  transition: border-color 0.15s;
+}
+.fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--blk); }
+.fg textarea { min-height: 100px; resize: vertical; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--blk);
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  border-top: 2px solid var(--g3);
+}
+.footer-cell {
+  padding: 2rem 2.5rem;
+  border-right: 1px solid rgba(255,255,255,0.07);
+}
+.footer-cell:last-child { border-right: none; }
+.footer-logo {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.2rem; color: #fff; letter-spacing: -0.01em;
+}
+.footer-mono {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.3); margin-top: 0.5rem;
+}
+.footer-cert {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--g3);
+  margin-top: 0.4rem;
+}
+
+/* ─── MOBILE ─── */
+@media(max-width:900px){
+  nav { overflow-x: visible; }
+  .nav-center { display: none; }
+  .nav-center.open {
+    display: flex; flex-direction: column;
+    position: fixed;
+    top: 80px;
+    left: 0; right: 0;
+    background: var(--w);
+    border-bottom: 2px solid var(--blk);
+    z-index: 99;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  .nav-center.open a {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    height: 50px;
+    padding: 0 1.5rem;
+    font-size: 0.65rem;
+  }
+  .nav-right { display: none; }
+  .hamburger { display: flex; }
+  .page { padding-top: 80px; }
+  .hero-main { grid-template-columns: 1fr; }
+  .hero-right { min-height: 280px; padding: 2.5rem; }
+  .hero-bottom { grid-template-columns: 1fr 1fr; }
+  .hero-bottom-cell:nth-child(3), .hero-bottom-cell:nth-child(4) { border-top: 1px solid var(--line); }
+  .mission-wrap { grid-template-columns: 1fr; }
+  .mission-sidebar { border-right: none; border-bottom: 1px solid var(--line); }
+  .svc-row { grid-template-columns: 60px 1fr; }
+  .svc-d-col { display: none; }
+  .about-wrap { grid-template-columns: 1fr; }
+  .about-left { border-right: none; border-bottom: 1px solid var(--line); }
+  .cap-grid { grid-template-columns: 1fr 1fr; }
+  .cap-cell.wide { grid-column: span 2; }
+  .tool-panel.open { grid-template-columns: 1fr; }
+  .tool-panel-spacer { display: none; }
+  .tc-row { grid-template-columns: 60px 1fr auto; }
+  .tc-desc-col { display: none; }
+  .contact-wrap { grid-template-columns: 1fr; }
+  .contact-left { border-right: none; border-bottom: 1px solid var(--line); }
+  footer { grid-template-columns: 1fr; }
+  .footer-cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .hero-left { padding: 3rem 1.5rem; }
+  .mission-sidebar, .mission-main { padding: 3rem 1.5rem; }
+  .about-left, .about-right { padding: 3rem 1.5rem; }
+  .contact-left, .contact-right { padding: 3rem 1.5rem; }
+  .section-header { padding: 2rem 1.5rem; }
+  .metric-row { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:560px){
+  .cap-grid { grid-template-columns: 1fr; }
+  .cap-cell.wide { grid-column: span 1; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-bottom { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack">
+    <span>Armvet, LLC</span><span class="sep">/</span>
+    <span>Leadership Development</span><span class="sep">/</span>
+    <span>Federal HR Consulting</span><span class="sep">/</span>
+    <span>SBA Certified SDVOSB</span><span class="sep">/</span>
+    <span>Service-Disabled Veteran-Owned</span><span class="sep">/</span>
+    <span>NASA HR Director</span><span class="sep">/</span>
+    <span>Army National Guard</span><span class="sep">/</span>
+    <span>Organizational Culture Training</span><span class="sep">/</span>
+    <span>Armvet, LLC</span><span class="sep">/</span>
+    <span>Leadership Development</span><span class="sep">/</span>
+    <span>Federal HR Consulting</span><span class="sep">/</span>
+    <span>SBA Certified SDVOSB</span><span class="sep">/</span>
+    <span>Service-Disabled Veteran-Owned</span><span class="sep">/</span>
+    <span>NASA HR Director</span><span class="sep">/</span>
+    <span>Army National Guard</span><span class="sep">/</span>
+    <span>Organizational Culture Training</span><span class="sep">/</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo" onclick="go('home');return false">ARMVET LLC <sup>SDVOSB</sup></a>
+  <div class="nav-center" id="navCenter">
+    <a href="#" id="nav-home" class="active" onclick="go('home');return false">Home</a>
+    <a href="#" id="nav-services" onclick="go('services');return false">Services</a>
+    <a href="#" id="nav-performance" onclick="go('performance');return false">Past Performance</a>
+    <a href="#" id="nav-about" onclick="go('about');return false">About</a>
+    <a href="#" id="nav-capability" onclick="go('capability');return false">Capability</a>
+    <a href="#" id="nav-tools" onclick="go('tools');return false">Tools</a>
+    <a href="#" id="nav-training" onclick="go('training');return false">Training</a>
+    <a href="#" id="nav-contact-m" onclick="go('contact');return false" style="border-top:2px solid var(--blk)">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="#" onclick="go('contact');return false">Contact</a>
+  </div>
+  <div class="hamburger" id="hbg" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ═══════ HOME ═══════ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-main">
+      <div class="hero-left">
+        <div class="hero-tag">Est. Leadership Consulting &nbsp;·&nbsp; Washington DC / National</div>
+        <div>
+          <div class="hero-h1">
+            LEADER<br>
+            SHIP<br>
+            <span class="italic-word">That<br>Endures.</span>
+          </div>
+          <p class="hero-sub">Armvet delivers executive-level leadership development, organizational culture training, and federal human capital consulting grounded in military precision and modern leadership science.</p>
+          <div class="hero-btns">
+            <a href="#" onclick="go('contact');return false">Request a Proposal</a>
+            <a href="#" onclick="go('services');return false">View Services</a>
+          </div>
+        </div>
+        <div style="height:1px"></div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-big-number">20+</div>
+        <div class="hero-facts">
+          <div class="hero-fact">
+            <div class="hf-val">NASA</div>
+            <div class="hf-desc">Former HR Director · Federal Executive Level</div>
+          </div>
+          <div class="hero-fact">
+            <div class="hf-val">ANG Deputy G-1</div>
+            <div class="hf-desc">Army National Guard · Human Resources Enterprise</div>
+          </div>
+          <div class="hero-fact">
+            <div class="hf-val">Multi-level CSM</div>
+            <div class="hf-desc">Command Sergeant Major · Direct Leadership</div>
+          </div>
+          <div class="hero-fact">
+            <div class="hf-val">SBA Certified</div>
+            <div class="hf-desc">Service-Disabled Veteran-Owned Small Business</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-bottom">
+      <div class="hero-bottom-cell"><div class="hbc-dot"></div><div class="hbc-text">Leadership Development</div></div>
+      <div class="hero-bottom-cell"><div class="hbc-dot"></div><div class="hbc-text">Organizational Culture</div></div>
+      <div class="hero-bottom-cell"><div class="hbc-dot"></div><div class="hbc-text">Federal HR Consulting</div></div>
+      <div class="hero-bottom-cell"><div class="hbc-dot"></div><div class="hbc-text">Speaking Engagements</div></div>
+    </div>
+  </div>
+
+  <!-- Mission -->
+  <div class="section-header">
+    <span class="sh-index">001</span>
+    <div class="sh-rule"></div>
+    <span class="sh-label">Mission Statement</span>
+  </div>
+  <div class="mission-wrap">
+    <div class="mission-sidebar">
+      <div class="key-val">
+        <div class="kv-row"><div class="kv-k">Founded</div><div class="kv-v">Anson Smith, President</div></div>
+        <div class="kv-row"><div class="kv-k">Status</div><div class="kv-v">SBA Certified SDVOSB</div></div>
+        <div class="kv-row"><div class="kv-k">Markets</div><div class="kv-v">Federal · Military · Corporate</div></div>
+        <div class="kv-row"><div class="kv-k">Contact</div><div class="kv-v">540-419-4074</div></div>
+      </div>
+      <a class="btn btn-blk" href="#" onclick="go('about');return false">Meet the Founder</a>
+    </div>
+    <div class="mission-main">
+      <div class="pull-quote">"We build leaders who create clarity, build trust, and <em>drive disciplined execution.</em>"</div>
+      <p class="body" style="margin-bottom:1.3rem">Armvet strengthens organizations by developing leaders who create clarity, build trust, and drive disciplined execution. We integrate military precision, federal HR expertise, and modern leadership science to elevate people and performance.</p>
+      <p class="body">From executive coaching to culture transformation programs, every engagement is built around practical, repeatable leadership systems that produce measurable results in military, federal, and corporate environments.</p>
+      <div style="margin-top:2.5rem; display:flex; gap:0.8rem">
+        <a class="btn btn-blk" href="#" onclick="go('services');return false">Explore Services</a>
+        <a class="btn btn-outline" href="#" onclick="go('contact');return false">Request a Proposal</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services preview -->
+  <div class="section-header">
+    <span class="sh-index">002</span>
+    <div class="sh-rule"></div>
+    <span class="sh-label">Core Services</span>
+  </div>
+  <div class="svc-list">
+    <div class="svc-row">
+      <div class="svc-n">01</div>
+      <div class="svc-t-col"><div class="svc-cat">Program</div><div class="svc-title">Leadership Development</div></div>
+      <div class="svc-d-col"><div class="svc-desc">Workshops, executive coaching, and team development grounded in values-based leadership and behavioral discipline. For new leaders through senior executives.</div></div>
+    </div>
+    <div class="svc-row">
+      <div class="svc-n">02</div>
+      <div class="svc-t-col"><div class="svc-cat">Program</div><div class="svc-title">Organizational Culture Training</div></div>
+      <div class="svc-d-col"><div class="svc-desc">Custom training that strengthens communication, accountability, and psychological safety across teams and units. Measurable culture transformation.</div></div>
+    </div>
+    <div class="svc-row">
+      <div class="svc-n">03</div>
+      <div class="svc-t-col"><div class="svc-cat">Consulting</div><div class="svc-title">Federal HR & Workforce Consulting</div></div>
+      <div class="svc-d-col"><div class="svc-desc">Strategic human capital modernization, workforce planning, and advisory support informed by NASA and DoD experience at the highest federal levels.</div></div>
+    </div>
+    <div class="svc-row">
+      <div class="svc-n">04</div>
+      <div class="svc-t-col"><div class="svc-cat">Speaking</div><div class="svc-title">Speaking Engagements</div></div>
+      <div class="svc-d-col"><div class="svc-desc">Keynotes and seminars for senior leaders, DEI programs, and professional military education audiences including DEOMI and TRADOC.</div></div>
+    </div>
+  </div>
+</div><!-- /home -->
+
+<!-- ═══════ SERVICES ═══════ -->
+<div class="page" id="page-services">
+  <div class="section-header">
+    <span class="sh-index">Services</span>
+    <div class="sh-rule"></div>
+    <span class="sh-label">Full Service Catalog</span>
+  </div>
+  <div class="svc-list">
+    <div class="svc-row"><div class="svc-n">01</div><div class="svc-t-col"><div class="svc-cat">Leadership</div><div class="svc-title">Executive Coaching</div></div><div class="svc-d-col"><div class="svc-desc">One-on-one coaching for senior leaders focused on strategic communication, decision-making, and organizational influence.</div></div></div>
+    <div class="svc-row"><div class="svc-n">02</div><div class="svc-t-col"><div class="svc-cat">Leadership</div><div class="svc-title">Small Group Workshops</div></div><div class="svc-d-col"><div class="svc-desc">Immersive group programs building team cohesion, psychological safety, and leadership discipline through structured exercises.</div></div></div>
+    <div class="svc-row"><div class="svc-n">03</div><div class="svc-t-col"><div class="svc-cat">Leadership</div><div class="svc-title">Individual Development</div></div><div class="svc-d-col"><div class="svc-desc">Personalized programs to identify leadership gaps, build behavioral systems, and create lasting performance habits.</div></div></div>
+    <div class="svc-row"><div class="svc-n">04</div><div class="svc-t-col"><div class="svc-cat">Culture</div><div class="svc-title">Organizational Culture Training</div></div><div class="svc-d-col"><div class="svc-desc">Custom training that strengthens communication, accountability, and psychological safety across teams and units.</div></div></div>
+    <div class="svc-row"><div class="svc-n">05</div><div class="svc-t-col"><div class="svc-cat">Federal HR</div><div class="svc-title">Talent Acquisition Strategy</div></div><div class="svc-d-col"><div class="svc-desc">Strategic recruitment frameworks and hiring process design that attract and retain mission-critical talent at federal and civilian levels.</div></div></div>
+    <div class="svc-row"><div class="svc-n">06</div><div class="svc-t-col"><div class="svc-cat">Federal HR</div><div class="svc-title">Workforce Planning</div></div><div class="svc-d-col"><div class="svc-desc">Data-informed workforce strategies that align human capital with mission priorities and budget cycles.</div></div></div>
+    <div class="svc-row"><div class="svc-n">07</div><div class="svc-t-col"><div class="svc-cat">Federal HR</div><div class="svc-title">HR Modernization</div></div><div class="svc-d-col"><div class="svc-desc">Assessment and redesign of HR systems, policies, and processes to meet evolving federal and organizational requirements.</div></div></div>
+    <div class="svc-row"><div class="svc-n">08</div><div class="svc-t-col"><div class="svc-cat">Speaking</div><div class="svc-title">Keynotes & Seminars</div></div><div class="svc-d-col"><div class="svc-desc">Presentations for PME courses, DEI forums, national leadership events, and senior executive development programs.</div></div></div>
+  </div>
+  <div style="padding:3rem; border-bottom:1px solid var(--line)">
+    <a class="btn btn-blk" href="#" onclick="go('contact');return false">Request a Proposal</a>
+  </div>
+</div><!-- /services -->
+
+<!-- ═══════ PAST PERFORMANCE ═══════ -->
+<div class="page" id="page-performance">
+  <div class="section-header">
+    <span class="sh-index">Track Record</span>
+    <div class="sh-rule"></div>
+    <span class="sh-label">Past Performance</span>
+  </div>
+  <div class="perf-wrap" style="padding:3rem">
+    <div class="max-w">
+      <table class="perf-table">
+        <tr><td class="pt-idx">01</td><td class="pt-client">Air Force & Army National Guard</td><td class="pt-detail">Delivered leadership development and organizational culture training programs for active and reserve component units, improving unit readiness and leader retention.</td></tr>
+        <tr><td class="pt-idx">02</td><td class="pt-client">NASA — HR Director</td><td class="pt-detail">Provided strategic human capital modernization and workforce planning at the federal executive level. Led HR transformation initiatives impacting agency-wide workforce alignment.</td></tr>
+        <tr><td class="pt-idx">03</td><td class="pt-client">Army National Guard — Deputy G-1</td><td class="pt-detail">Oversaw human resources operations, personnel policy, and leader development programs at the enterprise level for the Army National Guard.</td></tr>
+        <tr><td class="pt-idx">04</td><td class="pt-client">Senior Leader Development Programs</td><td class="pt-detail">Designed and facilitated senior leader development programs across military and civilian organizations, integrating leadership science with field-tested discipline frameworks.</td></tr>
+        <tr><td class="pt-idx">05</td><td class="pt-client">DEOMI — Keynote Speaker</td><td class="pt-detail">Keynote speaker for the Defense Equal Opportunity Management Institute, addressing diversity, equity, inclusion, and organizational culture for military and civilian audiences.</td></tr>
+        <tr><td class="pt-idx">06</td><td class="pt-client">TRADOC Courses</td><td class="pt-detail">Facilitated leadership and professional development courses within the Training and Doctrine Command curriculum for military educators and leaders.</td></tr>
+        <tr><td class="pt-idx">07</td><td class="pt-client">National Leadership Forums</td><td class="pt-detail">Presented at national forums on organizational culture, veteran leadership, and the application of military leadership frameworks in federal and corporate environments.</td></tr>
+      </table>
+    </div>
+  </div>
+</div><!-- /performance -->
+
+<!-- ═══════ ABOUT ═══════ -->
+<div class="page" id="page-about">
+  <div class="section-header">
+    <span class="sh-index">About</span>
+    <div class="sh-rule"></div>
+    <span class="sh-label">Founder & Company</span>
+  </div>
+  <div class="about-wrap">
+    <div class="about-left">
+      <div class="founder-strip">
+        <div class="fs-accent"></div>
+        <div class="fs-body">
+          <div class="fs-name">Anson Smith</div>
+          <div class="fs-role">President & Founder · Armvet, LLC</div>
+          <div class="fs-contact">
+            <div class="fs-cline">☎ 540-419-4074</div>
+            <div class="fs-cline">@ asmith@tcrhrconsulting.net</div>
+          </div>
+          <div class="tag-cloud">
+            <span class="tag">NASA HR Director</span>
+            <span class="tag">Deputy G-1 ANG</span>
+            <span class="tag">Command Sergeant Major</span>
+            <span class="tag">SDVOSB</span>
+            <span class="tag">SBA Certified</span>
+          </div>
+        </div>
+      </div>
+      <div class="metric-row">
+        <div class="metric"><div class="metric-val">NASA</div><div class="metric-lbl">HR Director</div></div>
+        <div class="metric"><div class="metric-val">ANG</div><div class="metric-lbl">Deputy G-1</div></div>
+        <div class="metric"><div class="metric-val">CSM</div><div class="metric-lbl">Multi-level</div></div>
+        <div class="metric"><div class="metric-val">SDVOSB</div><div class="metric-lbl">SBA Certified</div></div>
+      </div>
+      <a class="btn btn-blk" href="#" onclick="go('contact');return false">Get in Touch</a>
+    </div>
+    <div class="about-right">
+      <div class="about-body">
+        <p>Anson Smith is a retired NASA HR Director, former Deputy G-1 for the Army National Guard, and multi-level Command Sergeant Major with decades of experience in leadership, organizational development, and federal human capital strategy.</p>
+        <p>Through Armvet, he equips leaders with the tools, systems, and mindset required to build high-trust, high-performance organizations. His approach blends military discipline with evidence-based leadership science — producing programs that are immediately practical and measurably effective.</p>
+        <p>This rare combination — operational military leadership, executive federal HR experience, and organizational development expertise — makes Armvet uniquely positioned to serve military, government, and corporate clients seeking lasting culture change and leadership transformation.</p>
+        <p>Armvet, LLC is a Service-Disabled Veteran-Owned Small Business certified by the SBA. Every tool, workshop, and consulting engagement is built around practical systems leaders can apply from day one.</p>
+      </div>
+    </div>
+  </div>
+</div><!-- /about -->
+
+<!-- ═══════ CAPABILITY ═══════ -->
+<div class="page" id="page-capability">
+  <div class="section-header">
+    <span class="sh-index">Federal</span>
+    <div class="sh-rule"></div>
+    <span class="sh-label">Capability Statement</span>
+  </div>
+  <div style="padding:3rem; border-bottom:1px solid var(--line)">
+    <div class="max-w">
+      <div class="cap-grid">
+        <div class="cap-cell wide">
+          <div class="cap-lbl">Company Overview</div>
+          <div class="cap-content" style="font-size:1rem; color:var(--blk2)">Armvet, LLC is a Service-Disabled Veteran-Owned Small Business delivering leadership development, organizational culture training, and federal human capital consulting. Founded by a retired NASA HR Director and multi-level Command Sergeant Major.</div>
+        </div>
+        <div class="cap-cell"><div class="cap-lbl">Business Data</div><div class="cap-content"><strong>Armvet, LLC</strong><br>Type: Small Business<br>Contact: Anson Smith, President<br>Phone: 540-419-4074<br>Email: asmith@tcrhrconsulting.net</div></div>
+        <div class="cap-cell"><div class="cap-lbl">Core Competencies</div><div class="cap-content">Leadership Development & Coaching<br>Organizational Culture Training<br>Federal HR & Workforce Consulting<br>Human Capital Modernization<br>Talent Acquisition & Onboarding<br>Executive Speaking & Facilitation</div></div>
+        <div class="cap-cell"><div class="cap-lbl">Differentiators</div><div class="cap-content">NASA HR Director-level federal experience<br>Army National Guard Deputy G-1<br>Multi-level Command Sergeant Major<br>Evidence-based field-tested frameworks<br>SBA-certified SDVOSB status</div></div>
+        <div class="cap-cell"><div class="cap-lbl">NAICS Codes</div><div class="cap-content" style="margin-bottom:0.6rem">Primary codes:</div><div class="cap-tags"><span class="cap-tag">611430</span><span class="cap-tag">541612</span><span class="cap-tag">541611</span><span class="cap-tag">611699</span></div></div>
+        <div class="cap-cell"><div class="cap-lbl">Certifications</div><div class="cap-tags" style="margin-top:0.3rem"><span class="cap-tag">SBA SDVOSB Certified</span><span class="cap-tag">Veteran-Owned</span><span class="cap-tag">Small Business</span></div></div>
+        <div class="cap-cell"><div class="cap-lbl">Past Performance</div><div class="cap-content">Air Force, Army National Guard, NASA HR Modernization, DEOMI Keynotes, TRADOC Courses, National Leadership Forums</div></div>
+      </div>
+      <div style="margin-top:2rem"><a class="btn btn-blk" href="#" onclick="go('contact');return false">Request Full Capability Statement</a></div>
+    </div>
+  </div>
+</div><!-- /capability -->
+
+<!-- ═══════ TOOLS ═══════ -->
+<div class="page" id="page-tools">
+  <div class="section-header">
+    <span class="sh-index">Frameworks</span>
+    <div class="sh-rule"></div>
+    <span class="sh-label">Leadership Tools</span>
+  </div>
+  <div style="padding:2rem 3rem; border-bottom:1px solid var(--line)">
+    <p class="body" style="max-width:600px">Practical, disciplined tools that replace impulse-driven behaviors with intentional, values-aligned actions. These are the core instruments used in every Armvet workshop.</p>
+  </div>
+  <div>
+    <div class="tool-row">
+      <button class="tool-trigger" onclick="tog('friction')">
+        <div class="tool-idx">T-01</div>
+        <div class="tool-head"><div class="tool-name">Friction Audit</div><div class="tool-desc">Identify and eliminate execution barriers</div></div>
+        <div class="tool-open-btn" id="ta-friction">OPEN →</div>
+      </button>
+      <div class="tool-panel" id="tp-friction">
+        <div class="tool-panel-spacer"></div>
+        <div class="tool-steps">
+          <p class="body" style="margin-bottom:1.5rem">The Friction Audit helps leaders identify obstacles that prevent consistent execution. By removing friction, systems rely on structure, not motivation.</p>
+          <div class="step"><div class="step-n">01</div><div class="step-t">Identify a behavior you want to improve.</div></div>
+          <div class="step"><div class="step-n">02</div><div class="step-t">List every friction point that makes the behavior harder.</div></div>
+          <div class="step"><div class="step-n">03</div><div class="step-t">Remove, reduce, or redesign each friction point.</div></div>
+          <div class="step"><div class="step-n">04</div><div class="step-t">Replace friction with clarity, simplicity, and supportive cues.</div></div>
+        </div>
+        <div class="tool-example">
+          <div class="ex-lbl">Applied Example</div>
+          <div class="ex-item"><div class="ex-k">Behavior</div><div class="ex-v">Conduct daily leader engagement.</div></div>
+          <div class="ex-item"><div class="ex-k">Friction identified</div><div class="ex-v">No set time, unpredictable schedule, unclear priority.</div></div>
+          <div class="ex-item"><div class="ex-k">Solution</div><div class="ex-v">Block a fixed time, add it to the battle rhythm, create a checklist.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="tool-row">
+      <button class="tool-trigger" onclick="tog('system')">
+        <div class="tool-idx">T-02</div>
+        <div class="tool-head"><div class="tool-name">System Builder</div><div class="tool-desc">Design repeatable processes for consistent results</div></div>
+        <div class="tool-open-btn" id="ta-system">OPEN →</div>
+      </button>
+      <div class="tool-panel" id="tp-system">
+        <div class="tool-panel-spacer"></div>
+        <div class="tool-steps">
+          <p class="body" style="margin-bottom:1.5rem">The System Builder helps leaders design repeatable processes that produce consistent results. Systems reduce decision fatigue and ensure leadership behaviors are executed with discipline.</p>
+          <div class="step"><div class="step-n">01</div><div class="step-t">Define the desired outcome.</div></div>
+          <div class="step"><div class="step-n">02</div><div class="step-t">Identify the key behaviors required.</div></div>
+          <div class="step"><div class="step-n">03</div><div class="step-t">Assign roles and responsibilities.</div></div>
+          <div class="step"><div class="step-n">04</div><div class="step-t">Establish triggers and cues.</div></div>
+          <div class="step"><div class="step-n">05</div><div class="step-t">Set frequency and timing.</div></div>
+          <div class="step"><div class="step-n">06</div><div class="step-t">Measure results and adjust the system.</div></div>
+        </div>
+        <div class="tool-example">
+          <div class="ex-lbl">Applied Example</div>
+          <div class="ex-item"><div class="ex-k">Outcome</div><div class="ex-v">Improve team communication.</div></div>
+          <div class="ex-item"><div class="ex-k">System built</div><div class="ex-v">Weekly huddle, daily check-ins, and a shared task tracker.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="tool-row">
+      <button class="tool-trigger" onclick="tog('trigger')">
+        <div class="tool-idx">T-03</div>
+        <div class="tool-head"><div class="tool-name">Trigger → Replacement Behavior Map</div><div class="tool-desc">Build emotional discipline and leadership presence</div></div>
+        <div class="tool-open-btn" id="ta-trigger">OPEN →</div>
+      </button>
+      <div class="tool-panel" id="tp-trigger">
+        <div class="tool-panel-spacer"></div>
+        <div class="tool-steps">
+          <p class="body" style="margin-bottom:1.5rem">This tool helps leaders replace unproductive reactions with intentional, values-based responses. It builds emotional discipline and strengthens leadership presence over time.</p>
+          <div class="step"><div class="step-n">01</div><div class="step-t">Identify a trigger that causes an unproductive reaction.</div></div>
+          <div class="step"><div class="step-n">02</div><div class="step-t">Define the current behavior pattern.</div></div>
+          <div class="step"><div class="step-n">03</div><div class="step-t">Choose a replacement behavior aligned with your values.</div></div>
+          <div class="step"><div class="step-n">04</div><div class="step-t">Practice the replacement until it becomes automatic.</div></div>
+        </div>
+        <div class="tool-example">
+          <div class="ex-lbl">Applied Example</div>
+          <div class="ex-item"><div class="ex-k">Trigger</div><div class="ex-v">Team member misses a deadline.</div></div>
+          <div class="ex-item"><div class="ex-k">Current behavior</div><div class="ex-v">Immediate frustration or micromanagement.</div></div>
+          <div class="ex-item"><div class="ex-k">Replacement</div><div class="ex-v">Ask clarifying questions, identify barriers, reset expectations.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:2.5rem 3rem; border-top:1px solid var(--line)">
+    <a class="btn btn-green" href="#" onclick="go('training');return false">View Training Catalog</a>
+  </div>
+</div><!-- /tools -->
+
+<!-- ═══════ TRAINING ═══════ -->
+<div class="page" id="page-training">
+  <div class="section-header">
+    <span class="sh-index">Programs</span>
+    <div class="sh-rule"></div>
+    <span class="sh-label">Training Catalog</span>
+  </div>
+  <div class="training-list">
+    <div class="tc-row">
+      <div class="tc-idx">W-01</div>
+      <div class="tc-title-col"><div class="tc-title">Foundations of Leadership</div><div class="tc-format">Workshop · All Levels</div></div>
+      <div class="tc-desc-col"><div class="tc-desc">A core workshop on clarity, communication, and values-based leadership. Introduces essential behaviors — setting expectations, building trust, and creating alignment. Ideal for new and emerging leaders.</div></div>
+      <div class="tc-action"><span class="tc-link" onclick="go('contact')">Inquire →</span></div>
+    </div>
+    <div class="tc-row">
+      <div class="tc-idx">W-02</div>
+      <div class="tc-title-col"><div class="tc-title">Building High-Trust Teams</div><div class="tc-format">Workshop · Team Level</div></div>
+      <div class="tc-desc-col"><div class="tc-desc">Teaches leaders to create psychological safety, strengthen accountability, and foster open communication that drives mission execution. Trust-based performance frameworks.</div></div>
+      <div class="tc-action"><span class="tc-link" onclick="go('contact')">Inquire →</span></div>
+    </div>
+    <div class="tc-row">
+      <div class="tc-idx">W-03</div>
+      <div class="tc-title-col"><div class="tc-title">Leader Discipline & Behavior Systems</div><div class="tc-format">Workshop · All Levels</div></div>
+      <div class="tc-desc-col"><div class="tc-desc">Builds systems that support disciplined execution. Includes the Friction Audit, System Builder, and Trigger → Replacement Behavior Map. Replaces impulse-driven leadership with repeatable behaviors.</div></div>
+      <div class="tc-action"><span class="tc-link" onclick="go('contact')">Inquire →</span></div>
+    </div>
+    <div class="tc-row">
+      <div class="tc-idx">W-04</div>
+      <div class="tc-title-col"><div class="tc-title">Organizational Culture Alignment</div><div class="tc-format">Workshop · Org Level</div></div>
+      <div class="tc-desc-col"><div class="tc-desc">Aligns values, behaviors, and systems to create a culture that supports mission execution and readiness. Ideal for organizations undergoing transformation or culture assessment.</div></div>
+      <div class="tc-action"><span class="tc-link" onclick="go('contact')">Inquire →</span></div>
+    </div>
+    <div class="tc-row">
+      <div class="tc-idx">W-05</div>
+      <div class="tc-title-col"><div class="tc-title">Executive Leader Seminar</div><div class="tc-format">Seminar · Senior Level</div></div>
+      <div class="tc-desc-col"><div class="tc-desc">Senior-level program focused on strategic leadership, decision-making, and organizational influence. Ideal for senior NCOs, officers, and federal executives in high-complexity environments.</div></div>
+      <div class="tc-action"><span class="tc-link" onclick="go('contact')">Inquire →</span></div>
+    </div>
+    <div class="tc-row">
+      <div class="tc-idx">C-01</div>
+      <div class="tc-title-col"><div class="tc-title">Custom Training Programs</div><div class="tc-format">Custom · Any Level</div></div>
+      <div class="tc-desc-col"><div class="tc-desc">Mission-specific programs tailored to your organization's unique needs, integrating leadership science, military experience, and federal HR expertise to address specific challenges.</div></div>
+      <div class="tc-action"><span class="tc-link" onclick="go('contact')">Discuss →</span></div>
+    </div>
+  </div>
+  <div style="padding:2.5rem 3rem; border-top:1px solid var(--line); display:flex; gap:1rem">
+    <a class="btn btn-blk" href="#" onclick="go('contact');return false">Request a Proposal</a>
+    <a class="btn btn-outline" href="#" onclick="go('tools');return false">View Leadership Tools</a>
+  </div>
+</div><!-- /training -->
+
+<!-- ═══════ CONTACT ═══════ -->
+<div class="page" id="page-contact">
+  <div class="section-header">
+    <span class="sh-index">Connect</span>
+    <div class="sh-rule"></div>
+    <span class="sh-label">Contact Armvet</span>
+  </div>
+  <div class="contact-wrap">
+    <div class="contact-left">
+      <h2 class="display" style="margin-bottom:1.5rem">Let's<br><em>talk.</em></h2>
+      <p class="body">Whether you're exploring a training program, seeking a proposal, or looking to book a speaking engagement — we're ready to help.</p>
+      <div style="margin-top:2rem; margin-bottom:2.5rem">
+        <div class="c-row"><div class="c-key">Name</div><div class="c-val">Anson Smith — President, Armvet, LLC</div></div>
+        <div class="c-row"><div class="c-key">Phone</div><div class="c-val">540-419-4074</div></div>
+        <div class="c-row"><div class="c-key">Email</div><div class="c-val">asmith@tcrhrconsulting.net</div></div>
+        <div class="c-row"><div class="c-key">Status</div><div class="c-val">SBA Certified SDVOSB · Veteran-Owned</div></div>
+      </div>
+      <div class="cal-box">
+        <div class="cal-lbl">Schedule a Consultation</div>
+        <p>Book a session directly via our scheduling system.</p>
+        <a class="btn btn-green" href="https://calendly.com" target="_blank">Book a Session</a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="form-heading">Send a Message</div>
+      <div class="form-row">
+        <div class="fg"><label>First Name</label><input type="text" placeholder="First"/></div>
+        <div class="fg"><label>Last Name</label><input type="text" placeholder="Last"/></div>
+      </div>
+      <div class="fg"><label>Organization</label><input type="text" placeholder="Your organization or agency"/></div>
+      <div class="fg"><label>Email</label><input type="email" placeholder="your@email.gov"/></div>
+      <div class="fg"><label>Phone</label><input type="tel" placeholder="(555) 000-0000"/></div>
+      <div class="fg">
+        <label>Area of Interest</label>
+        <select>
+          <option value="">Select a service...</option>
+          <option>Leadership Development</option>
+          <option>Organizational Culture Training</option>
+          <option>Federal HR & Workforce Consulting</option>
+          <option>Speaking / Keynote</option>
+          <option>Custom Training Program</option>
+          <option>General Inquiry</option>
+        </select>
+      </div>
+      <div class="fg"><label>Message</label><textarea placeholder="Tell us about your organization and what you're looking for..."></textarea></div>
+      <button class="btn btn-blk" style="width:100%" onclick="alert('Thank you. Armvet will be in contact shortly.')">Send Message</button>
+    </div>
+  </div>
+</div><!-- /contact -->
+
+<footer>
+  <div class="footer-cell">
+    <div class="footer-logo">ARMVET LLC</div>
+    <div class="footer-mono">Leadership Development & Federal HR Consulting</div>
+  </div>
+  <div class="footer-cell">
+    <div>
+      <div class="footer-mono">540-419-4074</div>
+      <div class="footer-mono">asmith@tcrhrconsulting.net</div>
+    </div>
+  </div>
+  <div class="footer-cell">
+    <div>
+      <div class="footer-cert">SBA Certified SDVOSB</div>
+      <div class="footer-mono" style="margin-top:0.4rem">© 2026 Armvet, LLC — All Rights Reserved</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-center a').forEach(a=>a.classList.remove('active'));
+  const el=document.getElementById('nav-'+id);
+  if(el)el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  closeMenu();
+}
+function toggleMenu(){
+  const m=document.getElementById('navCenter');
+  m.classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('navCenter').classList.remove('open');
+}
+function tog(id){
+  const p=document.getElementById('tp-'+id);
+  const a=document.getElementById('ta-'+id);
+  const open=p.classList.contains('open');
+  p.classList.toggle('open');
+  a.textContent=open?'OPEN →':'CLOSE ×';
+}
+</script>
+</body>
+</html>
