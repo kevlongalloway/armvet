@@ -349,13 +349,13 @@ p.body {
 
 /* ─── SERVICES ─── */
 .svc-list { border-bottom: 1px solid var(--line); }
+.svc-item { border-bottom: 1px solid var(--line); }
+.svc-item:last-child { border-bottom: none; }
 .svc-row {
-  display: grid; grid-template-columns: 80px 1fr 1fr;
-  border-bottom: 1px solid var(--line);
+  display: grid; grid-template-columns: 80px 1fr 1fr 56px;
   transition: background 0.15s;
-  cursor: default;
+  cursor: pointer;
 }
-.svc-row:last-child { border-bottom: none; }
 .svc-row:hover { background: var(--g2); }
 .svc-n {
   padding: 2.5rem 2rem;
@@ -365,7 +365,14 @@ p.body {
   display: flex; align-items: flex-start; padding-top: 2.8rem;
 }
 .svc-t-col { padding: 2.5rem 2.5rem; border-right: 1px solid var(--line); }
-.svc-d-col { padding: 2.5rem 2.5rem; }
+.svc-d-col { padding: 2.5rem 2.5rem; border-right: 1px solid var(--line); }
+.svc-toggle {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; color: var(--mute);
+  transition: transform 0.25s;
+  user-select: none;
+}
+.svc-item.open .svc-toggle { transform: rotate(45deg); color: var(--blk); }
 .svc-title {
   font-family: 'Archivo Black', sans-serif;
   font-size: 1.3rem; letter-spacing: -0.01em;
@@ -378,6 +385,36 @@ p.body {
   margin-bottom: 0.6rem;
 }
 .svc-desc { font-size: 0.88rem; font-weight: 300; color: var(--mute); line-height: 1.75; }
+
+/* service expand panel */
+.svc-panel {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.svc-item.open .svc-panel { max-height: 800px; }
+.svc-panel-inner {
+  display: grid; grid-template-columns: 1fr 1fr auto;
+  gap: 3rem; align-items: start;
+  padding: 2.5rem 3rem;
+  background: var(--g2);
+  border-top: 1px solid var(--line);
+}
+.sp-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--g3);
+  margin-bottom: 0.9rem;
+}
+.sp-list { list-style: none; padding: 0; margin: 0; }
+.sp-list li {
+  font-size: 0.88rem; font-weight: 300; color: var(--mute);
+  line-height: 1.6; padding: 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+  padding-left: 1.1rem; position: relative;
+}
+.sp-list li:last-child { border-bottom: none; }
+.sp-list li::before { content: '—'; position: absolute; left: 0; color: var(--g3); }
+.sp-for-text { font-size: 0.88rem; font-weight: 300; color: var(--mute); line-height: 1.75; }
 
 /* ─── PAST PERF ─── */
 .perf-wrap { background: var(--blk); }
@@ -717,8 +754,9 @@ footer {
   .hero-bottom-cell:nth-child(3), .hero-bottom-cell:nth-child(4) { border-top: 1px solid var(--line); }
   .mission-wrap { grid-template-columns: 1fr; }
   .mission-sidebar { border-right: none; border-bottom: 1px solid var(--line); }
-  .svc-row { grid-template-columns: 60px 1fr; }
+  .svc-row { grid-template-columns: 60px 1fr 44px; }
   .svc-d-col { display: none; }
+  .svc-panel-inner { grid-template-columns: 1fr; gap: 1.8rem; padding: 2rem 1.5rem; }
   .about-wrap { grid-template-columns: 1fr; }
   .about-left { border-right: none; border-bottom: 1px solid var(--line); }
   .cap-grid { grid-template-columns: 1fr 1fr; }
@@ -906,14 +944,247 @@ footer {
     <span class="sh-label">Full Service Catalog</span>
   </div>
   <div class="svc-list">
-    <div class="svc-row"><div class="svc-n">01</div><div class="svc-t-col"><div class="svc-cat">Leadership</div><div class="svc-title">Executive Coaching</div></div><div class="svc-d-col"><div class="svc-desc">One-on-one coaching for senior leaders focused on strategic communication, decision-making, and organizational influence.</div></div></div>
-    <div class="svc-row"><div class="svc-n">02</div><div class="svc-t-col"><div class="svc-cat">Leadership</div><div class="svc-title">Small Group Workshops</div></div><div class="svc-d-col"><div class="svc-desc">Immersive group programs building team cohesion, psychological safety, and leadership discipline through structured exercises.</div></div></div>
-    <div class="svc-row"><div class="svc-n">03</div><div class="svc-t-col"><div class="svc-cat">Leadership</div><div class="svc-title">Individual Development</div></div><div class="svc-d-col"><div class="svc-desc">Personalized programs to identify leadership gaps, build behavioral systems, and create lasting performance habits.</div></div></div>
-    <div class="svc-row"><div class="svc-n">04</div><div class="svc-t-col"><div class="svc-cat">Culture</div><div class="svc-title">Organizational Culture Training</div></div><div class="svc-d-col"><div class="svc-desc">Custom training that strengthens communication, accountability, and psychological safety across teams and units.</div></div></div>
-    <div class="svc-row"><div class="svc-n">05</div><div class="svc-t-col"><div class="svc-cat">Federal HR</div><div class="svc-title">Talent Acquisition Strategy</div></div><div class="svc-d-col"><div class="svc-desc">Strategic recruitment frameworks and hiring process design that attract and retain mission-critical talent at federal and civilian levels.</div></div></div>
-    <div class="svc-row"><div class="svc-n">06</div><div class="svc-t-col"><div class="svc-cat">Federal HR</div><div class="svc-title">Workforce Planning</div></div><div class="svc-d-col"><div class="svc-desc">Data-informed workforce strategies that align human capital with mission priorities and budget cycles.</div></div></div>
-    <div class="svc-row"><div class="svc-n">07</div><div class="svc-t-col"><div class="svc-cat">Federal HR</div><div class="svc-title">HR Modernization</div></div><div class="svc-d-col"><div class="svc-desc">Assessment and redesign of HR systems, policies, and processes to meet evolving federal and organizational requirements.</div></div></div>
-    <div class="svc-row"><div class="svc-n">08</div><div class="svc-t-col"><div class="svc-cat">Speaking</div><div class="svc-title">Keynotes & Seminars</div></div><div class="svc-d-col"><div class="svc-desc">Presentations for PME courses, DEI forums, national leadership events, and senior executive development programs.</div></div></div>
+
+    <div class="svc-item" id="svci-1">
+      <div class="svc-row" onclick="svcTog(1)">
+        <div class="svc-n">01</div>
+        <div class="svc-t-col"><div class="svc-cat">Leadership</div><div class="svc-title">Executive Coaching</div></div>
+        <div class="svc-d-col"><div class="svc-desc">One-on-one coaching for senior leaders focused on strategic communication, decision-making, and organizational influence.</div></div>
+        <div class="svc-toggle">+</div>
+      </div>
+      <div class="svc-panel">
+        <div class="svc-panel-inner">
+          <div>
+            <div class="sp-label">What's included</div>
+            <ul class="sp-list">
+              <li>1-on-1 sessions with Anson Smith on a biweekly or monthly cadence</li>
+              <li>Leadership profile assessment and gap analysis</li>
+              <li>90-day development plan with measurable milestones</li>
+              <li>Strategic communication and decision-making frameworks</li>
+              <li>Ongoing accountability check-ins and plan adjustments</li>
+            </ul>
+          </div>
+          <div>
+            <div class="sp-label">Ideal for</div>
+            <p class="sp-for-text">Senior leaders, executives, and officers looking to sharpen strategic influence, strengthen executive presence, or navigate complex organizational change. Best suited for individuals stepping into larger roles or seeking a structured performance edge.</p>
+          </div>
+          <div>
+            <a class="btn btn-blk" href="#" onclick="go('contact');return false">Request This Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-item" id="svci-2">
+      <div class="svc-row" onclick="svcTog(2)">
+        <div class="svc-n">02</div>
+        <div class="svc-t-col"><div class="svc-cat">Leadership</div><div class="svc-title">Small Group Workshops</div></div>
+        <div class="svc-d-col"><div class="svc-desc">Immersive group programs building team cohesion, psychological safety, and leadership discipline through structured exercises.</div></div>
+        <div class="svc-toggle">+</div>
+      </div>
+      <div class="svc-panel">
+        <div class="svc-panel-inner">
+          <div>
+            <div class="sp-label">What's included</div>
+            <ul class="sp-list">
+              <li>Half-day or full-day immersive workshop (on-site or virtual)</li>
+              <li>Custom curriculum built around your team's specific challenges</li>
+              <li>Facilitated group exercises with structured debrief sessions</li>
+              <li>Post-workshop action plan and reference materials</li>
+              <li>Optional follow-up session at 30 or 60 days</li>
+            </ul>
+          </div>
+          <div>
+            <div class="sp-label">Ideal for</div>
+            <p class="sp-for-text">Leadership cohorts, newly formed teams, and units of 8–25 people who need a shared language, stronger accountability culture, and practical tools they can apply the next day. Effective for both military and civilian organizations.</p>
+          </div>
+          <div>
+            <a class="btn btn-blk" href="#" onclick="go('contact');return false">Request This Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-item" id="svci-3">
+      <div class="svc-row" onclick="svcTog(3)">
+        <div class="svc-n">03</div>
+        <div class="svc-t-col"><div class="svc-cat">Leadership</div><div class="svc-title">Individual Development</div></div>
+        <div class="svc-d-col"><div class="svc-desc">Personalized programs to identify leadership gaps, build behavioral systems, and create lasting performance habits.</div></div>
+        <div class="svc-toggle">+</div>
+      </div>
+      <div class="svc-panel">
+        <div class="svc-panel-inner">
+          <div>
+            <div class="sp-label">What's included</div>
+            <ul class="sp-list">
+              <li>Comprehensive leadership strengths and gaps assessment</li>
+              <li>Personalized development roadmap with 30/60/90-day targets</li>
+              <li>Behavioral habit design and personal accountability system</li>
+              <li>Guided reading and framework application exercises</li>
+              <li>Progress reviews and roadmap refinement over time</li>
+            </ul>
+          </div>
+          <div>
+            <div class="sp-label">Ideal for</div>
+            <p class="sp-for-text">Mid-level managers, emerging leaders, and transitioning veterans building toward the next level of leadership responsibility. Particularly valuable for individuals who have the drive but need a clear, structured path to get there.</p>
+          </div>
+          <div>
+            <a class="btn btn-blk" href="#" onclick="go('contact');return false">Request This Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-item" id="svci-4">
+      <div class="svc-row" onclick="svcTog(4)">
+        <div class="svc-n">04</div>
+        <div class="svc-t-col"><div class="svc-cat">Culture</div><div class="svc-title">Organizational Culture Training</div></div>
+        <div class="svc-d-col"><div class="svc-desc">Custom training that strengthens communication, accountability, and psychological safety across teams and units. Measurable culture transformation.</div></div>
+        <div class="svc-toggle">+</div>
+      </div>
+      <div class="svc-panel">
+        <div class="svc-panel-inner">
+          <div>
+            <div class="sp-label">What's included</div>
+            <ul class="sp-list">
+              <li>Culture diagnostic assessment across teams or units</li>
+              <li>Custom multi-session training curriculum design</li>
+              <li>Facilitated sessions for both leadership and staff</li>
+              <li>Communication and accountability frameworks tailored to your org</li>
+              <li>Culture change implementation guide and follow-up support</li>
+            </ul>
+          </div>
+          <div>
+            <div class="sp-label">Ideal for</div>
+            <p class="sp-for-text">Organizations undergoing restructuring, units with trust or morale gaps, and agencies that need a reset in how people communicate, take ownership, and hold each other accountable. Results are measurable — not just motivational.</p>
+          </div>
+          <div>
+            <a class="btn btn-blk" href="#" onclick="go('contact');return false">Request This Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-item" id="svci-5">
+      <div class="svc-row" onclick="svcTog(5)">
+        <div class="svc-n">05</div>
+        <div class="svc-t-col"><div class="svc-cat">Federal HR</div><div class="svc-title">Talent Acquisition Strategy</div></div>
+        <div class="svc-d-col"><div class="svc-desc">Strategic recruitment frameworks and hiring process design that attract and retain mission-critical talent at federal and civilian levels.</div></div>
+        <div class="svc-toggle">+</div>
+      </div>
+      <div class="svc-panel">
+        <div class="svc-panel-inner">
+          <div>
+            <div class="sp-label">What's included</div>
+            <ul class="sp-list">
+              <li>End-to-end hiring process audit and gap analysis</li>
+              <li>Recruitment framework and sourcing strategy design</li>
+              <li>Interview and selection tools tailored to your mission</li>
+              <li>Position description and competency model development</li>
+              <li>Onboarding integration recommendations</li>
+            </ul>
+          </div>
+          <div>
+            <div class="sp-label">Ideal for</div>
+            <p class="sp-for-text">Federal agencies, DoD components, and veteran-serving organizations struggling to attract or retain mission-critical talent. Built on NASA and Army National Guard hiring experience — not generic HR theory.</p>
+          </div>
+          <div>
+            <a class="btn btn-blk" href="#" onclick="go('contact');return false">Request This Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-item" id="svci-6">
+      <div class="svc-row" onclick="svcTog(6)">
+        <div class="svc-n">06</div>
+        <div class="svc-t-col"><div class="svc-cat">Federal HR</div><div class="svc-title">Workforce Planning</div></div>
+        <div class="svc-d-col"><div class="svc-desc">Data-informed workforce strategies that align human capital with mission priorities and budget cycles.</div></div>
+        <div class="svc-toggle">+</div>
+      </div>
+      <div class="svc-panel">
+        <div class="svc-panel-inner">
+          <div>
+            <div class="sp-label">What's included</div>
+            <ul class="sp-list">
+              <li>Current-state workforce data analysis and headcount review</li>
+              <li>Skills and capacity gap assessment by function or unit</li>
+              <li>Succession and transition planning framework</li>
+              <li>Strategic HR roadmap aligned to budget cycles and mission</li>
+              <li>Briefing-ready documentation for executive leadership</li>
+            </ul>
+          </div>
+          <div>
+            <div class="sp-label">Ideal for</div>
+            <p class="sp-for-text">Federal HR directors, agency COOs, and workforce planning officers managing multi-year staffing strategy. Especially useful for organizations facing retirements, reorganizations, or mission scope changes that require proactive human capital planning.</p>
+          </div>
+          <div>
+            <a class="btn btn-blk" href="#" onclick="go('contact');return false">Request This Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-item" id="svci-7">
+      <div class="svc-row" onclick="svcTog(7)">
+        <div class="svc-n">07</div>
+        <div class="svc-t-col"><div class="svc-cat">Federal HR</div><div class="svc-title">HR Modernization</div></div>
+        <div class="svc-d-col"><div class="svc-desc">Assessment and redesign of HR systems, policies, and processes to meet evolving federal and organizational requirements.</div></div>
+        <div class="svc-toggle">+</div>
+      </div>
+      <div class="svc-panel">
+        <div class="svc-panel-inner">
+          <div>
+            <div class="sp-label">What's included</div>
+            <ul class="sp-list">
+              <li>Full audit of existing HR systems, policies, and workflows</li>
+              <li>Gap analysis against current federal regulations and best practices</li>
+              <li>Redesign recommendations with prioritized implementation roadmap</li>
+              <li>Change management guidance for leadership and HR staff</li>
+              <li>Executive summary and implementation support documentation</li>
+            </ul>
+          </div>
+          <div>
+            <div class="sp-label">Ideal for</div>
+            <p class="sp-for-text">Agencies operating on legacy HR infrastructure, organizations emerging from a reorganization, and HR leaders tasked with improving efficiency, compliance, and the employee experience. Informed by direct NASA HR Director experience leading agency-wide HR transformation.</p>
+          </div>
+          <div>
+            <a class="btn btn-blk" href="#" onclick="go('contact');return false">Request This Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-item" id="svci-8">
+      <div class="svc-row" onclick="svcTog(8)">
+        <div class="svc-n">08</div>
+        <div class="svc-t-col"><div class="svc-cat">Speaking</div><div class="svc-title">Keynotes & Seminars</div></div>
+        <div class="svc-d-col"><div class="svc-desc">Presentations for PME courses, DEI forums, national leadership events, and senior executive development programs.</div></div>
+        <div class="svc-toggle">+</div>
+      </div>
+      <div class="svc-panel">
+        <div class="svc-panel-inner">
+          <div>
+            <div class="sp-label">What's included</div>
+            <ul class="sp-list">
+              <li>Pre-event consultation and audience alignment session</li>
+              <li>Custom-developed keynote address on your selected topic</li>
+              <li>Presentation materials and participant handouts</li>
+              <li>Optional follow-on Q&amp;A or breakout workshop session</li>
+              <li>Post-event debrief and recommended next steps</li>
+            </ul>
+          </div>
+          <div>
+            <div class="sp-label">Ideal for</div>
+            <p class="sp-for-text">PME courses, DEI forums, national leadership conferences, and senior executive development programs that need a speaker with genuine operational credibility — not a motivational speaker, but a practitioner with decades of military and federal executive experience to back every word.</p>
+          </div>
+          <div>
+            <a class="btn btn-blk" href="#" onclick="go('contact');return false">Request This Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
   <div style="padding:3rem; border-bottom:1px solid var(--line)">
     <a class="btn btn-blk" href="#" onclick="go('contact');return false">Request a Proposal</a>
@@ -1248,6 +1519,12 @@ function tog(id){
   const open=p.classList.contains('open');
   p.classList.toggle('open');
   a.textContent=open?'OPEN →':'CLOSE ×';
+}
+function svcTog(id){
+  const item=document.getElementById('svci-'+id);
+  const wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.svc-item.open').forEach(el=>el.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
 }
 </script>
 </body>
