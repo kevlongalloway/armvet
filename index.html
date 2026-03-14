@@ -675,6 +675,20 @@ footer {
 
 /* ─── MOBILE ─── */
 @media(max-width:900px){
+  /* hero facts — wrap description below value on small screens */
+  .hero-fact { flex-wrap: wrap; gap: 0.4rem 1rem; }
+  .hf-desc { min-width: 0; word-break: break-word; }
+
+  /* performance table — stack columns vertically */
+  .perf-wrap { padding: 1.5rem !important; }
+  .perf-table, .perf-table tbody, .perf-table tr, .perf-table td { display: block; width: 100%; box-sizing: border-box; }
+  .perf-table tr { border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .perf-table tr:last-child { border-bottom: none; }
+  .perf-table td { border-bottom: none; padding: 0.4rem 1.5rem; }
+  .pt-idx { padding-top: 1.5rem; }
+  .pt-client { width: auto; padding-bottom: 0.4rem; }
+  .pt-detail { padding-bottom: 1.5rem; }
+
   nav { overflow-x: visible; }
   .nav-center { display: none; }
   .nav-center.open {
