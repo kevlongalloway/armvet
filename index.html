@@ -47,6 +47,8 @@
   --blk2: #2a2a28;
   --mute: #4a4a47;
   --line: #d8d8d0;
+  --pu: #5C2D91;
+  --gld: #CFB53B;
 }
 
 html { scroll-behavior: smooth; }
@@ -104,7 +106,7 @@ nav {
 .nav-logo sup {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.5rem; letter-spacing: 0.1em;
-  color: var(--g3); margin-left: 0.4rem;
+  color: var(--pu); margin-left: 0.4rem;
   vertical-align: super;
 }
 .nav-center {
@@ -269,13 +271,42 @@ nav {
 .hero-bottom-cell:last-child { border-right: none; }
 .hbc-dot {
   width: 7px; height: 7px;
-  background: var(--g3); flex-shrink: 0;
+  background: var(--gld); flex-shrink: 0;
 }
 .hbc-text {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.57rem; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--mute);
 }
+
+/* ─── CREDENTIAL STRIP ─── */
+.cred-strip {
+  display: flex; align-items: center; gap: 3rem;
+  padding: 1.8rem 3rem;
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+}
+.cred-strip-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.52rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+  white-space: nowrap; flex-shrink: 0;
+  border-right: 1px solid var(--line);
+  padding-right: 3rem;
+}
+.cred-logos { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; }
+.cred-item { display: flex; align-items: center; gap: 0.7rem; opacity: 0.7; transition: opacity 0.2s; }
+.cred-item:hover { opacity: 1; }
+.cred-name {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.8rem; color: var(--blk); letter-spacing: 0.02em;
+}
+.cred-role {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.48rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute);
+}
+.cred-divider { width: 1px; height: 32px; background: var(--line); flex-shrink: 0; }
 
 /* ─── GENERIC ─── */
 .max-w { max-width: 1200px; margin: 0 auto; }
@@ -293,7 +324,7 @@ nav {
   font-size: 0.6rem; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--g3);
 }
-.sh-rule { height: 1px; background: var(--line); }
+.sh-rule { height: 1px; background: linear-gradient(90deg, var(--gld) 0%, var(--pu) 40%, var(--line) 100%); }
 .sh-label {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.6rem; letter-spacing: 0.18em;
@@ -504,7 +535,7 @@ p.body {
   margin-bottom: 2.5rem;
 }
 .fs-accent {
-  width: 6px; background: var(--g3); flex-shrink: 0;
+  width: 6px; background: linear-gradient(180deg, var(--gld) 0%, var(--pu) 100%); flex-shrink: 0;
 }
 .fs-body { padding: 1.5rem; }
 .fs-name {
@@ -857,12 +888,12 @@ footer {
   <a href="#" class="nav-logo" onclick="go('home');return false">ARMVET LLC <sup>SDVOSB</sup></a>
   <div class="nav-center" id="navCenter">
     <a href="#" id="nav-home" class="active" onclick="go('home');return false">Home</a>
-    <a href="#" id="nav-services" onclick="go('services');return false">Services</a>
-    <a href="#" id="nav-performance" onclick="go('performance');return false">Past Performance</a>
     <a href="#" id="nav-about" onclick="go('about');return false">About</a>
+    <a href="#" id="nav-services" onclick="go('services');return false">Services</a>
     <a href="#" id="nav-capability" onclick="go('capability');return false">Capability</a>
-    <a href="#" id="nav-tools" onclick="go('tools');return false">Tools</a>
     <a href="#" id="nav-training" onclick="go('training');return false">Training</a>
+    <a href="#" id="nav-tools" onclick="go('tools');return false">Tools</a>
+    <a href="#" id="nav-performance" onclick="go('performance');return false">Past Performance</a>
     <a href="#" id="nav-contact-m" onclick="go('contact');return false" style="border-top:2px solid var(--blk)">Contact</a>
   </div>
   <div class="nav-right">
@@ -920,6 +951,68 @@ footer {
       <div class="hero-bottom-cell"><div class="hbc-dot"></div><div class="hbc-text">Organizational Culture</div></div>
       <div class="hero-bottom-cell"><div class="hbc-dot"></div><div class="hbc-text">Federal HR Consulting</div></div>
       <div class="hero-bottom-cell"><div class="hbc-dot"></div><div class="hbc-text">Speaking Engagements</div></div>
+    </div>
+  </div>
+
+  <!-- Agency Credentials Strip -->
+  <div class="cred-strip">
+    <div class="cred-strip-label">Affiliated With</div>
+    <div class="cred-logos">
+
+      <!-- NASA -->
+      <div class="cred-item">
+        <svg width="56" height="22" viewBox="0 0 56 22" aria-label="NASA">
+          <text x="0" y="19" font-family="Archivo Black,sans-serif" font-size="21" fill="#FC3D21" letter-spacing="-0.5">NASA</text>
+        </svg>
+        <div>
+          <div class="cred-name">Former HR Director</div>
+          <div class="cred-role">Federal Executive Level</div>
+        </div>
+      </div>
+
+      <div class="cred-divider"></div>
+
+      <!-- Army National Guard -->
+      <div class="cred-item">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-label="Army National Guard">
+          <polygon points="14,2 17.5,10 26,11.2 20,17 21.7,25.5 14,21.5 6.3,25.5 8,17 2,11.2 10.5,10" fill="#3a5f3a"/>
+        </svg>
+        <div>
+          <div class="cred-name">Army National Guard</div>
+          <div class="cred-role">Deputy G-1 · HR Enterprise</div>
+        </div>
+      </div>
+
+      <div class="cred-divider"></div>
+
+      <!-- DEOMI -->
+      <div class="cred-item">
+        <svg width="36" height="28" viewBox="0 0 36 28" aria-label="DEOMI">
+          <rect x="0" y="0" width="36" height="28" rx="3" fill="#1a2f5c"/>
+          <text x="18" y="12" font-family="Archivo Black,sans-serif" font-size="7.5" fill="#CFB53B" text-anchor="middle" letter-spacing="0.5">DEOMI</text>
+          <text x="18" y="22" font-family="IBM Plex Mono,monospace" font-size="4" fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="0.3">DEF. EQUAL OPP.</text>
+        </svg>
+        <div>
+          <div class="cred-name">DEOMI</div>
+          <div class="cred-role">Keynote Speaker</div>
+        </div>
+      </div>
+
+      <div class="cred-divider"></div>
+
+      <!-- SBA SDVOSB -->
+      <div class="cred-item">
+        <svg width="36" height="28" viewBox="0 0 36 28" aria-label="SBA SDVOSB">
+          <rect x="0" y="0" width="36" height="28" rx="3" fill="#5C2D91"/>
+          <text x="18" y="12" font-family="Archivo Black,sans-serif" font-size="9" fill="#CFB53B" text-anchor="middle">SBA</text>
+          <text x="18" y="22" font-family="IBM Plex Mono,monospace" font-size="4" fill="rgba(255,255,255,0.85)" text-anchor="middle" letter-spacing="0.3">SDVOSB</text>
+        </svg>
+        <div>
+          <div class="cred-name">SBA Certified</div>
+          <div class="cred-role">Service-Disabled Veteran-Owned</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1298,6 +1391,7 @@ footer {
     </div>
     <div class="about-right">
       <div class="about-body">
+        <p style="font-style:italic; border-left:3px solid var(--gld); padding-left:1.2rem; color:var(--blk);">"We train leaders to shift their mindset so they communicate with clarity, act with intent, and take care of their people."</p>
         <p>Anson Smith is a retired NASA HR Director, former Deputy G-1 for the Army National Guard, and multi-level Command Sergeant Major with decades of experience in leadership, organizational development, and federal human capital strategy.</p>
         <p>Through Armvet, he equips leaders with the tools, systems, and mindset required to build high-trust, high-performance organizations. His approach blends military discipline with evidence-based leadership science — producing programs that are immediately practical and measurably effective.</p>
         <p>This rare combination — operational military leadership, executive federal HR experience, and organizational development expertise — makes Armvet uniquely positioned to serve military, government, and corporate clients seeking lasting culture change and leadership transformation.</p>
