@@ -280,45 +280,18 @@ nav {
 }
 
 /* ─── CREDENTIAL STRIP ─── */
-.cred-strip {
-  padding: 2.8rem 3rem 2.4rem;
-  border-bottom: 1px solid var(--line);
-  text-align: center;
-}
-.cred-strip-label {
+.hero-creds { margin-top: 2.5rem; }
+.hero-creds-lbl {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.52rem; letter-spacing: 0.16em;
+  font-size: 0.45rem; letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--mute);
-  margin-bottom: 2.2rem;
+  display: block; margin-bottom: 0.8rem;
 }
-.cred-logos {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
-  max-width: 860px;
-  margin: 0 auto;
-  align-items: start;
+.hero-creds-logos {
+  display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap;
 }
-.cred-item {
-  display: flex; flex-direction: column; align-items: center;
-  gap: 0.9rem; text-align: center;
-  opacity: 0.82; transition: opacity 0.2s;
-}
-.cred-item:hover { opacity: 1; }
-.cred-item svg { display: block; }
-.cred-name {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 0.75rem; color: var(--blk); letter-spacing: 0.02em; line-height: 1.3;
-}
-.cred-role {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.46rem; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--mute); margin-top: 0.1rem;
-}
-@media (max-width: 680px) {
-  .cred-strip { padding: 2rem 1.5rem; }
-  .cred-logos { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.5rem; max-width: 380px; }
-}
+.hero-creds-logos svg { opacity: 0.72; transition: opacity 0.2s; flex-shrink: 0; }
+.hero-creds-logos svg:hover { opacity: 1; }
 
 /* ─── GENERIC ─── */
 .max-w { max-width: 1200px; margin: 0 auto; }
@@ -934,7 +907,83 @@ footer {
             <a href="#" onclick="go('services');return false">View Services</a>
           </div>
         </div>
-        <div style="height:1px"></div>
+        <div class="hero-creds">
+          <span class="hero-creds-lbl">Affiliated With</span>
+          <div class="hero-creds-logos">
+            <svg viewBox="0 0 200 200" width="32" height="32" aria-label="NASA" role="img">
+              <defs><clipPath id="hc-nasa"><circle cx="100" cy="100" r="98"/></clipPath></defs>
+              <circle cx="100" cy="100" r="99" fill="#0B3D91"/>
+              <circle cx="100" cy="100" r="97" fill="none" stroke="white" stroke-width="1.5"/>
+              <ellipse cx="100" cy="100" rx="93" ry="28" transform="rotate(-20 100 100)" fill="none" stroke="white" stroke-width="3" clip-path="url(#hc-nasa)"/>
+              <path d="M 2,158 C 22,126 60,72 124,34 C 150,19 178,14 200,17 L 200,32 C 176,29 150,38 122,56 C 56,96 18,152 6,174 Z" fill="#FC3D21" clip-path="url(#hc-nasa)"/>
+              <text x="100" y="122" text-anchor="middle" font-family="Arial Black,Helvetica Neue,sans-serif" font-weight="900" font-size="54" fill="white">NASA</text>
+              <path d="M46,48 L48,57 L57,59 L48,61 L46,70 L44,61 L35,59 L44,57 Z" fill="white"/>
+              <path d="M153,30 L155,37 L162,39 L155,41 L153,48 L151,41 L144,39 L151,37 Z" fill="white"/>
+              <path d="M170,74 L172,80 L178,81.5 L172,83 L170,89 L168,83 L162,81.5 L168,80 Z" fill="white"/>
+              <path d="M29,90 L31,96 L37,97.5 L31,99 L29,105 L27,99 L21,97.5 L27,96 Z" fill="white"/>
+              <circle cx="78" cy="36" r="2" fill="white"/><circle cx="95" cy="26" r="1.5" fill="white"/>
+              <circle cx="116" cy="23" r="2" fill="white"/><circle cx="138" cy="30" r="1.5" fill="white"/>
+              <circle cx="62" cy="66" r="1.5" fill="white"/><circle cx="176" cy="50" r="1.5" fill="white"/>
+              <circle cx="22" cy="124" r="1.5" fill="white"/><circle cx="178" cy="142" r="1.5" fill="white"/>
+              <circle cx="38" cy="154" r="1.8" fill="white"/><circle cx="163" cy="164" r="1.5" fill="white"/>
+            </svg>
+            <svg viewBox="0 0 124 148" width="26" height="32" aria-label="Army National Guard" role="img">
+              <path d="M2,2 L122,2 L122,92 L62,146 L2,92 Z" fill="#0A0A0A"/>
+              <line x1="12" y1="26" x2="112" y2="26" stroke="#FFB800" stroke-width="2.5"/>
+              <text x="62" y="56" text-anchor="middle" font-family="Arial Black,Impact,Helvetica,sans-serif" font-weight="900" font-size="30" fill="#FFB800" letter-spacing="-0.5">ARMY</text>
+              <text x="62" y="77" text-anchor="middle" font-family="Arial Black,Helvetica,sans-serif" font-weight="900" font-size="18.5" fill="white" letter-spacing="0.3">NATIONAL</text>
+              <text x="62" y="98" text-anchor="middle" font-family="Arial Black,Helvetica,sans-serif" font-weight="900" font-size="22" fill="white" letter-spacing="0.5">GUARD</text>
+              <line x1="12" y1="106" x2="112" y2="106" stroke="#FFB800" stroke-width="2.5"/>
+              <text x="62" y="127" text-anchor="middle" font-size="17" fill="#FFB800">★</text>
+            </svg>
+            <svg viewBox="0 0 200 200" width="32" height="32" aria-label="DEOMI" role="img">
+              <defs>
+                <path id="hc-dtp" d="M 13,100 A 87,87 0 0,1 187,100"/>
+                <path id="hc-dbp" d="M 13,100 A 87,87 0 0,0 187,100"/>
+              </defs>
+              <circle cx="100" cy="100" r="99" fill="white"/>
+              <circle cx="100" cy="100" r="99" fill="none" stroke="#1C2D6E" stroke-width="1.5"/>
+              <circle cx="100" cy="100" r="91" fill="#C4861A"/>
+              <circle cx="100" cy="100" r="83" fill="#1C2D6E"/>
+              <circle cx="100" cy="100" r="83" fill="none" stroke="#C4861A" stroke-width="1.5"/>
+              <polygon points="100,22 105,92 100,100 95,92" fill="#4B90D4"/>
+              <polygon points="100,178 105,108 100,100 95,108" fill="#4B90D4"/>
+              <polygon points="22,100 92,95 100,100 92,105" fill="#4B90D4"/>
+              <polygon points="178,100 108,95 100,100 108,105" fill="#4B90D4"/>
+              <polygon points="157,43 107,92 100,100 94,93" fill="#68B0E0"/>
+              <polygon points="43,43 93,92 100,100 106,93" fill="#68B0E0"/>
+              <polygon points="157,157 107,108 100,100 94,107" fill="#68B0E0"/>
+              <polygon points="43,157 93,108 100,100 106,107" fill="#68B0E0"/>
+              <circle cx="100" cy="100" r="21" fill="#1C2D6E"/>
+              <path d="M86,107 Q88,97 100,96 Q112,97 114,107 Q112,113 100,114 Q88,113 86,107 Z" fill="#B8942A"/>
+              <ellipse cx="100" cy="99" rx="9" ry="3.5" fill="#C4A030"/>
+              <path d="M86,104 Q80,101 78,105 Q80,109 86,108" fill="#B8942A"/>
+              <path d="M114,104 Q120,101 122,105 Q120,109 114,108" fill="#B8942A"/>
+              <path d="M100,95 Q104,89 100,84 Q96,89 100,95 Z" fill="#FF8C00"/>
+              <text x="100" y="30" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
+              <text x="148" y="52" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
+              <text x="172" y="104" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
+              <text x="148" y="158" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
+              <text x="100" y="178" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
+              <text x="52" y="158" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
+              <text x="28" y="104" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
+              <text x="52" y="52" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
+              <text font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#1C2D6E" font-weight="bold" letter-spacing="0.4">
+                <textPath href="#hc-dtp" startOffset="50%" text-anchor="middle">DEFENSE EQUAL OPPORTUNITY MANAGEMENT INSTITUTE</textPath>
+              </text>
+              <text font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#1C2D6E" font-weight="bold" letter-spacing="0.8">
+                <textPath href="#hc-dbp" startOffset="50%" text-anchor="middle">Est. 1971 · CENTER OF EXCELLENCE</textPath>
+              </text>
+            </svg>
+            <svg viewBox="0 0 270 215" width="48" height="32" aria-label="SBA" role="img">
+              <rect width="270" height="215" fill="white"/>
+              <polyline points="16,16 16,8 254,8 254,138" fill="none" stroke="#162968" stroke-width="9" stroke-linecap="square" stroke-linejoin="miter"/>
+              <polyline points="16,138 16,172 160,172" fill="none" stroke="#BE2026" stroke-width="9" stroke-linecap="square" stroke-linejoin="miter"/>
+              <text x="135" y="140" text-anchor="middle" font-family="Arial Black,Helvetica Neue,sans-serif" font-weight="900" font-size="112" fill="#162968">SBA</text>
+              <text x="135" y="198" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#162968" letter-spacing="0.2">U.S. Small Business Administration</text>
+            </svg>
+          </div>
+        </div>
       </div>
       <div class="hero-right">
         <div class="hero-big-number">20+</div>
@@ -963,174 +1012,6 @@ footer {
       <div class="hero-bottom-cell"><div class="hbc-dot"></div><div class="hbc-text">Organizational Culture</div></div>
       <div class="hero-bottom-cell"><div class="hbc-dot"></div><div class="hbc-text">Federal HR Consulting</div></div>
       <div class="hero-bottom-cell"><div class="hbc-dot"></div><div class="hbc-text">Speaking Engagements</div></div>
-    </div>
-  </div>
-
-  <!-- Agency Credentials Strip -->
-  <div class="cred-strip">
-    <div class="cred-strip-label">Affiliated With</div>
-    <div class="cred-logos">
-
-      <!-- NASA Meatball — exact official logo -->
-      <div class="cred-item">
-        <svg viewBox="0 0 200 200" width="72" height="72" aria-label="NASA" role="img">
-          <defs>
-            <clipPath id="nasa-meatball-clip"><circle cx="100" cy="100" r="98"/></clipPath>
-          </defs>
-          <!-- Blue sphere — NASA Pantone 286 -->
-          <circle cx="100" cy="100" r="99" fill="#0B3D91"/>
-          <!-- Thin white border -->
-          <circle cx="100" cy="100" r="97" fill="none" stroke="white" stroke-width="1.5"/>
-          <!-- White orbital ring (thin ellipse, tilted ~-20°) -->
-          <ellipse cx="100" cy="100" rx="93" ry="28" transform="rotate(-20 100 100)"
-            fill="none" stroke="white" stroke-width="3" clip-path="url(#nasa-meatball-clip)"/>
-          <!-- Red wing/chevron — diagonal filled shape, lower-left to upper-right -->
-          <path d="M 2,158 C 22,126 60,72 124,34 C 150,19 178,14 200,17
-                   L 200,32 C 176,29 150,38 122,56 C 56,96 18,152 6,174 Z"
-            fill="#FC3D21" clip-path="url(#nasa-meatball-clip)"/>
-          <!-- NASA text — white, heavy sans-serif -->
-          <text x="100" y="122" text-anchor="middle"
-            font-family="Arial Black,Helvetica Neue,sans-serif"
-            font-weight="900" font-size="54" fill="white">NASA</text>
-          <!-- 4-pointed sparkle stars (upper blue area) -->
-          <path d="M46,48 L48,57 L57,59 L48,61 L46,70 L44,61 L35,59 L44,57 Z" fill="white"/>
-          <path d="M153,30 L155,37 L162,39 L155,41 L153,48 L151,41 L144,39 L151,37 Z" fill="white"/>
-          <path d="M170,74 L172,80 L178,81.5 L172,83 L170,89 L168,83 L162,81.5 L168,80 Z" fill="white"/>
-          <path d="M29,90 L31,96 L37,97.5 L31,99 L29,105 L27,99 L21,97.5 L27,96 Z" fill="white"/>
-          <!-- Small star dots scattered in blue -->
-          <circle cx="78" cy="36" r="2" fill="white"/>
-          <circle cx="95" cy="26" r="1.5" fill="white"/>
-          <circle cx="116" cy="23" r="2" fill="white"/>
-          <circle cx="138" cy="30" r="1.5" fill="white"/>
-          <circle cx="62" cy="66" r="1.5" fill="white"/>
-          <circle cx="176" cy="50" r="1.5" fill="white"/>
-          <circle cx="22" cy="124" r="1.5" fill="white"/>
-          <circle cx="178" cy="142" r="1.5" fill="white"/>
-          <circle cx="38" cy="154" r="1.8" fill="white"/>
-          <circle cx="163" cy="164" r="1.5" fill="white"/>
-        </svg>
-        <div>
-          <div class="cred-name">Former HR Director</div>
-          <div class="cred-role">Federal Executive Level</div>
-        </div>
-      </div>
-
-      <!-- Army National Guard — exact official badge (black shield, gold/white text) -->
-      <div class="cred-item">
-        <svg viewBox="0 0 124 148" width="60" height="72" aria-label="Army National Guard" role="img">
-          <!-- Black shield/pennant shape — straight top, pointed bottom -->
-          <path d="M2,2 L122,2 L122,92 L62,146 L2,92 Z" fill="#0A0A0A"/>
-          <!-- Top gold rule line -->
-          <line x1="12" y1="26" x2="112" y2="26" stroke="#FFB800" stroke-width="2.5"/>
-          <!-- ARMY — large, gold/yellow, heavy -->
-          <text x="62" y="56" text-anchor="middle"
-            font-family="Arial Black,Impact,Helvetica,sans-serif"
-            font-weight="900" font-size="30" fill="#FFB800" letter-spacing="-0.5">ARMY</text>
-          <!-- NATIONAL — white, bold -->
-          <text x="62" y="77" text-anchor="middle"
-            font-family="Arial Black,Helvetica,sans-serif"
-            font-weight="900" font-size="18.5" fill="white" letter-spacing="0.3">NATIONAL</text>
-          <!-- GUARD — white, large, bold -->
-          <text x="62" y="98" text-anchor="middle"
-            font-family="Arial Black,Helvetica,sans-serif"
-            font-weight="900" font-size="22" fill="white" letter-spacing="0.5">GUARD</text>
-          <!-- Bottom gold rule line -->
-          <line x1="12" y1="106" x2="112" y2="106" stroke="#FFB800" stroke-width="2.5"/>
-          <!-- Gold 5-pointed star at bottom of pennant -->
-          <text x="62" y="127" text-anchor="middle" font-size="17" fill="#FFB800">★</text>
-        </svg>
-        <div>
-          <div class="cred-name">Army National Guard</div>
-          <div class="cred-role">Deputy G-1 · HR Enterprise</div>
-        </div>
-      </div>
-
-      <!-- DEOMI — exact official circular seal (compass rose, Aladdin's lamp, gold stars) -->
-      <div class="cred-item">
-        <svg viewBox="0 0 200 200" width="72" height="72" aria-label="DEOMI" role="img">
-          <defs>
-            <path id="deomi-tp" d="M 13,100 A 87,87 0 0,1 187,100"/>
-            <path id="deomi-bp" d="M 13,100 A 87,87 0 0,0 187,100"/>
-          </defs>
-          <!-- Outer white circle -->
-          <circle cx="100" cy="100" r="99" fill="white"/>
-          <!-- Dark navy border -->
-          <circle cx="100" cy="100" r="99" fill="none" stroke="#1C2D6E" stroke-width="1.5"/>
-          <!-- Gold/orange band -->
-          <circle cx="100" cy="100" r="91" fill="#C4861A"/>
-          <!-- Navy inner circle -->
-          <circle cx="100" cy="100" r="83" fill="#1C2D6E"/>
-          <!-- Inner gold ring -->
-          <circle cx="100" cy="100" r="83" fill="none" stroke="#C4861A" stroke-width="1.5"/>
-          <!-- 8-pointed compass star — cardinal (longer, cerulean blue) -->
-          <polygon points="100,22 105,92 100,100 95,92" fill="#4B90D4"/>
-          <polygon points="100,178 105,108 100,100 95,108" fill="#4B90D4"/>
-          <polygon points="22,100 92,95 100,100 92,105" fill="#4B90D4"/>
-          <polygon points="178,100 108,95 100,100 108,105" fill="#4B90D4"/>
-          <!-- Diagonal points (shorter, lighter blue) -->
-          <polygon points="157,43 107,92 100,100 94,93" fill="#68B0E0"/>
-          <polygon points="43,43 93,92 100,100 106,93" fill="#68B0E0"/>
-          <polygon points="157,157 107,108 100,100 94,107" fill="#68B0E0"/>
-          <polygon points="43,157 93,108 100,100 106,107" fill="#68B0E0"/>
-          <!-- Dark center for lamp detail -->
-          <circle cx="100" cy="100" r="21" fill="#1C2D6E"/>
-          <!-- Aladdin's lamp (simplified oil lamp with flame) -->
-          <path d="M86,107 Q88,97 100,96 Q112,97 114,107 Q112,113 100,114 Q88,113 86,107 Z" fill="#B8942A"/>
-          <ellipse cx="100" cy="99" rx="9" ry="3.5" fill="#C4A030"/>
-          <path d="M86,104 Q80,101 78,105 Q80,109 86,108" fill="#B8942A"/>
-          <path d="M114,104 Q120,101 122,105 Q120,109 114,108" fill="#B8942A"/>
-          <path d="M100,95 Q104,89 100,84 Q96,89 100,95 Z" fill="#FF8C00"/>
-          <path d="M100,92 Q102,88 100,85 Q98,88 100,92 Z" fill="#FFD700"/>
-          <!-- 8 gold stars at compass ray tips -->
-          <text x="100" y="30" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
-          <text x="148" y="52" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
-          <text x="172" y="104" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
-          <text x="148" y="158" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
-          <text x="100" y="178" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
-          <text x="52" y="158" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
-          <text x="28" y="104" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
-          <text x="52" y="52" text-anchor="middle" font-size="10" fill="#C4861A">★</text>
-          <!-- Arc text top -->
-          <text font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#1C2D6E" font-weight="bold" letter-spacing="0.4">
-            <textPath href="#deomi-tp" startOffset="50%" text-anchor="middle">DEFENSE EQUAL OPPORTUNITY MANAGEMENT INSTITUTE</textPath>
-          </text>
-          <!-- Arc text bottom -->
-          <text font-family="Arial,Helvetica,sans-serif" font-size="8" fill="#1C2D6E" font-weight="bold" letter-spacing="0.8">
-            <textPath href="#deomi-bp" startOffset="50%" text-anchor="middle">Est. 1971 · CENTER OF EXCELLENCE</textPath>
-          </text>
-        </svg>
-        <div>
-          <div class="cred-name">DEOMI</div>
-          <div class="cred-role">Keynote Speaker</div>
-        </div>
-      </div>
-
-      <!-- SBA — exact official logo (large SBA letters + bracket frame + subtitle) -->
-      <div class="cred-item">
-        <svg viewBox="0 0 270 215" width="90" height="72" aria-label="SBA — U.S. Small Business Administration" role="img">
-          <!-- White background -->
-          <rect width="270" height="215" fill="white"/>
-          <!-- Navy bracket: top bar + right vertical (inverted-L) -->
-          <polyline points="16,16 16,8 254,8 254,138"
-            fill="none" stroke="#162968" stroke-width="9" stroke-linecap="square" stroke-linejoin="miter"/>
-          <!-- Red bracket: left vertical + bottom bar (L-shape) -->
-          <polyline points="16,138 16,172 160,172"
-            fill="none" stroke="#BE2026" stroke-width="9" stroke-linecap="square" stroke-linejoin="miter"/>
-          <!-- SBA — huge dark navy letters -->
-          <text x="135" y="140" text-anchor="middle"
-            font-family="Arial Black,Helvetica Neue,sans-serif"
-            font-weight="900" font-size="112" fill="#162968">SBA</text>
-          <!-- Subtitle -->
-          <text x="135" y="198" text-anchor="middle"
-            font-family="Arial,Helvetica,sans-serif"
-            font-size="13" fill="#162968" letter-spacing="0.2">U.S. Small Business Administration</text>
-        </svg>
-        <div>
-          <div class="cred-name">SBA Certified</div>
-          <div class="cred-role">Service-Disabled Veteran-Owned</div>
-        </div>
-      </div>
-
     </div>
   </div>
 
