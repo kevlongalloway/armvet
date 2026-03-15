@@ -94,8 +94,8 @@ nav {
   height: 52px;
 }
 .nav-logo {
-  display: flex; align-items: center;
-  padding: 0 2rem;
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0 1.6rem;
   border-right: 1px solid var(--line);
   font-family: 'Archivo Black', sans-serif;
   font-size: 1rem; letter-spacing: 0.04em;
@@ -103,6 +103,7 @@ nav {
   white-space: nowrap;
   flex-shrink: 0;
 }
+.nav-logo img { height: 30px; width: auto; display: block; }
 .nav-logo sup {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.5rem; letter-spacing: 0.1em;
@@ -551,15 +552,19 @@ p.body {
 }
 .metric {
   background: var(--w); padding: 1.3rem 1.5rem;
+  display: flex; flex-direction: column; gap: 0.6rem;
 }
+.metric-logo { display: flex; align-items: center; height: 40px; }
+.metric-logo img { max-height: 40px; width: auto; max-width: 80px; object-fit: contain; }
+.metric-logo svg { max-height: 40px; width: auto; }
 .metric-val {
   font-family: 'Archivo Black', sans-serif;
   font-size: 1.6rem; letter-spacing: -0.02em; color: var(--blk);
 }
 .metric-lbl {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.53rem; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--g3); margin-top: 0.2rem;
+  font-size: 0.56rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--blk2); margin-top: 0.1rem;
 }
 
 /* ─── CAPABILITY ─── */
@@ -859,7 +864,10 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo" onclick="go('home');return false">ARMVET LLC <sup>SDVOSB</sup></a>
+  <a href="#" class="nav-logo" onclick="go('home');return false">
+    <img src="images/armvet-shield.png" alt="Armvet"/>
+    ARMVET LLC <sup>SDVOSB</sup>
+  </a>
   <div class="nav-center" id="navCenter">
     <a href="#" id="nav-home" class="active" onclick="go('home');return false">Home</a>
     <a href="#" id="nav-about" onclick="go('about');return false">About</a>
@@ -1353,10 +1361,65 @@ footer {
         </div>
       </div>
       <div class="metric-row">
-        <div class="metric"><div class="metric-val">NASA</div><div class="metric-lbl">HR Director</div></div>
-        <div class="metric"><div class="metric-val">ANG</div><div class="metric-lbl">Deputy G-1</div></div>
-        <div class="metric"><div class="metric-val">CSM</div><div class="metric-lbl">Multi-level</div></div>
-        <div class="metric"><div class="metric-val">SDVOSB</div><div class="metric-lbl">SBA Certified</div></div>
+
+        <!-- NASA -->
+        <div class="metric">
+          <div class="metric-logo">
+            <svg viewBox="0 0 200 200" width="40" height="40" aria-label="NASA" role="img">
+              <defs><clipPath id="mt-nasa"><circle cx="100" cy="100" r="98"/></clipPath></defs>
+              <circle cx="100" cy="100" r="99" fill="#0B3D91"/>
+              <circle cx="100" cy="100" r="97" fill="none" stroke="white" stroke-width="1.5"/>
+              <ellipse cx="100" cy="100" rx="93" ry="28" transform="rotate(-20 100 100)" fill="none" stroke="white" stroke-width="3" clip-path="url(#mt-nasa)"/>
+              <path d="M 2,158 C 22,126 60,72 124,34 C 150,19 178,14 200,17 L 200,32 C 176,29 150,38 122,56 C 56,96 18,152 6,174 Z" fill="#FC3D21" clip-path="url(#mt-nasa)"/>
+              <text x="100" y="122" text-anchor="middle" font-family="Arial Black,Helvetica Neue,sans-serif" font-weight="900" font-size="54" fill="white">NASA</text>
+              <path d="M46,48 L48,57 L57,59 L48,61 L46,70 L44,61 L35,59 L44,57 Z" fill="white"/>
+              <path d="M153,30 L155,37 L162,39 L155,41 L153,48 L151,41 L144,39 L151,37 Z" fill="white"/>
+              <circle cx="95" cy="26" r="1.5" fill="white"/><circle cx="116" cy="23" r="2" fill="white"/>
+            </svg>
+          </div>
+          <div class="metric-val">NASA</div>
+          <div class="metric-lbl">HR Director</div>
+        </div>
+
+        <!-- ANG -->
+        <div class="metric">
+          <div class="metric-logo">
+            <svg viewBox="0 0 124 148" width="34" height="40" aria-label="Army National Guard" role="img">
+              <path d="M2,2 L122,2 L122,92 L62,146 L2,92 Z" fill="#0A0A0A"/>
+              <line x1="12" y1="26" x2="112" y2="26" stroke="#FFB800" stroke-width="2.5"/>
+              <text x="62" y="56" text-anchor="middle" font-family="Arial Black,Impact,Helvetica,sans-serif" font-weight="900" font-size="30" fill="#FFB800" letter-spacing="-0.5">ARMY</text>
+              <text x="62" y="77" text-anchor="middle" font-family="Arial Black,Helvetica,sans-serif" font-weight="900" font-size="18.5" fill="white" letter-spacing="0.3">NATIONAL</text>
+              <text x="62" y="98" text-anchor="middle" font-family="Arial Black,Helvetica,sans-serif" font-weight="900" font-size="22" fill="white" letter-spacing="0.5">GUARD</text>
+              <line x1="12" y1="106" x2="112" y2="106" stroke="#FFB800" stroke-width="2.5"/>
+              <text x="62" y="127" text-anchor="middle" font-size="17" fill="#FFB800">★</text>
+            </svg>
+          </div>
+          <div class="metric-val">ANG</div>
+          <div class="metric-lbl">Deputy G-1</div>
+        </div>
+
+        <!-- CSM — DEOMI logo (actual photo) -->
+        <div class="metric">
+          <div class="metric-logo">
+            <img src="images/deomi.png" alt="DEOMI — Defense Equal Opportunity Management Institute"/>
+          </div>
+          <div class="metric-val">CSM</div>
+          <div class="metric-lbl">Multi-level</div>
+        </div>
+
+        <!-- SDVOSB — SBA -->
+        <div class="metric">
+          <div class="metric-logo">
+            <svg viewBox="0 0 270 195" width="56" height="40" aria-label="SBA" role="img">
+              <polyline points="14,14 14,6 256,6 256,130" fill="none" stroke="#162968" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"/>
+              <polyline points="14,130 14,162 148,162" fill="none" stroke="#BE2026" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"/>
+              <text x="135" y="132" text-anchor="middle" font-family="Arial Black,Helvetica Neue,sans-serif" font-weight="900" font-size="108" fill="#162968">SBA</text>
+            </svg>
+          </div>
+          <div class="metric-val">SDVOSB</div>
+          <div class="metric-lbl">SBA Certified</div>
+        </div>
+
       </div>
       <a class="btn btn-blk" href="#" onclick="go('contact');return false">Get in Touch</a>
     </div>
