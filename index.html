@@ -865,7 +865,32 @@ footer {
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo" onclick="go('home');return false">
-    <img src="images/armvet-shield.png" alt="Armvet"/>
+    <!-- ARMVET shield: purple body, gold border, gold A -->
+    <svg viewBox="0 0 100 118" width="26" height="30" aria-label="Armvet" role="img">
+      <defs>
+        <linearGradient id="av-gld" x1="0.2" y1="0" x2="0.8" y2="1">
+          <stop offset="0%"   stop-color="#FFE870"/>
+          <stop offset="30%"  stop-color="#D4A820"/>
+          <stop offset="65%"  stop-color="#A07810"/>
+          <stop offset="100%" stop-color="#6A4C00"/>
+        </linearGradient>
+        <linearGradient id="av-gld-b" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#FFE060"/>
+          <stop offset="40%"  stop-color="#C8961A"/>
+          <stop offset="100%" stop-color="#7A5500"/>
+        </linearGradient>
+      </defs>
+      <!-- Gold outer shield (border) -->
+      <path d="M50,2 L88,2 Q97,2 97,12 L97,70 Q95,100 50,117 Q5,100 3,70 L3,12 Q3,2 12,2 Z" fill="url(#av-gld-b)"/>
+      <!-- Purple inner shield body -->
+      <path d="M50,8 L84,8 Q91,8 91,17 L91,69 Q89,96 50,112 Q11,96 9,69 L9,17 Q9,8 16,8 Z" fill="#4B1882"/>
+      <!-- Inner gold trim line -->
+      <path d="M50,12 L82,12 Q87,12 87,19 L87,68 Q85,93 50,108 Q15,93 13,68 L13,19 Q13,12 18,12 Z" fill="none" stroke="url(#av-gld)" stroke-width="1.5"/>
+      <!-- Bold A letterform: fill-rule evenodd gives triangular counter -->
+      <path fill-rule="evenodd" fill="url(#av-gld-b)"
+        d="M50,22 L83,97 L71,97 L61,72 L39,72 L29,97 L17,97 Z
+           M50,36 L59,60 L41,60 Z"/>
+    </svg>
     ARMVET LLC <sup>SDVOSB</sup>
   </a>
   <div class="nav-center" id="navCenter">
@@ -1398,10 +1423,69 @@ footer {
           <div class="metric-lbl">Deputy G-1</div>
         </div>
 
-        <!-- CSM — DEOMI logo (actual photo) -->
+        <!-- CSM — DEOMI seal -->
         <div class="metric">
           <div class="metric-logo">
-            <img src="images/deomi.png" alt="DEOMI — Defense Equal Opportunity Management Institute"/>
+            <svg viewBox="0 0 200 200" width="40" height="40" aria-label="DEOMI — Defense Equal Opportunity Management Institute" role="img">
+              <defs>
+                <path id="dm-tp" d="M 7,100 A 93,93 0 0,1 193,100"/>
+                <path id="dm-bp" d="M 35,100 A 65,65 0 0,0 165,100"/>
+                <linearGradient id="dm-lamp" x1="0.3" y1="0" x2="0.7" y2="1">
+                  <stop offset="0%" stop-color="#F0D060"/>
+                  <stop offset="45%" stop-color="#C8961A"/>
+                  <stop offset="100%" stop-color="#8B6008"/>
+                </linearGradient>
+              </defs>
+              <!-- Rings: white → navy text band → gold separator → navy inner body -->
+              <circle cx="100" cy="100" r="99" fill="white"/>
+              <circle cx="100" cy="100" r="97" fill="#1B2B6B"/>
+              <circle cx="100" cy="100" r="89" fill="#C8891E"/>
+              <circle cx="100" cy="100" r="82" fill="#1B2B6B"/>
+              <!-- Subtle inner gold border -->
+              <circle cx="100" cy="100" r="79" fill="none" stroke="#C8891E" stroke-width="1.8"/>
+              <!-- 8-pointed compass rose — cardinal (deep blue) -->
+              <polygon points="100,26 104,92 100,100 96,92" fill="#4B90D4"/>
+              <polygon points="100,174 104,108 100,100 96,108" fill="#4B90D4"/>
+              <polygon points="26,100 92,104 100,100 92,96"  fill="#4B90D4"/>
+              <polygon points="174,100 108,104 100,100 108,96" fill="#4B90D4"/>
+              <!-- diagonal (lighter blue) -->
+              <polygon points="146,54 107,93 100,100 93,107" fill="#6EB4E4"/>
+              <polygon points="54,54  93,107 100,100 107,93" fill="#6EB4E4"/>
+              <polygon points="146,146 107,107 100,100 93,93"  fill="#6EB4E4"/>
+              <polygon points="54,146 93,93  100,100 107,107" fill="#6EB4E4"/>
+              <!-- 8 gold stars at r≈76 -->
+              <text x="100" y="29"  text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <text x="153" y="52"  text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <text x="175" y="104" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <text x="153" y="153" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <text x="100" y="175" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <text x="47"  y="153" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <text x="25"  y="104" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <text x="47"  y="52"  text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <!-- Center circle (lamp base) -->
+              <circle cx="100" cy="100" r="22" fill="#152060"/>
+              <!-- Aladdin's lamp body -->
+              <path d="M88,113 Q83,113 82,108 Q81,99 100,97 Q119,99 118,108 Q117,113 112,113 Z" fill="url(#dm-lamp)"/>
+              <!-- Lamp neck -->
+              <ellipse cx="100" cy="97" rx="7" ry="3" fill="#A88810"/>
+              <!-- Spout (left) -->
+              <path d="M82,107 Q74,103 71,107 Q69,112 74,114 Q79,116 84,113" fill="none" stroke="#C8A020" stroke-width="5" stroke-linecap="round"/>
+              <!-- Handle (right) -->
+              <path d="M118,108 Q126,108 127,112 Q127,116 120,115" fill="none" stroke="#C8A020" stroke-width="4" stroke-linecap="round"/>
+              <!-- Base -->
+              <rect x="92" y="113" width="16" height="3" rx="1.5" fill="#9B7808"/>
+              <!-- Flame -->
+              <path d="M100,97 Q95,90 100,83 Q105,89 103,94 Q107,88 104,97 Z" fill="#FF8C00"/>
+              <path d="M100,97 Q98,91 100,86 Q102,91 100,97 Z" fill="#FFE030"/>
+              <!-- Outer arc text: title -->
+              <text font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#C8891E" font-weight="bold" letter-spacing="0.25">
+                <textPath href="#dm-tp" startOffset="50%" text-anchor="middle">DEFENSE EQUAL OPPORTUNITY MANAGEMENT INSTITUTE</textPath>
+              </text>
+              <!-- Inner bottom arc text -->
+              <text font-family="Arial,Helvetica,sans-serif" font-size="7" fill="#C8891E" font-weight="bold" letter-spacing="0.3">
+                <textPath href="#dm-bp" startOffset="50%" text-anchor="middle">Est. 1971  ·  CENTER OF EXCELLENCE</textPath>
+              </text>
+            </svg>
           </div>
           <div class="metric-val">CSM</div>
           <div class="metric-lbl">Multi-level</div>
