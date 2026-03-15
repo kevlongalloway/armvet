@@ -103,7 +103,7 @@ nav {
   white-space: nowrap;
   flex-shrink: 0;
 }
-.nav-logo img { height: 30px; width: auto; display: block; }
+.nav-logo img { height: 40px; width: auto; display: block; }
 .nav-logo sup {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.5rem; letter-spacing: 0.1em;
@@ -865,33 +865,7 @@ footer {
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo" onclick="go('home');return false">
-    <!-- ARMVET shield: purple body, gold border, gold A -->
-    <svg viewBox="0 0 100 118" width="26" height="30" aria-label="Armvet" role="img">
-      <defs>
-        <linearGradient id="av-gld" x1="0.2" y1="0" x2="0.8" y2="1">
-          <stop offset="0%"   stop-color="#FFE870"/>
-          <stop offset="30%"  stop-color="#D4A820"/>
-          <stop offset="65%"  stop-color="#A07810"/>
-          <stop offset="100%" stop-color="#6A4C00"/>
-        </linearGradient>
-        <linearGradient id="av-gld-b" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stop-color="#FFE060"/>
-          <stop offset="40%"  stop-color="#C8961A"/>
-          <stop offset="100%" stop-color="#7A5500"/>
-        </linearGradient>
-      </defs>
-      <!-- Gold outer shield (border) -->
-      <path d="M50,2 L88,2 Q97,2 97,12 L97,70 Q95,100 50,117 Q5,100 3,70 L3,12 Q3,2 12,2 Z" fill="url(#av-gld-b)"/>
-      <!-- Purple inner shield body -->
-      <path d="M50,8 L84,8 Q91,8 91,17 L91,69 Q89,96 50,112 Q11,96 9,69 L9,17 Q9,8 16,8 Z" fill="#4B1882"/>
-      <!-- Inner gold trim line -->
-      <path d="M50,12 L82,12 Q87,12 87,19 L87,68 Q85,93 50,108 Q15,93 13,68 L13,19 Q13,12 18,12 Z" fill="none" stroke="url(#av-gld)" stroke-width="1.5"/>
-      <!-- Bold A letterform: fill-rule evenodd gives triangular counter -->
-      <path fill-rule="evenodd" fill="url(#av-gld-b)"
-        d="M50,22 L83,97 L71,97 L61,72 L39,72 L29,97 L17,97 Z
-           M50,36 L59,60 L41,60 Z"/>
-    </svg>
-    ARMVET LLC <sup>SDVOSB</sup>
+    <img src="images/logo.png" alt="Armvet — Leadership That Endures"/>
   </a>
   <div class="nav-center" id="navCenter">
     <a href="#" id="nav-home" class="active" onclick="go('home');return false">Home</a>
