@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#111110"/>
+
+  <!-- Subtle grid lines (military precision motif) -->
+  <line x1="0" y1="210" x2="1200" y2="210" stroke="#1e1e1d" stroke-width="1"/>
+  <line x1="0" y1="420" x2="1200" y2="420" stroke="#1e1e1d" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="630" stroke="#1e1e1d" stroke-width="1"/>
+  <line x1="800" y1="0" x2="800" y2="630" stroke="#1e1e1d" stroke-width="1"/>
+
+  <!-- Left green accent bar -->
+  <rect x="80" y="130" width="5" height="370" fill="#c8d4c0"/>
+
+  <!-- Bottom green accent strip -->
+  <rect y="594" width="1200" height="36" fill="#c8d4c0"/>
+
+  <!-- ARMVET wordmark -->
+  <text x="115" y="242" font-family="'Arial Black', 'Arial', sans-serif" font-size="108" font-weight="900" fill="#f8f8f4" letter-spacing="14">ARMVET</text>
+
+  <!-- LLC subtitle -->
+  <text x="118" y="288" font-family="'Arial', Helvetica, sans-serif" font-size="22" font-weight="400" fill="#c8d4c0" letter-spacing="10">LLC</text>
+
+  <!-- Horizontal rule -->
+  <rect x="115" y="310" width="970" height="1" fill="#2a2a28"/>
+
+  <!-- Main tagline -->
+  <text x="115" y="356" font-family="'Arial', Helvetica, sans-serif" font-size="30" font-weight="400" fill="#f8f8f4">Leadership Development &amp; Federal HR Consulting</text>
+
+  <!-- Mission pull quote -->
+  <text x="115" y="412" font-family="Georgia, 'Times New Roman', serif" font-size="21" font-style="italic" fill="#a8b8a0">&#x201C;We build leaders who create clarity, build trust,</text>
+  <text x="115" y="440" font-family="Georgia, 'Times New Roman', serif" font-size="21" font-style="italic" fill="#a8b8a0">and drive disciplined execution.&#x201D;</text>
+
+  <!-- Sector pills -->
+  <rect x="115" y="475" width="120" height="30" rx="4" fill="#1e1e1d" stroke="#2a2a28" stroke-width="1"/>
+  <text x="175" y="495" font-family="'Arial', Helvetica, sans-serif" font-size="13" fill="#c8d4c0" text-anchor="middle" letter-spacing="2">FEDERAL</text>
+
+  <rect x="250" y="475" width="130" height="30" rx="4" fill="#1e1e1d" stroke="#2a2a28" stroke-width="1"/>
+  <text x="315" y="495" font-family="'Arial', Helvetica, sans-serif" font-size="13" fill="#c8d4c0" text-anchor="middle" letter-spacing="2">MILITARY</text>
+
+  <rect x="395" y="475" width="140" height="30" rx="4" fill="#1e1e1d" stroke="#2a2a28" stroke-width="1"/>
+  <text x="465" y="495" font-family="'Arial', Helvetica, sans-serif" font-size="13" fill="#c8d4c0" text-anchor="middle" letter-spacing="2">CORPORATE</text>
+
+  <!-- SDVOSB badge (right aligned) -->
+  <rect x="920" y="460" width="195" height="54" rx="4" fill="#1e1e1d" stroke="#c8d4c0" stroke-width="1"/>
+  <text x="1017" y="481" font-family="'Courier New', Courier, monospace" font-size="11" fill="#c8d4c0" text-anchor="middle" letter-spacing="2">SBA CERTIFIED</text>
+  <text x="1017" y="500" font-family="'Courier New', Courier, monospace" font-size="9" fill="#a8b8a0" text-anchor="middle" letter-spacing="1">SERVICE-DISABLED VETERAN</text>
+  <text x="1017" y="514" font-family="'Courier New', Courier, monospace" font-size="9" fill="#a8b8a0" text-anchor="middle" letter-spacing="1">OWNED SMALL BUSINESS</text>
+
+  <!-- Bottom bar label -->
+  <text x="115" y="617" font-family="'Courier New', Courier, monospace" font-size="13" fill="#111110" letter-spacing="2">ARMVET.COM</text>
+  <text x="1085" y="617" font-family="'Courier New', Courier, monospace" font-size="13" fill="#111110" text-anchor="end" letter-spacing="1">FOUNDED BY ANSON SMITH</text>
+</svg>
