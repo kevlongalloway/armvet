@@ -613,13 +613,28 @@ p.body {
 
 /* ─── TRAINING ─── */
 .training-list { border-bottom: 1px solid var(--line); }
+.tc-item { border-bottom: 1px solid var(--line); }
+.tc-item:last-child { border-bottom: none; }
 .tc-row {
   display: grid; grid-template-columns: 80px 1fr 1fr auto;
-  border-bottom: 1px solid var(--line); align-items: stretch;
-  transition: background 0.15s; cursor: default;
+  align-items: stretch; transition: background 0.15s; cursor: pointer;
 }
-.tc-row:last-child { border-bottom: none; }
 .tc-row:hover { background: var(--g2); }
+.tc-panel { display: none; border-top: 1px solid var(--line); background: var(--g2); }
+.tc-item.open .tc-panel { display: block; }
+.tc-panel-inner { padding: 2.5rem 3rem 2.5rem calc(80px + 2rem); }
+.tc-toggle { font-family: 'IBM Plex Mono', monospace; font-size: 1rem; color: var(--blk); display:flex; align-items:center; padding: 0 1.5rem; user-select:none; }
+.tp-section-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.54rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g3); margin-bottom: 0.8rem; }
+.tp-section-label + .tp-section-label, .agenda-table + .tp-section-label { margin-top: 2rem; }
+.tp-obj-list { list-style: none; margin: 0 0 0.5rem 0; }
+.tp-obj-list li { font-size: 0.88rem; font-weight: 300; color: var(--blk2); line-height: 1.7; padding: 0.3rem 0 0.3rem 1.2rem; position: relative; }
+.tp-obj-list li::before { content: '—'; position: absolute; left: 0; color: var(--g3); }
+.agenda-table { width: 100%; border-collapse: collapse; margin-top: 0.2rem; }
+.agenda-table th { font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--g3); text-align: left; padding: 0.5rem 1rem 0.5rem 0; border-bottom: 2px solid var(--line); }
+.agenda-table td { font-size: 0.88rem; font-weight: 300; color: var(--blk2); padding: 0.7rem 1rem 0.7rem 0; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.6; }
+.agenda-table td:first-child { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.06em; color: var(--mute); white-space: nowrap; width: 110px; }
+.agenda-table td:nth-child(3) { font-size: 0.78rem; color: var(--mute); }
+.agenda-table tr:last-child td { border-bottom: none; }
 .tc-idx {
   padding: 2rem 1.5rem; border-right: 1px solid var(--line);
   font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem;
@@ -765,6 +780,7 @@ footer {
   .tool-panel-spacer { display: none; }
   .tc-row { grid-template-columns: 60px 1fr auto; }
   .tc-desc-col { display: none; }
+  .tc-panel-inner { padding: 2rem 1.5rem; }
   .contact-wrap { grid-template-columns: 1fr; }
   .contact-left { border-right: none; border-bottom: 1px solid var(--line); }
   footer { grid-template-columns: 1fr; }
@@ -1384,42 +1400,336 @@ footer {
     <span class="sh-label">Training Catalog</span>
   </div>
   <div class="training-list">
-    <div class="tc-row">
-      <div class="tc-idx">W-01</div>
-      <div class="tc-title-col"><div class="tc-title">Foundations of Leadership</div><div class="tc-format">Workshop · All Levels</div></div>
-      <div class="tc-desc-col"><div class="tc-desc">A core workshop on clarity, communication, and values-based leadership. Introduces essential behaviors — setting expectations, building trust, and creating alignment. Ideal for new and emerging leaders.</div></div>
-      <div class="tc-action"><span class="tc-link" onclick="go('contact')">Inquire →</span></div>
+
+    <!-- W-01 -->
+    <div class="tc-item" id="tci-w01">
+      <div class="tc-row" onclick="tcTog('w01')">
+        <div class="tc-idx">W-01</div>
+        <div class="tc-title-col"><div class="tc-title">Foundations of Leadership</div><div class="tc-format">Workshop · All Levels · 4 Hours</div></div>
+        <div class="tc-desc-col"><div class="tc-desc">A core workshop on clarity, communication, and values-based leadership. Introduces essential behaviors — setting expectations, building trust, and creating alignment.</div></div>
+        <div class="tc-action"><span class="tc-toggle" id="tt-w01">+</span></div>
+      </div>
+      <div class="tc-panel" id="tcp-w01">
+        <div class="tc-panel-inner">
+          <div class="tp-section-label">Learning Objectives</div>
+          <ul class="tp-obj-list">
+            <li>Understand what effective leadership looks like in practice.</li>
+            <li>Set clear expectations and build consistent communication habits.</li>
+            <li>Create alignment across your team through values-based behaviors.</li>
+            <li>Build trust by modeling accountability and transparency.</li>
+          </ul>
+          <div class="tp-section-label">Session Agenda</div>
+          <table class="agenda-table">
+            <tr><th>Time</th><th>Session</th><th>Format</th></tr>
+            <tr><td>0:00–0:15</td><td>Welcome &amp; Introductions</td><td>Icebreaker + Overview</td></tr>
+            <tr><td>0:15–1:00</td><td>What Is Effective Leadership?</td><td>Presentation + Discussion</td></tr>
+            <tr><td>1:00–1:45</td><td>Setting Expectations &amp; Building Trust</td><td>Role Play + Discussion</td></tr>
+            <tr><td>1:45–2:00</td><td>Break</td><td>—</td></tr>
+            <tr><td>2:00–2:45</td><td>Communication &amp; Alignment</td><td>Group Activity</td></tr>
+            <tr><td>2:45–3:30</td><td>Values-Based Leadership in Practice</td><td>Case Study + Q&amp;A</td></tr>
+            <tr><td>3:30–4:00</td><td>Action Planning &amp; Wrap-Up</td><td>Reflection + Action Plan</td></tr>
+          </table>
+          <div style="margin-top:1.8rem"><a class="btn btn-blk" href="#" onclick="go('contact');return false">Inquire About This Program</a></div>
+        </div>
+      </div>
     </div>
-    <div class="tc-row">
-      <div class="tc-idx">W-02</div>
-      <div class="tc-title-col"><div class="tc-title">Building High-Trust Teams</div><div class="tc-format">Workshop · Team Level</div></div>
-      <div class="tc-desc-col"><div class="tc-desc">Teaches leaders to create psychological safety, strengthen accountability, and foster open communication that drives mission execution. Trust-based performance frameworks.</div></div>
-      <div class="tc-action"><span class="tc-link" onclick="go('contact')">Inquire →</span></div>
+
+    <!-- W-02 -->
+    <div class="tc-item" id="tci-w02">
+      <div class="tc-row" onclick="tcTog('w02')">
+        <div class="tc-idx">W-02</div>
+        <div class="tc-title-col"><div class="tc-title">Building High-Trust Teams</div><div class="tc-format">Workshop · Team Level · 4 Hours</div></div>
+        <div class="tc-desc-col"><div class="tc-desc">Teaches leaders to create psychological safety, strengthen accountability, and foster open communication that drives mission execution.</div></div>
+        <div class="tc-action"><span class="tc-toggle" id="tt-w02">+</span></div>
+      </div>
+      <div class="tc-panel" id="tcp-w02">
+        <div class="tc-panel-inner">
+          <div class="tp-section-label">Learning Objectives</div>
+          <ul class="tp-obj-list">
+            <li>Recognize trust behaviors and identify trust-breakers in your team.</li>
+            <li>Create psychological safety that enables open communication.</li>
+            <li>Build peer accountability structures that reinforce performance.</li>
+            <li>Strengthen team cohesion through shared norms and language.</li>
+          </ul>
+          <div class="tp-section-label">Session Agenda</div>
+          <table class="agenda-table">
+            <tr><th>Time</th><th>Session</th><th>Format</th></tr>
+            <tr><td>0:00–0:15</td><td>Welcome &amp; Introductions</td><td>Icebreaker + Overview</td></tr>
+            <tr><td>0:15–1:00</td><td>The Trust Framework</td><td>Presentation + Discussion</td></tr>
+            <tr><td>1:00–1:45</td><td>Creating Psychological Safety</td><td>Group Activity</td></tr>
+            <tr><td>1:45–2:00</td><td>Break</td><td>—</td></tr>
+            <tr><td>2:00–2:45</td><td>Accountability Without Micromanagement</td><td>Role Play + Discussion</td></tr>
+            <tr><td>2:45–3:30</td><td>Shared Norms &amp; Team Agreements</td><td>Interactive Workshop</td></tr>
+            <tr><td>3:30–4:00</td><td>Action Planning &amp; Wrap-Up</td><td>Reflection + Action Plan</td></tr>
+          </table>
+          <div style="margin-top:1.8rem"><a class="btn btn-blk" href="#" onclick="go('contact');return false">Inquire About This Program</a></div>
+        </div>
+      </div>
     </div>
-    <div class="tc-row">
-      <div class="tc-idx">W-03</div>
-      <div class="tc-title-col"><div class="tc-title">Leader Discipline & Behavior Systems</div><div class="tc-format">Workshop · All Levels</div></div>
-      <div class="tc-desc-col"><div class="tc-desc">Builds systems that support disciplined execution. Includes the Friction Audit, System Builder, and Trigger → Replacement Behavior Map. Replaces impulse-driven leadership with repeatable behaviors.</div></div>
-      <div class="tc-action"><span class="tc-link" onclick="go('contact')">Inquire →</span></div>
+
+    <!-- W-03 -->
+    <div class="tc-item" id="tci-w03">
+      <div class="tc-row" onclick="tcTog('w03')">
+        <div class="tc-idx">W-03</div>
+        <div class="tc-title-col"><div class="tc-title">Leader Discipline &amp; Behavior Systems</div><div class="tc-format">Workshop · All Levels · 4.5 Hours</div></div>
+        <div class="tc-desc-col"><div class="tc-desc">Build systems that replace impulse-driven leadership with intentional, repeatable behaviors. Includes the Friction Audit, System Builder, and Trigger → Replacement Behavior Map.</div></div>
+        <div class="tc-action"><span class="tc-toggle" id="tt-w03">+</span></div>
+      </div>
+      <div class="tc-panel" id="tcp-w03">
+        <div class="tc-panel-inner">
+          <div class="tp-section-label">Learning Objectives</div>
+          <ul class="tp-obj-list">
+            <li>Understand the role of discipline in leadership effectiveness.</li>
+            <li>Identify friction points that undermine consistent behavior.</li>
+            <li>Build systems that support predictable, values-based leadership.</li>
+            <li>Apply the Friction Audit, System Builder, and Trigger → Replacement Behavior Map.</li>
+          </ul>
+          <div class="tp-section-label">Session Agenda</div>
+          <table class="agenda-table">
+            <tr><th>Time</th><th>Session</th><th>Format</th></tr>
+            <tr><td>0:00–0:30</td><td>Leadership Discipline Overview</td><td>Presentation</td></tr>
+            <tr><td>0:30–1:15</td><td>Friction Audit Exercise</td><td>Facilitated Exercise</td></tr>
+            <tr><td>1:15–1:30</td><td>Break</td><td>—</td></tr>
+            <tr><td>1:30–2:30</td><td>System Builder Workshop</td><td>Interactive Workshop</td></tr>
+            <tr><td>2:30–3:15</td><td>Trigger → Replacement Behavior Map</td><td>Facilitated Exercise</td></tr>
+            <tr><td>3:15–4:00</td><td>Building Your Leadership System</td><td>Group Activity</td></tr>
+            <tr><td>4:00–4:30</td><td>Action Planning &amp; Wrap-Up</td><td>Reflection + Action Plan</td></tr>
+          </table>
+          <div style="margin-top:1.8rem; display:flex; gap:0.8rem">
+            <a class="btn btn-blk" href="#" onclick="go('contact');return false">Inquire About This Program</a>
+            <a class="btn btn-outline" href="#" onclick="go('tools');return false">View Leadership Tools</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="tc-row">
-      <div class="tc-idx">W-04</div>
-      <div class="tc-title-col"><div class="tc-title">Organizational Culture Alignment</div><div class="tc-format">Workshop · Org Level</div></div>
-      <div class="tc-desc-col"><div class="tc-desc">Aligns values, behaviors, and systems to create a culture that supports mission execution and readiness. Ideal for organizations undergoing transformation or culture assessment.</div></div>
-      <div class="tc-action"><span class="tc-link" onclick="go('contact')">Inquire →</span></div>
+
+    <!-- W-04 -->
+    <div class="tc-item" id="tci-w04">
+      <div class="tc-row" onclick="tcTog('w04')">
+        <div class="tc-idx">W-04</div>
+        <div class="tc-title-col"><div class="tc-title">Organizational Culture Alignment</div><div class="tc-format">Workshop · Org Level · 4 Hours</div></div>
+        <div class="tc-desc-col"><div class="tc-desc">Aligns values, behaviors, and systems to create a culture that supports mission execution and readiness. Ideal for organizations undergoing transformation or culture assessment.</div></div>
+        <div class="tc-action"><span class="tc-toggle" id="tt-w04">+</span></div>
+      </div>
+      <div class="tc-panel" id="tcp-w04">
+        <div class="tc-panel-inner">
+          <div class="tp-section-label">Learning Objectives</div>
+          <ul class="tp-obj-list">
+            <li>Assess current culture against mission requirements and organizational values.</li>
+            <li>Identify values-behavior-system gaps across teams and units.</li>
+            <li>Build a culture alignment plan with measurable indicators.</li>
+            <li>Develop communication strategies to sustain culture change.</li>
+          </ul>
+          <div class="tp-section-label">Session Agenda</div>
+          <table class="agenda-table">
+            <tr><th>Time</th><th>Session</th><th>Format</th></tr>
+            <tr><td>0:00–0:15</td><td>Welcome &amp; Introductions</td><td>Icebreaker + Overview</td></tr>
+            <tr><td>0:15–1:00</td><td>Culture Diagnostic</td><td>Assessment + Discussion</td></tr>
+            <tr><td>1:00–1:45</td><td>Values-Behavior-System Mapping</td><td>Group Activity</td></tr>
+            <tr><td>1:45–2:00</td><td>Break</td><td>—</td></tr>
+            <tr><td>2:00–2:45</td><td>Identifying &amp; Closing Culture Gaps</td><td>Case Study + Workshop</td></tr>
+            <tr><td>2:45–3:30</td><td>Culture Change Communication Strategy</td><td>Interactive Exercise</td></tr>
+            <tr><td>3:30–4:00</td><td>Action Planning &amp; Wrap-Up</td><td>Reflection + Action Plan</td></tr>
+          </table>
+          <div style="margin-top:1.8rem"><a class="btn btn-blk" href="#" onclick="go('contact');return false">Inquire About This Program</a></div>
+        </div>
+      </div>
     </div>
-    <div class="tc-row">
-      <div class="tc-idx">W-05</div>
-      <div class="tc-title-col"><div class="tc-title">Executive Leader Seminar</div><div class="tc-format">Seminar · Senior Level</div></div>
-      <div class="tc-desc-col"><div class="tc-desc">Senior-level program focused on strategic leadership, decision-making, and organizational influence. Ideal for senior NCOs, officers, and federal executives in high-complexity environments.</div></div>
-      <div class="tc-action"><span class="tc-link" onclick="go('contact')">Inquire →</span></div>
+
+    <!-- W-05 -->
+    <div class="tc-item" id="tci-w05">
+      <div class="tc-row" onclick="tcTog('w05')">
+        <div class="tc-idx">W-05</div>
+        <div class="tc-title-col"><div class="tc-title">Executive Leader Seminar</div><div class="tc-format">Seminar · Senior Level · 4 Hours</div></div>
+        <div class="tc-desc-col"><div class="tc-desc">Senior-level program focused on strategic leadership, decision-making, and organizational influence. Ideal for senior NCOs, officers, and federal executives.</div></div>
+        <div class="tc-action"><span class="tc-toggle" id="tt-w05">+</span></div>
+      </div>
+      <div class="tc-panel" id="tcp-w05">
+        <div class="tc-panel-inner">
+          <div class="tp-section-label">Learning Objectives</div>
+          <ul class="tp-obj-list">
+            <li>Strengthen strategic decision-making under pressure and ambiguity.</li>
+            <li>Improve organizational influence across cross-functional teams.</li>
+            <li>Develop executive communication presence and strategic messaging.</li>
+            <li>Navigate complex leadership environments with clarity and confidence.</li>
+          </ul>
+          <div class="tp-section-label">Session Agenda</div>
+          <table class="agenda-table">
+            <tr><th>Time</th><th>Session</th><th>Format</th></tr>
+            <tr><td>0:00–0:15</td><td>Welcome &amp; Introductions</td><td>Icebreaker + Overview</td></tr>
+            <tr><td>0:15–1:00</td><td>Strategic Leadership Frameworks</td><td>Presentation + Discussion</td></tr>
+            <tr><td>1:00–1:45</td><td>Decision-Making Under Complexity</td><td>Case Study + Group Work</td></tr>
+            <tr><td>1:45–2:00</td><td>Break</td><td>—</td></tr>
+            <tr><td>2:00–2:45</td><td>Organizational Influence &amp; Communication</td><td>Role Play + Discussion</td></tr>
+            <tr><td>2:45–3:30</td><td>Leading Culture at the Senior Level</td><td>Interactive Workshop</td></tr>
+            <tr><td>3:30–4:00</td><td>Action Planning &amp; Wrap-Up</td><td>Reflection + Action Plan</td></tr>
+          </table>
+          <div style="margin-top:1.8rem"><a class="btn btn-blk" href="#" onclick="go('contact');return false">Inquire About This Program</a></div>
+        </div>
+      </div>
     </div>
-    <div class="tc-row">
-      <div class="tc-idx">C-01</div>
-      <div class="tc-title-col"><div class="tc-title">Custom Training Programs</div><div class="tc-format">Custom · Any Level</div></div>
-      <div class="tc-desc-col"><div class="tc-desc">Mission-specific programs tailored to your organization's unique needs, integrating leadership science, military experience, and federal HR expertise to address specific challenges.</div></div>
-      <div class="tc-action"><span class="tc-link" onclick="go('contact')">Discuss →</span></div>
+
+    <!-- S-01 Supervisor Development -->
+    <div class="tc-item" id="tci-s01">
+      <div class="tc-row" onclick="tcTog('s01')">
+        <div class="tc-idx">S-01</div>
+        <div class="tc-title-col"><div class="tc-title">Supervisor Development</div><div class="tc-format">Program · All Supervisor Levels · 4 Hours</div></div>
+        <div class="tc-desc-col"><div class="tc-desc">Enhances supervisory leadership skills for both new and experienced supervisors, with a focus on employee engagement, innovation, and building a productive, high-performing workforce.</div></div>
+        <div class="tc-action"><span class="tc-toggle" id="tt-s01">+</span></div>
+      </div>
+      <div class="tc-panel" id="tcp-s01">
+        <div class="tc-panel-inner">
+          <div class="tp-section-label">Learning Objectives</div>
+          <ul class="tp-obj-list">
+            <li>Strengthen core supervisory skills for both new and experienced supervisors.</li>
+            <li>Foster leadership that promotes innovation, productivity, and employee engagement.</li>
+            <li>Improve communication and feedback practices that drive performance.</li>
+            <li>Build strategies for motivating and developing direct reports.</li>
+          </ul>
+          <div class="tp-section-label">Session Agenda</div>
+          <table class="agenda-table">
+            <tr><th>Time</th><th>Session</th><th>Format</th></tr>
+            <tr><td>0:00–0:15</td><td>Welcome &amp; Introductions</td><td>Icebreaker + Overview</td></tr>
+            <tr><td>0:15–0:45</td><td>Understanding Supervisory Roles</td><td>Presentation + Group Discussion</td></tr>
+            <tr><td>0:45–1:30</td><td>Effective Communication &amp; Feedback</td><td>Role Play + Discussion</td></tr>
+            <tr><td>1:30–2:00</td><td>Break</td><td>—</td></tr>
+            <tr><td>2:00–2:45</td><td>Leadership &amp; Innovation</td><td>Case Study + Group Activity</td></tr>
+            <tr><td>2:45–3:30</td><td>Engaging &amp; Motivating Teams</td><td>Interactive Exercise + Q&amp;A</td></tr>
+            <tr><td>3:30–4:00</td><td>Action Planning &amp; Wrap-Up</td><td>Reflection + Action Plan</td></tr>
+          </table>
+          <div style="margin-top:1.8rem"><a class="btn btn-blk" href="#" onclick="go('contact');return false">Inquire About This Program</a></div>
+        </div>
+      </div>
     </div>
+
+    <!-- S-02 Leading Through Polarities -->
+    <div class="tc-item" id="tci-s02">
+      <div class="tc-row" onclick="tcTog('s02')">
+        <div class="tc-idx">S-02</div>
+        <div class="tc-title-col"><div class="tc-title">Leading Through Polarities</div><div class="tc-format">Program · All Levels · 4 Hours</div></div>
+        <div class="tc-desc-col"><div class="tc-desc">Helps leaders manage tensions arising from conflicting choices and paradoxes in dynamic environments, while exploring how personal motivations influence leadership decisions.</div></div>
+        <div class="tc-action"><span class="tc-toggle" id="tt-s02">+</span></div>
+      </div>
+      <div class="tc-panel" id="tcp-s02">
+        <div class="tc-panel-inner">
+          <div class="tp-section-label">Learning Objectives</div>
+          <ul class="tp-obj-list">
+            <li>Understand and identify polarities and paradoxes within leadership contexts.</li>
+            <li>Apply leadership principles to resolve conflicting tensions productively.</li>
+            <li>Explore personal leadership motivations and their impact on decisions.</li>
+            <li>Develop practical strategies for balancing competing leadership demands.</li>
+          </ul>
+          <div class="tp-section-label">Session Agenda</div>
+          <table class="agenda-table">
+            <tr><th>Time</th><th>Session</th><th>Format</th></tr>
+            <tr><td>0:00–0:15</td><td>Welcome &amp; Introductions</td><td>Icebreaker + Overview</td></tr>
+            <tr><td>0:15–1:00</td><td>Understanding Polarities in Leadership</td><td>Presentation + Group Discussion</td></tr>
+            <tr><td>1:00–1:45</td><td>Leadership Principles to Resolve Paradoxes</td><td>Case Study + Group Activity</td></tr>
+            <tr><td>1:45–2:00</td><td>Break</td><td>—</td></tr>
+            <tr><td>2:00–2:45</td><td>Exploring Personal Leadership Motivations</td><td>Self-Reflection + Group Sharing</td></tr>
+            <tr><td>2:45–3:30</td><td>Practical Application: Balancing Polarities</td><td>Role Play + Strategy Development</td></tr>
+            <tr><td>3:30–4:00</td><td>Wrap-Up &amp; Action Planning</td><td>Reflection + Action Plan</td></tr>
+          </table>
+          <div style="margin-top:1.8rem"><a class="btn btn-blk" href="#" onclick="go('contact');return false">Inquire About This Program</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S-03 Emerging Leaders -->
+    <div class="tc-item" id="tci-s03">
+      <div class="tc-row" onclick="tcTog('s03')">
+        <div class="tc-idx">S-03</div>
+        <div class="tc-title-col"><div class="tc-title">Emerging Leaders Program</div><div class="tc-format">Program · Emerging Leaders · 4 Hours</div></div>
+        <div class="tc-desc-col"><div class="tc-desc">Prepares emerging leaders to understand the organization's mission, communicate effectively, and develop the coaching and strategic planning skills needed to lead at the next level.</div></div>
+        <div class="tc-action"><span class="tc-toggle" id="tt-s03">+</span></div>
+      </div>
+      <div class="tc-panel" id="tcp-s03">
+        <div class="tc-panel-inner">
+          <div class="tp-section-label">Learning Objectives</div>
+          <ul class="tp-obj-list">
+            <li>Understand the organization's mission, vision, and strategic goals.</li>
+            <li>Develop communication, motivation, and coaching skills for emerging leaders.</li>
+            <li>Learn to respond effectively to customer needs, technology, and industry changes.</li>
+            <li>Plan strategically while supporting employee growth and team development.</li>
+          </ul>
+          <div class="tp-section-label">Session Agenda</div>
+          <table class="agenda-table">
+            <tr><th>Time</th><th>Session</th><th>Format</th></tr>
+            <tr><td>0:00–0:15</td><td>Welcome &amp; Introductions</td><td>Icebreaker + Overview</td></tr>
+            <tr><td>0:15–1:00</td><td>Understanding the Organization's Mission &amp; Goals</td><td>Presentation + Group Discussion</td></tr>
+            <tr><td>1:00–1:45</td><td>Effective Communication &amp; Motivation</td><td>Role Play + Group Discussion</td></tr>
+            <tr><td>1:45–2:00</td><td>Break</td><td>—</td></tr>
+            <tr><td>2:00–2:45</td><td>Coaching for Development</td><td>Case Study + Group Activity</td></tr>
+            <tr><td>2:45–3:30</td><td>Planning for the Future: Strategic Leadership</td><td>Interactive Workshop</td></tr>
+            <tr><td>3:30–4:00</td><td>Wrap-Up &amp; Action Planning</td><td>Reflection + Action Plan</td></tr>
+          </table>
+          <div style="margin-top:1.8rem"><a class="btn btn-blk" href="#" onclick="go('contact');return false">Inquire About This Program</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S-04 Leadership Development -->
+    <div class="tc-item" id="tci-s04">
+      <div class="tc-row" onclick="tcTog('s04')">
+        <div class="tc-idx">S-04</div>
+        <div class="tc-title-col"><div class="tc-title">Leadership Development</div><div class="tc-format">Program · All Levels · 4 Hours</div></div>
+        <div class="tc-desc-col"><div class="tc-desc">Covers formal and informal development activities — from instructor-led training and coaching to peer learning and self-directed growth — to build adaptive, mission-ready leaders.</div></div>
+        <div class="tc-action"><span class="tc-toggle" id="tt-s04">+</span></div>
+      </div>
+      <div class="tc-panel" id="tcp-s04">
+        <div class="tc-panel-inner">
+          <div class="tp-section-label">Learning Objectives</div>
+          <ul class="tp-obj-list">
+            <li>Understand the full spectrum of formal and informal leadership development activities.</li>
+            <li>Apply coaching and mentoring techniques to support team growth.</li>
+            <li>Create a personalized leadership development plan with clear milestones.</li>
+            <li>Build habits for self-directed and peer-to-peer learning over time.</li>
+          </ul>
+          <div class="tp-section-label">Formal Development Includes</div>
+          <ul class="tp-obj-list">
+            <li>Instructor-led training, speaker series, and discussion groups.</li>
+            <li>Rotation/detail assignments and project-based work.</li>
+            <li>Assessments, coaching, and structured mentoring programs.</li>
+          </ul>
+          <div class="tp-section-label">Session Agenda</div>
+          <table class="agenda-table">
+            <tr><th>Time</th><th>Session</th><th>Format</th></tr>
+            <tr><td>0:00–0:15</td><td>Welcome &amp; Overview of Leadership Development</td><td>Icebreaker + Introduction</td></tr>
+            <tr><td>0:15–1:00</td><td>Formal Leadership Development Activities</td><td>Presentation + Group Discussion</td></tr>
+            <tr><td>1:00–1:45</td><td>Informal Leadership Development Activities</td><td>Group Activity + Discussion</td></tr>
+            <tr><td>1:45–2:00</td><td>Break</td><td>—</td></tr>
+            <tr><td>2:00–2:45</td><td>Coaching &amp; Mentoring in Leadership</td><td>Role Play + Group Discussion</td></tr>
+            <tr><td>2:45–3:30</td><td>Creating Leadership Development Plans</td><td>Interactive Workshop</td></tr>
+            <tr><td>3:30–4:00</td><td>Wrap-Up &amp; Action Planning</td><td>Reflection + Action Plan</td></tr>
+          </table>
+          <div style="margin-top:1.8rem"><a class="btn btn-blk" href="#" onclick="go('contact');return false">Inquire About This Program</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C-01 Custom -->
+    <div class="tc-item" id="tci-c01">
+      <div class="tc-row" onclick="tcTog('c01')">
+        <div class="tc-idx">C-01</div>
+        <div class="tc-title-col"><div class="tc-title">Custom Training Programs</div><div class="tc-format">Custom · Any Level · Flexible Duration</div></div>
+        <div class="tc-desc-col"><div class="tc-desc">Mission-specific programs tailored to your organization's unique needs, integrating leadership science, military experience, and federal HR expertise.</div></div>
+        <div class="tc-action"><span class="tc-toggle" id="tt-c01">+</span></div>
+      </div>
+      <div class="tc-panel" id="tcp-c01">
+        <div class="tc-panel-inner">
+          <div class="tp-section-label">What's included</div>
+          <ul class="tp-obj-list">
+            <li>Discovery session to understand your organization's mission, challenges, and leadership gaps.</li>
+            <li>Custom curriculum design integrating leadership science, military precision, and federal HR expertise.</li>
+            <li>Tailored facilitation for your audience — from frontline supervisors to senior executives.</li>
+            <li>Post-program support and follow-up options available on request.</li>
+          </ul>
+          <p class="body" style="margin-top:1rem; font-size:0.9rem; color:var(--mute)">Duration, format, and delivery method are designed around your organization's needs and schedule.</p>
+          <div style="margin-top:1.8rem"><a class="btn btn-blk" href="#" onclick="go('contact');return false">Discuss Your Program</a></div>
+        </div>
+      </div>
+    </div>
+
   </div>
   <div style="padding:2.5rem 3rem; border-top:1px solid var(--line); display:flex; gap:1rem">
     <a class="btn btn-blk" href="#" onclick="go('contact');return false">Request a Proposal</a>
@@ -1525,6 +1835,20 @@ function svcTog(id){
   const wasOpen=item.classList.contains('open');
   document.querySelectorAll('.svc-item.open').forEach(el=>el.classList.remove('open'));
   if(!wasOpen) item.classList.add('open');
+}
+function tcTog(id){
+  const item=document.getElementById('tci-'+id);
+  const btn=document.getElementById('tt-'+id);
+  const wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.tc-item.open').forEach(el=>{
+    el.classList.remove('open');
+    const b=el.querySelector('.tc-toggle');
+    if(b) b.textContent='+';
+  });
+  if(!wasOpen){
+    item.classList.add('open');
+    if(btn) btn.textContent='×';
+  }
 }
 </script>
 </body>
