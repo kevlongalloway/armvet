@@ -356,6 +356,19 @@ p.body {
   background: var(--g2);
 }
 .mission-main { padding: 4rem 4rem 4rem 5rem; }
+.mission-full {
+  padding: 4rem 5vw;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem 5rem;
+  align-items: start;
+}
+.mission-full .pull-quote { grid-column: 1 / -1; }
+.mission-full-body { }
+@media(max-width:900px){
+  .mission-full { grid-template-columns: 1fr; gap: 1.5rem; padding: 3rem 1.5rem; }
+}
 .pull-quote {
   font-family: 'Archivo Black', sans-serif;
   font-size: clamp(1.4rem, 2.5vw, 2.2rem);
@@ -1014,34 +1027,26 @@ footer {
 
   <!-- Mission -->
   <div class="section-header">
-    <span class="sh-index">001</span>
+    <span class="sh-index">Mission</span>
     <div class="sh-rule"></div>
-    <span class="sh-label">Mission Statement</span>
+    <span class="sh-label">Our Purpose</span>
   </div>
-  <div class="mission-wrap">
-    <div class="mission-sidebar">
-      <div class="key-val">
-        <div class="kv-row"><div class="kv-k">Founded</div><div class="kv-v">Anson Smith, President</div></div>
-        <div class="kv-row"><div class="kv-k">Status</div><div class="kv-v">SBA Certified SDVOSB</div></div>
-        <div class="kv-row"><div class="kv-k">Markets</div><div class="kv-v">Federal · Military · Corporate</div></div>
-        <div class="kv-row"><div class="kv-k">Contact</div><div class="kv-v">540-419-4074</div></div>
-      </div>
-      <a class="btn btn-blk" href="#" onclick="go('about');return false">Meet the Founder</a>
-    </div>
-    <div class="mission-main">
-      <div class="pull-quote">"We build leaders who create clarity, build trust, and <em>drive disciplined execution.</em>"</div>
+  <div class="mission-full">
+    <div class="pull-quote">"We build leaders who create clarity, build trust, and <em>drive disciplined execution.</em>"</div>
+    <div class="mission-full-body">
       <p class="body" style="margin-bottom:1.3rem">Armvet strengthens organizations by developing leaders who create clarity, build trust, and drive disciplined execution. We integrate military precision, federal HR expertise, and modern leadership science to elevate people and performance.</p>
       <p class="body">From executive coaching to culture transformation programs, every engagement is built around practical, repeatable leadership systems that produce measurable results in military, federal, and corporate environments.</p>
-      <div style="margin-top:2.5rem; display:flex; gap:0.8rem">
-        <a class="btn btn-blk" href="#" onclick="go('services');return false">Explore Services</a>
-        <a class="btn btn-outline" href="#" onclick="go('contact');return false">Request a Proposal</a>
-      </div>
+    </div>
+    <div style="margin-top:2.5rem; display:flex; gap:0.8rem; flex-wrap:wrap;">
+      <a class="btn btn-blk" href="#" onclick="go('services');return false">Explore Services</a>
+      <a class="btn btn-outline" href="#" onclick="go('contact');return false">Request a Proposal</a>
+      <a class="btn btn-outline" href="#" onclick="go('about');return false">Meet the Founder</a>
     </div>
   </div>
 
   <!-- Services preview -->
   <div class="section-header">
-    <span class="sh-index">002</span>
+    <span class="sh-index">001</span>
     <div class="sh-rule"></div>
     <span class="sh-label">Core Services</span>
   </div>
