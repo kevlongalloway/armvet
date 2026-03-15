@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+
+  <!-- Background: matches logo's light gray -->
+  <rect width="1200" height="630" fill="#eeeff2"/>
+
+  <!--
+    Chevron rank mark (replaces the "A" in Armvet)
+    Two upward-pointing military chevron stripes, bicolor:
+      left half = gold, right half = navy
+    Positioned so the full wordmark is centered on the canvas.
+  -->
+
+  <!-- Upper chevron stripe -->
+  <polygon points="388,272 433,218 433,232 401,272" fill="#8a7350"/>
+  <polygon points="433,218 478,272 465,272 433,232" fill="#1a2f5c"/>
+
+  <!-- Lower chevron stripe -->
+  <polygon points="388,325 433,272 433,286 401,325" fill="#8a7350"/>
+  <polygon points="433,272 478,325 465,325 433,286" fill="#1a2f5c"/>
+
+  <!-- "rm" in navy (continues the "A"rm) -->
+  <text x="478" y="325"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="120"
+        fill="#1a2f5c">rm</text>
+
+  <!-- "vet" in gold -->
+  <text x="628" y="325"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="120"
+        fill="#8a7350">vet</text>
+
+  <!-- Tagline -->
+  <text x="600" y="390"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="34"
+        text-anchor="middle">
+    <tspan font-weight="700" fill="#1a2f5c" letter-spacing="5">LEADERSHIP</tspan><tspan fill="#8a7350" letter-spacing="1"> That Endures.</tspan>
+  </text>
+
+</svg>

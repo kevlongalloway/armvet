@@ -3,7 +3,35 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Armvet LLC</title>
+<title>Armvet LLC | Leadership Development & Federal HR Consulting</title>
+
+<!-- SEO / Google -->
+<meta name="description" content="Armvet LLC delivers executive-level leadership development, organizational culture training, and federal human capital consulting — grounded in military precision and modern leadership science. SBA Certified SDVOSB."/>
+<meta name="keywords" content="leadership development, federal HR consulting, organizational culture training, executive coaching, SDVOSB, veteran-owned business, federal human capital, military leadership, Washington DC"/>
+<meta name="author" content="Anson Smith, Armvet LLC"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://__SITE_DOMAIN__/"/>
+<meta name="theme-color" content="#111110"/>
+
+<!-- Open Graph (iMessage, Facebook, LinkedIn, Slack) -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Armvet LLC"/>
+<meta property="og:title" content="Armvet LLC | Leadership Development & Federal HR Consulting"/>
+<meta property="og:description" content="We build leaders who create clarity, build trust, and drive disciplined execution. Executive coaching, culture training, and federal HR consulting from a Service-Disabled Veteran-Owned business."/>
+<meta property="og:url" content="https://__SITE_DOMAIN__/"/>
+<meta property="og:image" content="https://__SITE_DOMAIN__/images/IMG_1071.png"/>
+<meta property="og:image:type" content="image/png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Armvet LLC — Leadership Development & Federal HR Consulting"/>
+<meta property="og:locale" content="en_US"/>
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Armvet LLC | Leadership Development & Federal HR Consulting"/>
+<meta name="twitter:description" content="We build leaders who create clarity, build trust, and drive disciplined execution. Executive coaching, culture training, and federal HR consulting. SBA Certified SDVOSB."/>
+<meta name="twitter:image" content="https://__SITE_DOMAIN__/images/IMG_1071.png"/>
+<meta name="twitter:image:alt" content="Armvet LLC — Leadership Development & Federal HR Consulting"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -19,6 +47,8 @@
   --blk2: #2a2a28;
   --mute: #4a4a47;
   --line: #d8d8d0;
+  --pu: #5C2D91;
+  --gld: #CFB53B;
 }
 
 html { scroll-behavior: smooth; }
@@ -76,7 +106,7 @@ nav {
 .nav-logo sup {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.5rem; letter-spacing: 0.1em;
-  color: var(--g3); margin-left: 0.4rem;
+  color: var(--pu); margin-left: 0.4rem;
   vertical-align: super;
 }
 .nav-center {
@@ -212,19 +242,20 @@ nav {
   border: 1px solid var(--g);
 }
 .hero-fact {
-  padding: 1.2rem 1.5rem;
+  padding: 1.1rem 1.5rem;
   border-bottom: 1px solid var(--g);
-  display: flex; align-items: baseline; gap: 1rem;
+  display: flex; align-items: center; gap: 1.1rem;
 }
 .hero-fact:last-child { border-bottom: none; }
+.hf-logo { flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 40px; }
+.hf-text { display: flex; flex-direction: column; gap: 0.22rem; min-width: 0; }
 .hf-val {
   font-family: 'Archivo Black', sans-serif;
-  font-size: 1.4rem; color: var(--blk);
-  flex-shrink: 0;
+  font-size: 1.15rem; color: var(--blk); line-height: 1.1;
 }
 .hf-desc {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.58rem; letter-spacing: 0.12em;
+  font-size: 0.55rem; letter-spacing: 0.11em;
   text-transform: uppercase; color: var(--mute);
 }
 
@@ -241,13 +272,15 @@ nav {
 .hero-bottom-cell:last-child { border-right: none; }
 .hbc-dot {
   width: 7px; height: 7px;
-  background: var(--g3); flex-shrink: 0;
+  background: var(--gld); flex-shrink: 0;
 }
 .hbc-text {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.57rem; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--mute);
 }
+
+/* ─── CREDENTIAL STRIP ─── */
 
 /* ─── GENERIC ─── */
 .max-w { max-width: 1200px; margin: 0 auto; }
@@ -265,7 +298,7 @@ nav {
   font-size: 0.6rem; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--g3);
 }
-.sh-rule { height: 1px; background: var(--line); }
+.sh-rule { height: 1px; background: linear-gradient(90deg, var(--gld) 0%, var(--pu) 40%, var(--line) 100%); }
 .sh-label {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.6rem; letter-spacing: 0.18em;
@@ -476,7 +509,7 @@ p.body {
   margin-bottom: 2.5rem;
 }
 .fs-accent {
-  width: 6px; background: var(--g3); flex-shrink: 0;
+  width: 6px; background: linear-gradient(180deg, var(--gld) 0%, var(--pu) 100%); flex-shrink: 0;
 }
 .fs-body { padding: 1.5rem; }
 .fs-name {
@@ -728,8 +761,8 @@ footer {
 /* ─── MOBILE ─── */
 @media(max-width:900px){
   /* hero facts — wrap description below value on small screens */
-  .hero-fact { flex-wrap: wrap; gap: 0.4rem 1rem; }
-  .hf-desc { min-width: 0; word-break: break-word; }
+  .hf-text { min-width: 0; }
+  .hf-desc { word-break: break-word; }
 
   /* performance table — stack columns vertically */
   .perf-wrap { padding: 1.5rem !important; }
@@ -829,12 +862,12 @@ footer {
   <a href="#" class="nav-logo" onclick="go('home');return false">ARMVET LLC <sup>SDVOSB</sup></a>
   <div class="nav-center" id="navCenter">
     <a href="#" id="nav-home" class="active" onclick="go('home');return false">Home</a>
-    <a href="#" id="nav-services" onclick="go('services');return false">Services</a>
-    <a href="#" id="nav-performance" onclick="go('performance');return false">Past Performance</a>
     <a href="#" id="nav-about" onclick="go('about');return false">About</a>
+    <a href="#" id="nav-services" onclick="go('services');return false">Services</a>
     <a href="#" id="nav-capability" onclick="go('capability');return false">Capability</a>
-    <a href="#" id="nav-tools" onclick="go('tools');return false">Tools</a>
     <a href="#" id="nav-training" onclick="go('training');return false">Training</a>
+    <a href="#" id="nav-tools" onclick="go('tools');return false">Tools</a>
+    <a href="#" id="nav-performance" onclick="go('performance');return false">Past Performance</a>
     <a href="#" id="nav-contact-m" onclick="go('contact');return false" style="border-top:2px solid var(--blk)">Contact</a>
   </div>
   <div class="nav-right">
@@ -868,22 +901,81 @@ footer {
       <div class="hero-right">
         <div class="hero-big-number">20+</div>
         <div class="hero-facts">
+
+          <!-- NASA -->
           <div class="hero-fact">
-            <div class="hf-val">NASA</div>
-            <div class="hf-desc">Former HR Director · Federal Executive Level</div>
+            <div class="hf-logo">
+              <svg viewBox="0 0 200 200" width="38" height="38" aria-label="NASA" role="img">
+                <defs><clipPath id="hf-nasa"><circle cx="100" cy="100" r="98"/></clipPath></defs>
+                <circle cx="100" cy="100" r="99" fill="#0B3D91"/>
+                <circle cx="100" cy="100" r="97" fill="none" stroke="white" stroke-width="1.5"/>
+                <ellipse cx="100" cy="100" rx="93" ry="28" transform="rotate(-20 100 100)" fill="none" stroke="white" stroke-width="3" clip-path="url(#hf-nasa)"/>
+                <path d="M 2,158 C 22,126 60,72 124,34 C 150,19 178,14 200,17 L 200,32 C 176,29 150,38 122,56 C 56,96 18,152 6,174 Z" fill="#FC3D21" clip-path="url(#hf-nasa)"/>
+                <text x="100" y="122" text-anchor="middle" font-family="Arial Black,Helvetica Neue,sans-serif" font-weight="900" font-size="54" fill="white">NASA</text>
+                <path d="M46,48 L48,57 L57,59 L48,61 L46,70 L44,61 L35,59 L44,57 Z" fill="white"/>
+                <path d="M153,30 L155,37 L162,39 L155,41 L153,48 L151,41 L144,39 L151,37 Z" fill="white"/>
+                <path d="M170,74 L172,80 L178,81.5 L172,83 L170,89 L168,83 L162,81.5 L168,80 Z" fill="white"/>
+                <path d="M29,90 L31,96 L37,97.5 L31,99 L29,105 L27,99 L21,97.5 L27,96 Z" fill="white"/>
+                <circle cx="78" cy="36" r="2" fill="white"/><circle cx="95" cy="26" r="1.5" fill="white"/>
+                <circle cx="116" cy="23" r="2" fill="white"/><circle cx="138" cy="30" r="1.5" fill="white"/>
+                <circle cx="62" cy="66" r="1.5" fill="white"/><circle cx="176" cy="50" r="1.5" fill="white"/>
+                <circle cx="22" cy="124" r="1.5" fill="white"/><circle cx="38" cy="154" r="1.8" fill="white"/>
+              </svg>
+            </div>
+            <div class="hf-text">
+              <div class="hf-val">NASA</div>
+              <div class="hf-desc">Former HR Director · Federal Executive Level</div>
+            </div>
           </div>
+
+          <!-- Army National Guard -->
           <div class="hero-fact">
-            <div class="hf-val">ANG Deputy G-1</div>
-            <div class="hf-desc">Army National Guard · Human Resources Enterprise</div>
+            <div class="hf-logo">
+              <svg viewBox="0 0 124 148" width="32" height="38" aria-label="Army National Guard" role="img">
+                <path d="M2,2 L122,2 L122,92 L62,146 L2,92 Z" fill="#0A0A0A"/>
+                <line x1="12" y1="26" x2="112" y2="26" stroke="#FFB800" stroke-width="2.5"/>
+                <text x="62" y="56" text-anchor="middle" font-family="Arial Black,Impact,Helvetica,sans-serif" font-weight="900" font-size="30" fill="#FFB800" letter-spacing="-0.5">ARMY</text>
+                <text x="62" y="77" text-anchor="middle" font-family="Arial Black,Helvetica,sans-serif" font-weight="900" font-size="18.5" fill="white" letter-spacing="0.3">NATIONAL</text>
+                <text x="62" y="98" text-anchor="middle" font-family="Arial Black,Helvetica,sans-serif" font-weight="900" font-size="22" fill="white" letter-spacing="0.5">GUARD</text>
+                <line x1="12" y1="106" x2="112" y2="106" stroke="#FFB800" stroke-width="2.5"/>
+                <text x="62" y="127" text-anchor="middle" font-size="17" fill="#FFB800">★</text>
+              </svg>
+            </div>
+            <div class="hf-text">
+              <div class="hf-val">ANG Deputy G-1</div>
+              <div class="hf-desc">Army National Guard · Human Resources Enterprise</div>
+            </div>
           </div>
+
+          <!-- Multi-level CSM — U.S. Army star mark -->
           <div class="hero-fact">
-            <div class="hf-val">Multi-level CSM</div>
-            <div class="hf-desc">Command Sergeant Major · Direct Leadership</div>
+            <div class="hf-logo">
+              <svg viewBox="0 0 100 100" width="38" height="38" aria-label="U.S. Army" role="img">
+                <rect width="100" height="100" fill="#0A0A0A"/>
+                <polygon points="50,8 61,36 91,36 68,56 77,84 50,66 23,84 32,56 9,36 39,36" fill="#FFB800"/>
+              </svg>
+            </div>
+            <div class="hf-text">
+              <div class="hf-val">Multi-level CSM</div>
+              <div class="hf-desc">Command Sergeant Major · Direct Leadership</div>
+            </div>
           </div>
+
+          <!-- SBA SDVOSB — transparent bg for sage surface -->
           <div class="hero-fact">
-            <div class="hf-val">SBA Certified</div>
-            <div class="hf-desc">Service-Disabled Veteran-Owned Small Business</div>
+            <div class="hf-logo">
+              <svg viewBox="0 0 270 195" width="52" height="38" aria-label="SBA" role="img">
+                <polyline points="14,14 14,6 256,6 256,130" fill="none" stroke="#162968" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"/>
+                <polyline points="14,130 14,162 148,162" fill="none" stroke="#BE2026" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"/>
+                <text x="135" y="132" text-anchor="middle" font-family="Arial Black,Helvetica Neue,sans-serif" font-weight="900" font-size="108" fill="#162968">SBA</text>
+              </svg>
+            </div>
+            <div class="hf-text">
+              <div class="hf-val">SBA Certified</div>
+              <div class="hf-desc">Service-Disabled Veteran-Owned Small Business</div>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1270,6 +1362,7 @@ footer {
     </div>
     <div class="about-right">
       <div class="about-body">
+        <p style="font-style:italic; border-left:3px solid var(--gld); padding-left:1.2rem; color:var(--blk);">"We train leaders to shift their mindset so they communicate with clarity, act with intent, and take care of their people."</p>
         <p>Anson Smith is a retired NASA HR Director, former Deputy G-1 for the Army National Guard, and multi-level Command Sergeant Major with decades of experience in leadership, organizational development, and federal human capital strategy.</p>
         <p>Through Armvet, he equips leaders with the tools, systems, and mindset required to build high-trust, high-performance organizations. His approach blends military discipline with evidence-based leadership science — producing programs that are immediately practical and measurably effective.</p>
         <p>This rare combination — operational military leadership, executive federal HR experience, and organizational development expertise — makes Armvet uniquely positioned to serve military, government, and corporate clients seeking lasting culture change and leadership transformation.</p>
