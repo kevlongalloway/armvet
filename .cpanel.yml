@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/$USER/public_html/
+    - export SITE_DOMAIN=armvet.com
+    - bash build.sh
+    - /bin/cp -r dist/. $DEPLOYPATH
+    - echo "Deployed to $DEPLOYPATH"
