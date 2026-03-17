@@ -11,7 +11,7 @@
 <meta name="author" content="Anson Smith, Armvet LLC"/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://__SITE_DOMAIN__/"/>
-<meta name="theme-color" content="#111110"/>
+<meta name="theme-color" content="#5C2D91"/>
 
 <!-- Open Graph (iMessage, Facebook, LinkedIn, Slack) -->
 <meta property="og:type" content="website"/>
@@ -40,15 +40,15 @@
 
 :root{
   --w: #f8f8f4;
-  --g: #c8d4c0;
-  --g2: #e8efe4;
-  --g3: #a8b8a0;
+  --g: #d4cce0;
+  --g2: #f4f1f8;
+  --g3: #8a7aa0;
   --blk: #111110;
   --blk2: #2a2a28;
   --mute: #4a4a47;
-  --line: #d8d8d0;
-  --pu: #5C2D91;
-  --gld: #CFB53B;
+  --line: #e0dce8;
+  --pu: #4a2878;
+  --gld: #B8973A;
 }
 
 html { scroll-behavior: smooth; }
@@ -65,7 +65,7 @@ body {
 /* ─── TICKER ─── */
 .ticker {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  background: var(--blk);
+  background: #0f0a18;
   height: 28px; overflow: hidden;
   display: flex; align-items: center;
 }
@@ -76,10 +76,10 @@ body {
 .ticker-track span {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.6rem; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--g);
+  text-transform: uppercase; color: var(--gld);
   padding: 0 2.5rem;
 }
-.ticker-track span.sep { color: var(--g3); }
+.ticker-track span.sep { color: rgba(207,181,59,0.55); }
 @keyframes tickerMove {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -89,13 +89,13 @@ body {
 nav {
   position: fixed; top: 28px; left: 0; right: 0; z-index: 100;
   background: var(--w);
-  border-bottom: 1px solid var(--line);
+  border-bottom: 3px solid var(--gld);
   display: flex; align-items: stretch;
   height: 52px;
 }
 .nav-logo {
-  display: flex; align-items: center;
-  padding: 0 2rem;
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0 1.6rem;
   border-right: 1px solid var(--line);
   font-family: 'Archivo Black', sans-serif;
   font-size: 1rem; letter-spacing: 0.04em;
@@ -103,6 +103,7 @@ nav {
   white-space: nowrap;
   flex-shrink: 0;
 }
+.nav-logo img { height: 40px; width: auto; display: block; }
 .nav-logo sup {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.5rem; letter-spacing: 0.1em;
@@ -123,7 +124,7 @@ nav {
   transition: background 0.15s, color 0.15s;
 }
 .nav-center a:hover, .nav-center a.active {
-  background: var(--blk); color: var(--w);
+  background: #1e1230; color: #fff;
 }
 .nav-right {
   display: flex; align-items: center;
@@ -140,7 +141,7 @@ nav {
   padding: 0.35rem 1rem;
   transition: background 0.15s, color 0.15s;
 }
-.nav-right a:hover { background: var(--blk); color: var(--w); }
+.nav-right a:hover { background: #1e1230; color: #fff; border-color: #1e1230; }
 
 .hamburger {
   display: none; cursor: pointer;
@@ -174,10 +175,11 @@ nav {
   display: flex; flex-direction: column; justify-content: space-between;
 }
 .hero-right {
-  background: var(--g2);
+  background: #1e1230;
   padding: 5vw 4vw;
   display: flex; flex-direction: column; justify-content: flex-end;
   position: relative; overflow: hidden;
+  clip-path: polygon(5% 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .hero-tag {
@@ -212,6 +214,9 @@ nav {
   display: flex; gap: 0; margin-top: 3.5rem;
   border: 1px solid var(--blk);
   width: fit-content;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
 }
 .hero-btns a {
   font-family: 'IBM Plex Mono', monospace;
@@ -221,7 +226,7 @@ nav {
   transition: background 0.15s, color 0.15s;
 }
 .hero-btns a:first-child { background: var(--blk); color: var(--w); border-right: 1px solid var(--blk); }
-.hero-btns a:first-child:hover { background: var(--blk2); }
+.hero-btns a:first-child:hover { background: #1e1230; }
 .hero-btns a:last-child { color: var(--blk); }
 .hero-btns a:last-child:hover { background: var(--blk); color: var(--w); }
 
@@ -231,7 +236,7 @@ nav {
   font-size: clamp(6rem, 14vw, 16rem);
   line-height: 0.85;
   letter-spacing: -0.04em;
-  color: var(--g3);
+  color: rgba(255,255,255,0.08);
   position: absolute; bottom: -1rem; right: -0.5rem;
   pointer-events: none;
   user-select: none;
@@ -239,11 +244,12 @@ nav {
 .hero-facts {
   position: relative; z-index: 1;
   display: flex; flex-direction: column; gap: 0;
-  border: 1px solid var(--g);
+  border: 1px solid rgba(207,181,59,0.5);
+  background: rgba(0,0,0,0.2);
 }
 .hero-fact {
   padding: 1.1rem 1.5rem;
-  border-bottom: 1px solid var(--g);
+  border-bottom: 1px solid rgba(207,181,59,0.25);
   display: flex; align-items: center; gap: 1.1rem;
 }
 .hero-fact:last-child { border-bottom: none; }
@@ -251,12 +257,12 @@ nav {
 .hf-text { display: flex; flex-direction: column; gap: 0.22rem; min-width: 0; }
 .hf-val {
   font-family: 'Archivo Black', sans-serif;
-  font-size: 1.15rem; color: var(--blk); line-height: 1.1;
+  font-size: 1.15rem; color: #fff; line-height: 1.1;
 }
 .hf-desc {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.55rem; letter-spacing: 0.11em;
-  text-transform: uppercase; color: var(--mute);
+  text-transform: uppercase; color: rgba(255,255,255,0.6);
 }
 
 /* hero bottom bar */
@@ -292,11 +298,12 @@ nav {
   gap: 1.5rem;
   padding: 2.5rem 3rem;
   border-bottom: 1px solid var(--line);
+  border-left: 5px solid var(--gld);
 }
 .sh-index {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.6rem; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--g3);
+  text-transform: uppercase; color: var(--gld);
 }
 .sh-rule { height: 1px; background: linear-gradient(90deg, var(--gld) 0%, var(--pu) 40%, var(--line) 100%); }
 .sh-label {
@@ -328,14 +335,48 @@ p.body {
   font-size: 0.6rem; letter-spacing: 0.16em;
   text-transform: uppercase; text-decoration: none;
   padding: 0.75rem 1.6rem; cursor: pointer;
-  border: none; transition: all 0.15s;
+  border: none; transition: all 0.2s;
+  border-radius: 2px;
 }
-.btn-blk { background: var(--blk); color: var(--w); }
-.btn-blk:hover { background: var(--blk2); }
+.btn-blk { background: var(--blk); color: var(--w); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.btn-blk:hover { background: #1e1230; box-shadow: 0 4px 14px rgba(30,18,48,0.35); transform: translateY(-1px); }
 .btn-outline { background: transparent; color: var(--blk); border: 1px solid var(--blk); }
-.btn-outline:hover { background: var(--blk); color: var(--w); }
-.btn-green { background: var(--g); color: var(--blk); }
-.btn-green:hover { background: var(--g3); }
+.btn-outline:hover { background: #1e1230; color: #fff; border-color: #1e1230; transform: translateY(-1px); }
+.btn-green { background: var(--gld); color: var(--blk); box-shadow: 0 2px 8px rgba(207,181,59,0.35); }
+.btn-green:hover { background: #b89e2a; transform: translateY(-1px); }
+
+/* ─── COMPANY STRIP ─── */
+.company-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid var(--line);
+  background: var(--g2);
+}
+.cs-cell {
+  padding: 1.4rem 2rem;
+  border-right: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 0.3rem;
+}
+.cs-cell:last-child { border-right: none; }
+.cs-key {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.52rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--g3);
+}
+.cs-val {
+  font-size: 0.9rem; font-weight: 400; color: var(--blk2);
+}
+@media(max-width:900px){
+  .company-strip { grid-template-columns: 1fr 1fr; }
+  .cs-cell:nth-child(2) { border-right: none; }
+  .cs-cell:nth-child(3), .cs-cell:nth-child(4) { border-top: 1px solid var(--line); }
+}
+@media(max-width:560px){
+  .company-strip { grid-template-columns: 1fr; }
+  .cs-cell { border-right: none; border-bottom: 1px solid var(--line); }
+  .cs-cell:last-child { border-bottom: none; }
+  .cs-cell:nth-child(2) { border-top: none; }
+  .cs-cell:nth-child(3), .cs-cell:nth-child(4) { border-top: none; }
+}
 
 /* ─── MISSION ─── */
 .mission-wrap {
@@ -348,11 +389,26 @@ p.body {
   background: var(--g2);
 }
 .mission-main { padding: 4rem 4rem 4rem 5rem; }
+.mission-full {
+  padding: 4rem 5vw;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem 5rem;
+  align-items: start;
+}
+.mission-full .pull-quote { grid-column: 1 / -1; }
+.mission-full-body { }
+@media(max-width:900px){
+  .mission-full { grid-template-columns: 1fr; gap: 1.5rem; padding: 3rem 1.5rem; }
+}
 .pull-quote {
   font-family: 'Archivo Black', sans-serif;
   font-size: clamp(1.4rem, 2.5vw, 2.2rem);
   line-height: 1.2; letter-spacing: -0.02em;
   color: var(--blk); margin-bottom: 2rem;
+  padding-left: 1.2rem;
+  border-left: 4px solid var(--gld);
 }
 .pull-quote em {
   font-family: 'Archivo', sans-serif;
@@ -406,6 +462,7 @@ p.body {
   user-select: none;
 }
 .svc-item.open .svc-toggle { transform: rotate(45deg); color: var(--blk); }
+.svc-item.open { border-left: 4px solid var(--gld); }
 .svc-title {
   font-family: 'Archivo Black', sans-serif;
   font-size: 1.3rem; letter-spacing: -0.01em;
@@ -450,16 +507,16 @@ p.body {
 .sp-for-text { font-size: 1rem; font-weight: 300; color: var(--mute); line-height: 1.75; }
 
 /* ─── PAST PERF ─── */
-.perf-wrap { background: var(--blk); }
+.perf-wrap { background: #160b25; }
 .perf-table { width: 100%; border-collapse: collapse; }
 .perf-table td { padding: 1.8rem 2rem; vertical-align: top; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .perf-table tr:last-child td { border-bottom: none; }
 .perf-table tr { transition: background 0.15s; }
-.perf-table tr:hover td { background: rgba(200,212,192,0.05); }
+.perf-table tr:hover td { background: rgba(92,45,145,0.1); }
 .pt-idx {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.58rem; letter-spacing: 0.12em;
-  color: var(--g3); width: 60px;
+  color: var(--gld); width: 60px;
 }
 .pt-client {
   font-family: 'Archivo Black', sans-serif;
@@ -482,6 +539,8 @@ p.body {
   object-fit: cover;
   object-position: center top;
   display: block;
+  border: 4px solid var(--gld);
+  box-shadow: 0 8px 32px rgba(92,45,145,0.2);
 }
 .founder-photo-caption {
   font-family: 'IBM Plex Mono', monospace;
@@ -551,15 +610,20 @@ p.body {
 }
 .metric {
   background: var(--w); padding: 1.3rem 1.5rem;
+  display: flex; flex-direction: column; gap: 0.6rem;
+  border-top: 3px solid var(--gld);
 }
+.metric-logo { display: flex; align-items: center; height: 40px; }
+.metric-logo img { max-height: 40px; width: auto; max-width: 80px; object-fit: contain; }
+.metric-logo svg { max-height: 40px; width: auto; }
 .metric-val {
   font-family: 'Archivo Black', sans-serif;
   font-size: 1.6rem; letter-spacing: -0.02em; color: var(--blk);
 }
 .metric-lbl {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.53rem; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--g3); margin-top: 0.2rem;
+  font-size: 0.56rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--blk2); margin-top: 0.1rem;
 }
 
 /* ─── CAPABILITY ─── */
@@ -575,6 +639,10 @@ p.body {
   background: var(--w); padding: 2rem 1.8rem;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+  transition: border-top 0.15s;
+}
+.cap-cell:not(.wide):hover {
+  border-top: 3px solid var(--gld);
 }
 .cap-cell.wide { grid-column: span 3; }
 .cap-lbl {
@@ -648,6 +716,7 @@ p.body {
 .training-list { border-bottom: 1px solid var(--line); }
 .tc-item { border-bottom: 1px solid var(--line); }
 .tc-item:last-child { border-bottom: none; }
+.tc-item.open { border-left: 4px solid var(--gld); }
 .tc-row {
   display: grid; grid-template-columns: 80px 1fr 1fr auto;
   align-items: stretch; transition: background 0.15s; cursor: pointer;
@@ -712,7 +781,7 @@ p.body {
   background: var(--w);
 }
 .c-val { padding: 0.9rem 1.2rem; font-size: 0.88rem; font-weight: 300; color: var(--blk2); }
-.cal-box { margin-top: 2.5rem; padding: 1.8rem; background: var(--blk); }
+.cal-box { margin-top: 2.5rem; padding: 1.8rem; background: #1e1230; }
 .cal-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g3); margin-bottom: 0.5rem; }
 .cal-box p { font-size: 1rem; font-weight: 300; color: rgba(255,255,255,0.65); margin-bottom: 1.2rem; }
 
@@ -733,9 +802,9 @@ p.body {
 
 /* ─── FOOTER ─── */
 footer {
-  background: var(--blk);
+  background: #160b25;
   display: grid; grid-template-columns: 1fr 1fr 1fr;
-  border-top: 2px solid var(--g3);
+  border-top: 3px solid var(--gld);
 }
 .footer-cell {
   padding: 2rem 2.5rem;
@@ -782,7 +851,7 @@ footer {
     top: 80px;
     left: 0; right: 0;
     background: var(--w);
-    border-bottom: 2px solid var(--blk);
+    border-bottom: 2px solid var(--pu);
     z-index: 99;
     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
   }
@@ -797,7 +866,7 @@ footer {
   .hamburger { display: flex; }
   .page { padding-top: 80px; }
   .hero-main { grid-template-columns: 1fr; }
-  .hero-right { min-height: 280px; padding: 2.5rem; }
+  .hero-right { min-height: 280px; padding: 2.5rem; clip-path: none; }
   .hero-bottom { grid-template-columns: 1fr 1fr; }
   .hero-bottom-cell:nth-child(3), .hero-bottom-cell:nth-child(4) { border-top: 1px solid var(--line); }
   .mission-wrap { grid-template-columns: 1fr; }
@@ -859,7 +928,9 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo" onclick="go('home');return false">ARMVET LLC <sup>SDVOSB</sup></a>
+  <a href="#" class="nav-logo" onclick="go('home');return false">
+    <img src="images/logo.png" alt="Armvet — Leadership That Endures"/>
+  </a>
   <div class="nav-center" id="navCenter">
     <a href="#" id="nav-home" class="active" onclick="go('home');return false">Home</a>
     <a href="#" id="nav-about" onclick="go('about');return false">About</a>
@@ -987,36 +1058,48 @@ footer {
     </div>
   </div>
 
+  <!-- Company snapshot strip -->
+  <div class="company-strip">
+    <div class="cs-cell">
+      <div class="cs-key">Founded by</div>
+      <div class="cs-val">Anson Smith, President</div>
+    </div>
+    <div class="cs-cell">
+      <div class="cs-key">Status</div>
+      <div class="cs-val">SBA Certified SDVOSB</div>
+    </div>
+    <div class="cs-cell">
+      <div class="cs-key">Markets</div>
+      <div class="cs-val">Federal · Military · Corporate</div>
+    </div>
+    <div class="cs-cell">
+      <div class="cs-key">Contact</div>
+      <div class="cs-val"><a href="tel:5404194074" style="color:inherit;text-decoration:none;">540-419-4074</a></div>
+    </div>
+  </div>
+
   <!-- Mission -->
   <div class="section-header">
-    <span class="sh-index">001</span>
+    <span class="sh-index">Mission</span>
     <div class="sh-rule"></div>
-    <span class="sh-label">Mission Statement</span>
+    <span class="sh-label">Our Purpose</span>
   </div>
-  <div class="mission-wrap">
-    <div class="mission-sidebar">
-      <div class="key-val">
-        <div class="kv-row"><div class="kv-k">Founded</div><div class="kv-v">Anson Smith, President</div></div>
-        <div class="kv-row"><div class="kv-k">Status</div><div class="kv-v">SBA Certified SDVOSB</div></div>
-        <div class="kv-row"><div class="kv-k">Markets</div><div class="kv-v">Federal · Military · Corporate</div></div>
-        <div class="kv-row"><div class="kv-k">Contact</div><div class="kv-v">540-419-4074</div></div>
-      </div>
-      <a class="btn btn-blk" href="#" onclick="go('about');return false">Meet the Founder</a>
-    </div>
-    <div class="mission-main">
-      <div class="pull-quote">"We build leaders who create clarity, build trust, and <em>drive disciplined execution.</em>"</div>
+  <div class="mission-full">
+    <div class="pull-quote">"We build leaders who create clarity, build trust, and <em>drive disciplined execution.</em>"</div>
+    <div class="mission-full-body">
       <p class="body" style="margin-bottom:1.3rem">Armvet strengthens organizations by developing leaders who create clarity, build trust, and drive disciplined execution. We integrate military precision, federal HR expertise, and modern leadership science to elevate people and performance.</p>
       <p class="body">From executive coaching to culture transformation programs, every engagement is built around practical, repeatable leadership systems that produce measurable results in military, federal, and corporate environments.</p>
-      <div style="margin-top:2.5rem; display:flex; gap:0.8rem">
-        <a class="btn btn-blk" href="#" onclick="go('services');return false">Explore Services</a>
-        <a class="btn btn-outline" href="#" onclick="go('contact');return false">Request a Proposal</a>
-      </div>
+    </div>
+    <div style="margin-top:2.5rem; display:flex; gap:0.8rem; flex-wrap:wrap;">
+      <a class="btn btn-blk" href="#" onclick="go('services');return false">Explore Services</a>
+      <a class="btn btn-outline" href="#" onclick="go('contact');return false">Request a Proposal</a>
+      <a class="btn btn-outline" href="#" onclick="go('about');return false">Meet the Founder</a>
     </div>
   </div>
 
   <!-- Services preview -->
   <div class="section-header">
-    <span class="sh-index">002</span>
+    <span class="sh-index">001</span>
     <div class="sh-rule"></div>
     <span class="sh-label">Core Services</span>
   </div>
@@ -1353,10 +1436,124 @@ footer {
         </div>
       </div>
       <div class="metric-row">
-        <div class="metric"><div class="metric-val">NASA</div><div class="metric-lbl">HR Director</div></div>
-        <div class="metric"><div class="metric-val">ANG</div><div class="metric-lbl">Deputy G-1</div></div>
-        <div class="metric"><div class="metric-val">CSM</div><div class="metric-lbl">Multi-level</div></div>
-        <div class="metric"><div class="metric-val">SDVOSB</div><div class="metric-lbl">SBA Certified</div></div>
+
+        <!-- NASA -->
+        <div class="metric">
+          <div class="metric-logo">
+            <svg viewBox="0 0 200 200" width="40" height="40" aria-label="NASA" role="img">
+              <defs><clipPath id="mt-nasa"><circle cx="100" cy="100" r="98"/></clipPath></defs>
+              <circle cx="100" cy="100" r="99" fill="#0B3D91"/>
+              <circle cx="100" cy="100" r="97" fill="none" stroke="white" stroke-width="1.5"/>
+              <ellipse cx="100" cy="100" rx="93" ry="28" transform="rotate(-20 100 100)" fill="none" stroke="white" stroke-width="3" clip-path="url(#mt-nasa)"/>
+              <path d="M 2,158 C 22,126 60,72 124,34 C 150,19 178,14 200,17 L 200,32 C 176,29 150,38 122,56 C 56,96 18,152 6,174 Z" fill="#FC3D21" clip-path="url(#mt-nasa)"/>
+              <text x="100" y="122" text-anchor="middle" font-family="Arial Black,Helvetica Neue,sans-serif" font-weight="900" font-size="54" fill="white">NASA</text>
+              <path d="M46,48 L48,57 L57,59 L48,61 L46,70 L44,61 L35,59 L44,57 Z" fill="white"/>
+              <path d="M153,30 L155,37 L162,39 L155,41 L153,48 L151,41 L144,39 L151,37 Z" fill="white"/>
+              <circle cx="95" cy="26" r="1.5" fill="white"/><circle cx="116" cy="23" r="2" fill="white"/>
+            </svg>
+          </div>
+          <div class="metric-val">NASA</div>
+          <div class="metric-lbl">HR Director</div>
+        </div>
+
+        <!-- ANG -->
+        <div class="metric">
+          <div class="metric-logo">
+            <svg viewBox="0 0 124 148" width="34" height="40" aria-label="Army National Guard" role="img">
+              <path d="M2,2 L122,2 L122,92 L62,146 L2,92 Z" fill="#0A0A0A"/>
+              <line x1="12" y1="26" x2="112" y2="26" stroke="#FFB800" stroke-width="2.5"/>
+              <text x="62" y="56" text-anchor="middle" font-family="Arial Black,Impact,Helvetica,sans-serif" font-weight="900" font-size="30" fill="#FFB800" letter-spacing="-0.5">ARMY</text>
+              <text x="62" y="77" text-anchor="middle" font-family="Arial Black,Helvetica,sans-serif" font-weight="900" font-size="18.5" fill="white" letter-spacing="0.3">NATIONAL</text>
+              <text x="62" y="98" text-anchor="middle" font-family="Arial Black,Helvetica,sans-serif" font-weight="900" font-size="22" fill="white" letter-spacing="0.5">GUARD</text>
+              <line x1="12" y1="106" x2="112" y2="106" stroke="#FFB800" stroke-width="2.5"/>
+              <text x="62" y="127" text-anchor="middle" font-size="17" fill="#FFB800">★</text>
+            </svg>
+          </div>
+          <div class="metric-val">ANG</div>
+          <div class="metric-lbl">Deputy G-1</div>
+        </div>
+
+        <!-- CSM — DEOMI seal -->
+        <div class="metric">
+          <div class="metric-logo">
+            <svg viewBox="0 0 200 200" width="40" height="40" aria-label="DEOMI — Defense Equal Opportunity Management Institute" role="img">
+              <defs>
+                <path id="dm-tp" d="M 7,100 A 93,93 0 0,1 193,100"/>
+                <path id="dm-bp" d="M 35,100 A 65,65 0 0,0 165,100"/>
+                <linearGradient id="dm-lamp" x1="0.3" y1="0" x2="0.7" y2="1">
+                  <stop offset="0%" stop-color="#F0D060"/>
+                  <stop offset="45%" stop-color="#C8961A"/>
+                  <stop offset="100%" stop-color="#8B6008"/>
+                </linearGradient>
+              </defs>
+              <!-- Rings: white → navy text band → gold separator → navy inner body -->
+              <circle cx="100" cy="100" r="99" fill="white"/>
+              <circle cx="100" cy="100" r="97" fill="#1B2B6B"/>
+              <circle cx="100" cy="100" r="89" fill="#C8891E"/>
+              <circle cx="100" cy="100" r="82" fill="#1B2B6B"/>
+              <!-- Subtle inner gold border -->
+              <circle cx="100" cy="100" r="79" fill="none" stroke="#C8891E" stroke-width="1.8"/>
+              <!-- 8-pointed compass rose — cardinal (deep blue) -->
+              <polygon points="100,26 104,92 100,100 96,92" fill="#4B90D4"/>
+              <polygon points="100,174 104,108 100,100 96,108" fill="#4B90D4"/>
+              <polygon points="26,100 92,104 100,100 92,96"  fill="#4B90D4"/>
+              <polygon points="174,100 108,104 100,100 108,96" fill="#4B90D4"/>
+              <!-- diagonal (lighter blue) -->
+              <polygon points="146,54 107,93 100,100 93,107" fill="#6EB4E4"/>
+              <polygon points="54,54  93,107 100,100 107,93" fill="#6EB4E4"/>
+              <polygon points="146,146 107,107 100,100 93,93"  fill="#6EB4E4"/>
+              <polygon points="54,146 93,93  100,100 107,107" fill="#6EB4E4"/>
+              <!-- 8 gold stars at r≈76 -->
+              <text x="100" y="29"  text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <text x="153" y="52"  text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <text x="175" y="104" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <text x="153" y="153" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <text x="100" y="175" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <text x="47"  y="153" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <text x="25"  y="104" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <text x="47"  y="52"  text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C8891E">★</text>
+              <!-- Center circle (lamp base) -->
+              <circle cx="100" cy="100" r="22" fill="#152060"/>
+              <!-- Aladdin's lamp body -->
+              <path d="M88,113 Q83,113 82,108 Q81,99 100,97 Q119,99 118,108 Q117,113 112,113 Z" fill="url(#dm-lamp)"/>
+              <!-- Lamp neck -->
+              <ellipse cx="100" cy="97" rx="7" ry="3" fill="#A88810"/>
+              <!-- Spout (left) -->
+              <path d="M82,107 Q74,103 71,107 Q69,112 74,114 Q79,116 84,113" fill="none" stroke="#C8A020" stroke-width="5" stroke-linecap="round"/>
+              <!-- Handle (right) -->
+              <path d="M118,108 Q126,108 127,112 Q127,116 120,115" fill="none" stroke="#C8A020" stroke-width="4" stroke-linecap="round"/>
+              <!-- Base -->
+              <rect x="92" y="113" width="16" height="3" rx="1.5" fill="#9B7808"/>
+              <!-- Flame -->
+              <path d="M100,97 Q95,90 100,83 Q105,89 103,94 Q107,88 104,97 Z" fill="#FF8C00"/>
+              <path d="M100,97 Q98,91 100,86 Q102,91 100,97 Z" fill="#FFE030"/>
+              <!-- Outer arc text: title -->
+              <text font-family="Arial,Helvetica,sans-serif" font-size="7.5" fill="#C8891E" font-weight="bold" letter-spacing="0.25">
+                <textPath href="#dm-tp" startOffset="50%" text-anchor="middle">DEFENSE EQUAL OPPORTUNITY MANAGEMENT INSTITUTE</textPath>
+              </text>
+              <!-- Inner bottom arc text -->
+              <text font-family="Arial,Helvetica,sans-serif" font-size="7" fill="#C8891E" font-weight="bold" letter-spacing="0.3">
+                <textPath href="#dm-bp" startOffset="50%" text-anchor="middle">Est. 1971  ·  CENTER OF EXCELLENCE</textPath>
+              </text>
+            </svg>
+          </div>
+          <div class="metric-val">CSM</div>
+          <div class="metric-lbl">Multi-level</div>
+        </div>
+
+        <!-- SDVOSB — SBA -->
+        <div class="metric">
+          <div class="metric-logo">
+            <svg viewBox="0 0 270 195" width="56" height="40" aria-label="SBA" role="img">
+              <polyline points="14,14 14,6 256,6 256,130" fill="none" stroke="#162968" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"/>
+              <polyline points="14,130 14,162 148,162" fill="none" stroke="#BE2026" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"/>
+              <text x="135" y="132" text-anchor="middle" font-family="Arial Black,Helvetica Neue,sans-serif" font-weight="900" font-size="108" fill="#162968">SBA</text>
+            </svg>
+          </div>
+          <div class="metric-val">SDVOSB</div>
+          <div class="metric-lbl">SBA Certified</div>
+        </div>
+
       </div>
       <a class="btn btn-blk" href="#" onclick="go('contact');return false">Get in Touch</a>
     </div>
