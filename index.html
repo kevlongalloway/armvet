@@ -787,6 +787,21 @@ p.body {
 .cal-box { margin-top: 2.5rem; padding: 1.8rem; background: #1e1230; }
 .cal-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--g3); margin-bottom: 0.5rem; }
 .cal-box p { font-size: 1rem; font-weight: 300; color: rgba(255,255,255,0.65); margin-bottom: 1.2rem; }
+.bk-loading { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: rgba(255,255,255,0.35); padding: 0.8rem 0; }
+.bk-empty-msg { font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.45); margin: 0; }
+.bk-slot-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+.bk-slot { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.9rem 1rem; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.bk-slot:hover { border-color: var(--gld); background: rgba(184,151,58,0.08); }
+.bk-slot-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gld); margin-bottom: 0.25rem; }
+.bk-slot-time { font-size: 0.95rem; font-weight: 500; color: rgba(255,255,255,0.9); }
+.bk-slot-label { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
+.bk-chosen { background: rgba(184,151,58,0.12); border: 1px solid rgba(184,151,58,0.4); padding: 0.8rem 1rem; margin-bottom: 0.4rem; }
+.bk-chosen-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gld); margin-bottom: 0.2rem; }
+.bk-chosen-time { font-size: 0.9rem; font-weight: 500; color: rgba(255,255,255,0.9); }
+.bk-change { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.4); text-decoration: none; display: inline-block; margin-bottom: 1.2rem; }
+.bk-change:hover { color: rgba(255,255,255,0.7); }
+.cal-box .fg label { color: rgba(255,255,255,0.45); }
+.cal-box .form-error { margin-top: 0.6rem; margin-bottom: 0; }
 
 .form-heading { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.8rem; }
 .form-heading::after { content: ''; flex: 1; height: 1px; background: var(--line); }
@@ -2047,10 +2062,64 @@ footer {
         <div class="c-row"><div class="c-key">Email</div><div class="c-val">asmith@tcrhrconsulting.net</div></div>
         <div class="c-row"><div class="c-key">Status</div><div class="c-val">SBA Certified SDVOSB · Veteran-Owned</div></div>
       </div>
-      <div class="cal-box">
+      <div class="cal-box" id="booking-box">
         <div class="cal-lbl">Schedule a Consultation</div>
-        <p>Book a session directly via our scheduling system.</p>
-        <a class="btn btn-green" href="https://calendly.com" target="_blank">Book a Session</a>
+
+        <!-- Step 1: slot selection -->
+        <div id="bk-slots">
+          <p>Select an available time below.</p>
+          <div id="bk-slot-loading" class="bk-loading">Loading available times…</div>
+          <div id="bk-slot-list" style="display:none"></div>
+          <div id="bk-slot-empty" style="display:none">
+            <p class="bk-empty-msg">No sessions are currently scheduled. Use the contact form to request a time.</p>
+          </div>
+        </div>
+
+        <!-- Step 2: booking form -->
+        <div id="bk-form" style="display:none">
+          <div id="bk-chosen" class="bk-chosen"></div>
+          <a href="#" class="bk-change" onclick="bkBackToSlots();return false">← Choose a different time</a>
+          <div class="fg"><label>Name</label><input id="bk-name" type="text" placeholder="Full name"/></div>
+          <div class="form-row">
+            <div class="fg"><label>Email</label><input id="bk-email" type="email" placeholder="your@email.gov"/></div>
+            <div class="fg"><label>Phone</label><input id="bk-phone" type="tel" placeholder="(555) 000-0000"/></div>
+          </div>
+          <div class="fg"><label>Organization</label><input id="bk-org" type="text" placeholder="Your organization or unit"/></div>
+          <div class="form-row">
+            <div class="fg">
+              <label>Service</label>
+              <select id="bk-service">
+                <option value="">Select a service…</option>
+                <option>Leadership Development</option>
+                <option>Executive Coaching</option>
+                <option>Small Group Workshops</option>
+                <option>Individual Development</option>
+                <option>Organizational Culture Training</option>
+                <option>Federal HR Consulting</option>
+                <option>Workforce Planning</option>
+                <option>HR Modernization</option>
+                <option>Speaking Engagements</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label>Category</label>
+              <select id="bk-category">
+                <option value="">Select…</option>
+                <option>Military</option>
+                <option>Federal</option>
+                <option>Corporate</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label>Message</label><textarea id="bk-message" placeholder="Tell us about your organization and what you're looking for…"></textarea></div>
+          <div id="bk-error" class="form-error" style="display:none"></div>
+          <button id="bk-submit" class="btn btn-green" style="width:100%" onclick="submitBooking()">Confirm Booking</button>
+        </div>
+
+        <!-- Step 3: success -->
+        <div id="bk-success" style="display:none">
+          <div class="form-success" style="margin-top:0.5rem">Your session has been booked — Armvet will be in touch shortly to confirm details.</div>
+        </div>
       </div>
     </div>
     <div class="contact-right">
@@ -2194,6 +2263,149 @@ function showFormMsg(msg){
   el.textContent=msg;
   el.style.display='block';
 }
+
+// ── Booking UI ──────────────────────────────────────────────
+let _bkSlots=[];
+let _bkSelectedSlot=null;
+
+function fmtSlotDate(d){
+  const [y,m,day]=d.split('-').map(Number);
+  return new Date(y,m-1,day).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+}
+function fmtSlotTime(t,dur){
+  const [h,min]=t.split(':').map(Number);
+  const ampm=h>=12?'PM':'AM';
+  const h12=((h%12)||12);
+  const start=(h12+':'+(min<10?'0':'')+min+' '+ampm);
+  const endMin=(h*60+min+dur);
+  const eh=Math.floor(endMin/60)%24;
+  const em=endMin%60;
+  const eampm=eh>=12?'PM':'AM';
+  const eh12=((eh%12)||12);
+  return start+' – '+(eh12+':'+(em<10?'0':'')+em+' '+eampm);
+}
+
+let _bkInitialized=false;
+async function initBooking(){
+  if(_bkInitialized) return;
+  _bkInitialized=true;
+  try{
+    const slots=await fetch(ADMIN_API+'/api/public/availability').then(r=>r.json());
+    _bkSlots=Array.isArray(slots)?slots:[];
+  }catch(e){
+    _bkSlots=[];
+  }
+  const loading=document.getElementById('bk-slot-loading');
+  const list=document.getElementById('bk-slot-list');
+  const empty=document.getElementById('bk-slot-empty');
+  loading.style.display='none';
+  if(_bkSlots.length===0){
+    empty.style.display='block';
+    return;
+  }
+  const ul=document.createElement('div');
+  ul.className='bk-slot-list';
+  _bkSlots.forEach(slot=>{
+    const el=document.createElement('div');
+    el.className='bk-slot';
+    el.innerHTML=
+      '<div class="bk-slot-date">'+fmtSlotDate(slot.date)+'</div>'+
+      '<div class="bk-slot-time">'+fmtSlotTime(slot.startTime,slot.durationMinutes)+'</div>'+
+      (slot.label?'<div class="bk-slot-label">'+slot.label+'</div>':'');
+    el.addEventListener('click',function(){bkSelectSlot(slot);});
+    ul.appendChild(el);
+  });
+  list.appendChild(ul);
+  list.style.display='block';
+}
+
+function bkSelectSlot(slot){
+  _bkSelectedSlot=slot;
+  const chosen=document.getElementById('bk-chosen');
+  chosen.innerHTML=
+    '<div class="bk-chosen-date">'+fmtSlotDate(slot.date)+'</div>'+
+    '<div class="bk-chosen-time">'+fmtSlotTime(slot.startTime,slot.durationMinutes)+'</div>'+
+    (slot.label?'<div class="bk-slot-label">'+slot.label+'</div>':'');
+  document.getElementById('bk-slots').style.display='none';
+  document.getElementById('bk-form').style.display='block';
+  document.getElementById('bk-error').style.display='none';
+}
+
+function bkBackToSlots(){
+  _bkSelectedSlot=null;
+  document.getElementById('bk-form').style.display='none';
+  document.getElementById('bk-slots').style.display='block';
+}
+
+function bkReloadSlots(){
+  // Reset slot UI and reload fresh availability
+  _bkInitialized=false;
+  document.getElementById('bk-slot-list').innerHTML='';
+  document.getElementById('bk-slot-list').style.display='none';
+  document.getElementById('bk-slot-empty').style.display='none';
+  document.getElementById('bk-slot-loading').style.display='block';
+  bkBackToSlots();
+  initBooking();
+}
+
+async function submitBooking(){
+  if(!_bkSelectedSlot) return;
+  const name=document.getElementById('bk-name').value.trim();
+  const email=document.getElementById('bk-email').value.trim();
+  const phone=document.getElementById('bk-phone').value.trim();
+  const org=document.getElementById('bk-org').value.trim();
+  const service=document.getElementById('bk-service').value;
+  const category=document.getElementById('bk-category').value;
+  const message=document.getElementById('bk-message').value.trim();
+  const errEl=document.getElementById('bk-error');
+  const btn=document.getElementById('bk-submit');
+
+  errEl.style.display='none';
+  if(!name){errEl.textContent='Please enter your name.';errEl.style.display='block';return;}
+  if(!email||!email.includes('@')){errEl.textContent='Please enter a valid email address.';errEl.style.display='block';return;}
+
+  btn.disabled=true;
+  btn.textContent='Booking…';
+
+  let slotTaken=false;
+  try{
+    const {token}=await fetch(ADMIN_API+'/api/public/csrf-token').then(r=>r.json());
+    const res=await fetch(ADMIN_API+'/api/public/bookings',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-CSRF-Token':token},
+      body:JSON.stringify({slotId:_bkSelectedSlot.id,name,email,phone,org,service,category,message})
+    });
+    const data=await res.json();
+    if(res.status===409){
+      slotTaken=true;
+      throw new Error('That time slot was just taken. Please choose another.');
+    }
+    if(!res.ok){throw new Error(data.error||'Something went wrong. Please try again.');}
+    document.getElementById('bk-slots').style.display='none';
+    document.getElementById('bk-form').style.display='none';
+    document.getElementById('bk-success').style.display='block';
+    return;
+  }catch(err){
+    errEl.textContent=err.message||'Something went wrong. Please try again.';
+    errEl.style.display='block';
+    if(slotTaken) setTimeout(()=>bkReloadSlots(),2000);
+  }
+  btn.disabled=false;
+  btn.textContent='Confirm Booking';
+}
+
+// Load slots when the contact page becomes active
+(function(){
+  const orig=window.go;
+  window.go=function(id){
+    orig(id);
+    if(id==='contact') initBooking();
+  };
+  // Also load if contact page is shown on initial load
+  if(document.getElementById('page-contact')&&document.getElementById('page-contact').classList.contains('active')){
+    initBooking();
+  }
+})();
 </script>
 </body>
 </html>
