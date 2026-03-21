@@ -2235,6 +2235,60 @@ function tcTog(id){
 
 const ADMIN_API='https://armvet-admin.onrender.com';
 
+// ── Ticker touch drag ────────────────────────────────────────
+(function(){
+  const ticker=document.querySelector('.ticker');
+  const track=document.getElementById('tickerTrack');
+  if(!ticker||!track) return;
+  const DURATION=30; // seconds, must match tickerMove animation
+  let touchStartX=0;
+  let dragStartPx=0;
+  let dragging=false;
+
+  function getComputedX(){
+    const m=new DOMMatrix(window.getComputedStyle(track).transform);
+    return m.m41;
+  }
+  function cycleW(){
+    // track content is duplicated; full scroll cycle = half the track's natural width
+    return track.scrollWidth/2;
+  }
+  function wrap(x,cw){
+    x=x%cw;
+    if(x>0) x-=cw;
+    return x;
+  }
+
+  ticker.addEventListener('touchstart',function(e){
+    dragging=true;
+    touchStartX=e.touches[0].clientX;
+    dragStartPx=getComputedX();
+    // Freeze: kill animation, lock transform at current position
+    track.style.animation='none';
+    track.style.transform='translateX('+dragStartPx+'px)';
+  },{passive:true});
+
+  ticker.addEventListener('touchmove',function(e){
+    if(!dragging) return;
+    const dx=e.touches[0].clientX-touchStartX;
+    const cw=cycleW();
+    const newX=wrap(dragStartPx+dx,cw);
+    track.style.transform='translateX('+newX+'px)';
+  },{passive:true});
+
+  ticker.addEventListener('touchend',function(){
+    if(!dragging) return;
+    dragging=false;
+    const cw=cycleW();
+    const currentX=parseFloat((track.style.transform.match(/translateX\((-?[\d.]+)px\)/)||[])[1]||'0');
+    const normalised=wrap(currentX,cw);
+    const progress=Math.abs(normalised)/cw; // 0..1
+    const delay=-(progress*DURATION);       // negative = start mid-cycle
+    track.style.transform='';
+    track.style.animation='tickerMove '+DURATION+'s linear '+delay+'s infinite';
+  },{passive:true});
+})();
+
 async function submitContactForm(){
   const first=document.getElementById('cf-first').value.trim();
   const last=document.getElementById('cf-last').value.trim();
