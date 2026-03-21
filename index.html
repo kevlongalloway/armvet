@@ -2071,87 +2071,26 @@ footer {
       </div>
       <div class="cal-box" id="booking-box">
         <div class="cal-lbl">Schedule a Consultation</div>
-
-        <!-- Step 1: slot selection -->
-        <div id="bk-slots">
-          <p>Select an available time below.</p>
-          <div id="bk-slot-loading" class="bk-loading">Loading available times…</div>
-          <div id="bk-day-nav" style="display:none">
-            <div class="bk-nav-header">
-              <button class="bk-nav-btn" id="bk-prev-day" onclick="bkPrevDay()">&#8592;</button>
-              <div class="bk-nav-center">
-                <div id="bk-day-label" class="bk-day-label"></div>
-                <div id="bk-day-sub" class="bk-day-sub"></div>
-              </div>
-              <button class="bk-nav-btn" id="bk-next-day" onclick="bkNextDay()">&#8594;</button>
-            </div>
-            <div id="bk-time-grid" class="bk-time-grid"></div>
-          </div>
-          <div id="bk-slot-empty" style="display:none">
-            <p class="bk-empty-msg">No sessions are currently scheduled. Use the contact form to request a time.</p>
-          </div>
-        </div>
-
-        <!-- Step 2: booking form -->
-        <div id="bk-form" style="display:none">
-          <div id="bk-chosen" class="bk-chosen"></div>
-          <a href="#" class="bk-change" onclick="bkBackToSlots();return false">← Choose a different time</a>
-          <div class="fg"><label>Name</label><input id="bk-name" type="text" placeholder="Full name"/></div>
-          <div class="form-row">
-            <div class="fg"><label>Email</label><input id="bk-email" type="email" placeholder="your@email.gov"/></div>
-            <div class="fg"><label>Phone</label><input id="bk-phone" type="tel" placeholder="(555) 000-0000"/></div>
-          </div>
-          <div class="fg"><label>Organization</label><input id="bk-org" type="text" placeholder="Your organization or unit"/></div>
-          <div class="form-row">
-            <div class="fg">
-              <label>Service</label>
-              <select id="bk-service">
-                <option value="">Select a service…</option>
-                <option>Leadership Development</option>
-                <option>Executive Coaching</option>
-                <option>Small Group Workshops</option>
-                <option>Individual Development</option>
-                <option>Organizational Culture Training</option>
-                <option>Federal HR Consulting</option>
-                <option>Workforce Planning</option>
-                <option>HR Modernization</option>
-                <option>Speaking Engagements</option>
-              </select>
-            </div>
-            <div class="fg">
-              <label>Category</label>
-              <select id="bk-category">
-                <option value="">Select…</option>
-                <option>Military</option>
-                <option>Federal</option>
-                <option>Corporate</option>
-              </select>
-            </div>
-          </div>
-          <div class="fg"><label>Message</label><textarea id="bk-message" placeholder="Tell us about your organization and what you're looking for…"></textarea></div>
-          <div id="bk-error" class="form-error" style="display:none"></div>
-          <button id="bk-submit" class="btn btn-green" style="width:100%" onclick="submitBooking()">Confirm Booking</button>
-        </div>
-
-        <!-- Step 3: success -->
-        <div id="bk-success" style="display:none">
-          <div class="form-success" style="margin-top:0.5rem">Your session has been booked — Armvet will be in touch shortly to confirm details.</div>
-        </div>
+        <p>Ready to get started? Book a free consultation directly on our calendar.</p>
+        <a class="btn btn-green" href="https://calendly.com/armvet" target="_blank" rel="noopener noreferrer" style="display:inline-block;width:100%;text-align:center;box-sizing:border-box">Book a Consultation</a>
       </div>
     </div>
     <div class="contact-right">
       <div class="form-heading">Send a Message</div>
-      <div id="contact-form">
+      <form id="contact-form" action="https://formsubmit.co/asmith@tcrhrconsulting.net" method="POST">
+        <input type="hidden" name="_subject" value="New message via Armvet.com"/>
+        <input type="hidden" name="_captcha" value="false"/>
+        <input type="hidden" name="_template" value="table"/>
         <div class="form-row">
-          <div class="fg"><label>First Name</label><input id="cf-first" type="text" placeholder="First"/></div>
-          <div class="fg"><label>Last Name</label><input id="cf-last" type="text" placeholder="Last"/></div>
+          <div class="fg"><label>First Name</label><input name="first_name" type="text" placeholder="First" required/></div>
+          <div class="fg"><label>Last Name</label><input name="last_name" type="text" placeholder="Last" required/></div>
         </div>
-        <div class="fg"><label>Organization</label><input id="cf-org" type="text" placeholder="Your organization or agency"/></div>
-        <div class="fg"><label>Email</label><input id="cf-email" type="email" placeholder="your@email.gov"/></div>
-        <div class="fg"><label>Phone</label><input id="cf-phone" type="tel" placeholder="(555) 000-0000"/></div>
+        <div class="fg"><label>Organization</label><input name="organization" type="text" placeholder="Your organization or agency"/></div>
+        <div class="fg"><label>Email</label><input name="email" type="email" placeholder="your@email.gov" required/></div>
+        <div class="fg"><label>Phone</label><input name="phone" type="tel" placeholder="(555) 000-0000"/></div>
         <div class="fg">
           <label>Area of Interest</label>
-          <select id="cf-subject">
+          <select name="area_of_interest">
             <option value="">Select a service...</option>
             <option>Leadership Development</option>
             <option>Organizational Culture Training</option>
@@ -2161,10 +2100,9 @@ footer {
             <option>General Inquiry</option>
           </select>
         </div>
-        <div class="fg"><label>Message</label><textarea id="cf-message" placeholder="Tell us about your organization and what you're looking for..."></textarea></div>
-        <div id="cf-error" class="form-error" style="display:none"></div>
-        <button id="cf-submit" class="btn btn-blk" style="width:100%" onclick="submitContactForm()">Send Message</button>
-      </div>
+        <div class="fg"><label>Message</label><textarea name="message" placeholder="Tell us about your organization and what you're looking for..." required></textarea></div>
+        <button type="submit" class="btn btn-blk" style="width:100%">Send Message</button>
+      </form>
     </div>
   </div>
 </div><!-- /contact -->
@@ -2233,7 +2171,6 @@ function tcTog(id){
   }
 }
 
-const ADMIN_API='https://armvet-admin.onrender.com';
 
 // ── Ticker touch drag ────────────────────────────────────────
 (function(){
@@ -2289,232 +2226,6 @@ const ADMIN_API='https://armvet-admin.onrender.com';
   },{passive:true});
 })();
 
-async function submitContactForm(){
-  const first=document.getElementById('cf-first').value.trim();
-  const last=document.getElementById('cf-last').value.trim();
-  const email=document.getElementById('cf-email').value.trim();
-  const phone=document.getElementById('cf-phone').value.trim();
-  const subject=document.getElementById('cf-subject').value;
-  const message=document.getElementById('cf-message').value.trim();
-  const errEl=document.getElementById('cf-error');
-  const btn=document.getElementById('cf-submit');
-
-  errEl.style.display='none';
-
-  if(!first||!last){showFormMsg('Please enter your first and last name.');return;}
-  if(!email||!email.includes('@')){showFormMsg('Please enter a valid email address.');return;}
-  if(!message){showFormMsg('Please enter a message.');return;}
-
-  btn.disabled=true;
-  btn.textContent='Sending...';
-
-  try{
-    const csrfRes=await fetch(ADMIN_API+'/api/public/csrf-token');
-    if(!csrfRes.ok) throw new Error('Unable to reach the server. Please try again.');
-    const {token}=await csrfRes.json();
-
-    const res=await fetch(ADMIN_API+'/api/public/contacts',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','X-CSRF-Token':token},
-      body:JSON.stringify({name:first+' '+last,email,phone,subject,message})
-    });
-    const data=await res.json();
-    if(!res.ok) throw new Error(data.error||'Submission failed. Please try again.');
-
-    document.getElementById('contact-form').innerHTML='<div class="form-success">Thank you — Armvet will be in contact shortly.</div>';
-  }catch(err){
-    showFormMsg(err.message||'Something went wrong. Please try again.');
-    btn.disabled=false;
-    btn.textContent='Send Message';
-  }
-}
-
-function showFormMsg(msg){
-  const el=document.getElementById('cf-error');
-  el.textContent=msg;
-  el.style.display='block';
-}
-
-// ── Booking UI ──────────────────────────────────────────────
-let _bkSlots=[];
-let _bkDays=[];
-let _bkByDay={};
-let _bkDayIdx=0;
-let _bkSelectedSlot=null;
-let _bkInitialized=false;
-
-function fmtDayHeading(d){
-  const [y,m,day]=d.split('-').map(Number);
-  return new Date(y,m-1,day).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
-}
-function fmtSlotTime(t,dur){
-  const [h,min]=t.split(':').map(Number);
-  const ampm=h>=12?'PM':'AM';
-  const h12=((h%12)||12);
-  const start=h12+':'+(min<10?'0':'')+min+' '+ampm;
-  const endMin=h*60+min+dur;
-  const eh=Math.floor(endMin/60)%24;
-  const em=endMin%60;
-  const eampm=eh>=12?'PM':'AM';
-  const eh12=(eh%12)||12;
-  return start+' – '+eh12+':'+(em<10?'0':'')+em+' '+eampm;
-}
-
-function bkRenderDay(){
-  const date=_bkDays[_bkDayIdx];
-  const slots=_bkByDay[date];
-  const total=_bkDays.length;
-
-  document.getElementById('bk-day-label').textContent=fmtDayHeading(date);
-  document.getElementById('bk-day-sub').textContent=
-    slots.length+' time'+(slots.length!==1?'s':'')+' available'
-    +(total>1?' · Day '+(_bkDayIdx+1)+' of '+total:'');
-
-  const prevBtn=document.getElementById('bk-prev-day');
-  const nextBtn=document.getElementById('bk-next-day');
-  prevBtn.disabled=(_bkDayIdx===0);
-  nextBtn.disabled=(_bkDayIdx===total-1);
-
-  const grid=document.getElementById('bk-time-grid');
-  grid.innerHTML='';
-  slots.forEach(function(slot){
-    const btn=document.createElement('button');
-    btn.className='bk-time-btn';
-    btn.innerHTML=
-      '<span class="bk-time-main">'+fmtSlotTime(slot.startTime,slot.durationMinutes)+'</span>'+
-      '<span class="bk-time-dur">'+slot.durationMinutes+' min</span>'+
-      (slot.label?'<span class="bk-time-note">'+slot.label+'</span>':'');
-    btn.addEventListener('click',function(){bkSelectSlot(slot);});
-    grid.appendChild(btn);
-  });
-}
-
-function bkPrevDay(){
-  if(_bkDayIdx>0){_bkDayIdx--;bkRenderDay();}
-}
-function bkNextDay(){
-  if(_bkDayIdx<_bkDays.length-1){_bkDayIdx++;bkRenderDay();}
-}
-
-async function initBooking(){
-  if(_bkInitialized) return;
-  _bkInitialized=true;
-  try{
-    const slots=await fetch(ADMIN_API+'/api/public/availability').then(r=>r.json());
-    _bkSlots=Array.isArray(slots)?slots:[];
-  }catch(e){
-    _bkSlots=[];
-  }
-  document.getElementById('bk-slot-loading').style.display='none';
-  if(_bkSlots.length===0){
-    document.getElementById('bk-slot-empty').style.display='block';
-    return;
-  }
-  // Group by date, sort slots within each day
-  const byDay={};
-  _bkSlots.forEach(function(s){
-    if(!byDay[s.date]) byDay[s.date]=[];
-    byDay[s.date].push(s);
-  });
-  Object.keys(byDay).forEach(function(d){
-    byDay[d].sort(function(a,b){return a.startTime.localeCompare(b.startTime);});
-  });
-  _bkByDay=byDay;
-  _bkDays=Object.keys(byDay).sort();
-  _bkDayIdx=0;
-  bkRenderDay();
-  document.getElementById('bk-day-nav').style.display='block';
-}
-
-function bkSelectSlot(slot){
-  _bkSelectedSlot=slot;
-  const date=slot.date;
-  const [y,m,day]=date.split('-').map(Number);
-  const fullDate=new Date(y,m-1,day).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
-  document.getElementById('bk-chosen').innerHTML=
-    '<div class="bk-chosen-date">'+fullDate+'</div>'+
-    '<div class="bk-chosen-time">'+fmtSlotTime(slot.startTime,slot.durationMinutes)+'</div>'+
-    (slot.label?'<div style="font-family:\'IBM Plex Mono\',monospace;font-size:0.6rem;color:var(--gld);opacity:0.8;margin-top:0.15rem">'+slot.label+'</div>':'');
-  document.getElementById('bk-slots').style.display='none';
-  document.getElementById('bk-form').style.display='block';
-  document.getElementById('bk-error').style.display='none';
-}
-
-function bkBackToSlots(){
-  _bkSelectedSlot=null;
-  document.getElementById('bk-form').style.display='none';
-  document.getElementById('bk-slots').style.display='block';
-}
-
-function bkReloadSlots(){
-  _bkInitialized=false;
-  _bkDays=[];_bkByDay={};_bkDayIdx=0;
-  document.getElementById('bk-time-grid').innerHTML='';
-  document.getElementById('bk-day-nav').style.display='none';
-  document.getElementById('bk-slot-empty').style.display='none';
-  document.getElementById('bk-slot-loading').style.display='block';
-  bkBackToSlots();
-  initBooking();
-}
-
-async function submitBooking(){
-  if(!_bkSelectedSlot) return;
-  const name=document.getElementById('bk-name').value.trim();
-  const email=document.getElementById('bk-email').value.trim();
-  const phone=document.getElementById('bk-phone').value.trim();
-  const org=document.getElementById('bk-org').value.trim();
-  const service=document.getElementById('bk-service').value;
-  const category=document.getElementById('bk-category').value;
-  const message=document.getElementById('bk-message').value.trim();
-  const errEl=document.getElementById('bk-error');
-  const btn=document.getElementById('bk-submit');
-
-  errEl.style.display='none';
-  if(!name){errEl.textContent='Please enter your name.';errEl.style.display='block';return;}
-  if(!email||!email.includes('@')){errEl.textContent='Please enter a valid email address.';errEl.style.display='block';return;}
-
-  btn.disabled=true;
-  btn.textContent='Booking…';
-
-  let slotTaken=false;
-  try{
-    const {token}=await fetch(ADMIN_API+'/api/public/csrf-token').then(r=>r.json());
-    const res=await fetch(ADMIN_API+'/api/public/bookings',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','X-CSRF-Token':token},
-      body:JSON.stringify({slotId:_bkSelectedSlot.id,name,email,phone,org,service,category,message})
-    });
-    const data=await res.json();
-    if(res.status===409){
-      slotTaken=true;
-      throw new Error('That time slot was just taken. Please choose another.');
-    }
-    if(!res.ok){throw new Error(data.error||'Something went wrong. Please try again.');}
-    document.getElementById('bk-slots').style.display='none';
-    document.getElementById('bk-form').style.display='none';
-    document.getElementById('bk-success').style.display='block';
-    return;
-  }catch(err){
-    errEl.textContent=err.message||'Something went wrong. Please try again.';
-    errEl.style.display='block';
-    if(slotTaken) setTimeout(()=>bkReloadSlots(),2000);
-  }
-  btn.disabled=false;
-  btn.textContent='Confirm Booking';
-}
-
-// Load slots when the contact page becomes active
-(function(){
-  const orig=window.go;
-  window.go=function(id){
-    orig(id);
-    if(id==='contact') initBooking();
-  };
-  // Also load if contact page is shown on initial load
-  if(document.getElementById('page-contact')&&document.getElementById('page-contact').classList.contains('active')){
-    initBooking();
-  }
-})();
 </script>
 </body>
 </html>
