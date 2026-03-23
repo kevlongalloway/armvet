@@ -824,6 +824,10 @@ p.body {
 .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--blk); }
 .fg textarea { min-height: 100px; resize: vertical; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+.form-status { display: none; padding: 1rem 1.2rem; border-radius: 2px; font-size: 0.85rem; margin-top: 1rem; }
+.form-status.success { display: block; background: #e8f5e9; border-left: 3px solid #388e3c; color: #1b5e20; }
+.form-status.error { display: block; background: #fce8e8; border-left: 3px solid #c62828; color: #7f0000; }
+.btn-blk[disabled] { opacity: 0.6; cursor: not-allowed; transform: none !important; }
 
 /* ─── FOOTER ─── */
 footer {
@@ -2077,10 +2081,7 @@ footer {
     </div>
     <div class="contact-right">
       <div class="form-heading">Send a Message</div>
-      <form id="contact-form" action="https://formsubmit.co/asmith@tcrhrconsulting.net" method="POST">
-        <input type="hidden" name="_subject" value="New message via Armvet.com"/>
-        <input type="hidden" name="_captcha" value="false"/>
-        <input type="hidden" name="_template" value="table"/>
+      <form id="contact-form">
         <div class="form-row">
           <div class="fg"><label>First Name</label><input name="first_name" type="text" placeholder="First" required/></div>
           <div class="fg"><label>Last Name</label><input name="last_name" type="text" placeholder="Last" required/></div>
@@ -2101,7 +2102,8 @@ footer {
           </select>
         </div>
         <div class="fg"><label>Message</label><textarea name="message" placeholder="Tell us about your organization and what you're looking for..." required></textarea></div>
-        <button type="submit" class="btn btn-blk" style="width:100%">Send Message</button>
+        <button type="submit" id="contact-submit" class="btn btn-blk" style="width:100%">Send Message</button>
+        <div id="contact-status" class="form-status"></div>
       </form>
     </div>
   </div>
@@ -2224,6 +2226,160 @@ function tcTog(id){
     track.style.transform='';
     track.style.animation='tickerMove '+DURATION+'s linear '+delay+'s infinite';
   },{passive:true});
+})();
+
+// ── Contact form ─────────────────────────────────────────────────────────────
+(function(){
+  var EMAILJS_PUBLIC_KEY='__EMAILJS_PUBLIC_KEY__';
+  var EMAILJS_SERVICE_ID='__EMAILJS_SERVICE_ID__';
+  var OWNER_TEMPLATE_ID='__EMAILJS_OWNER_TEMPLATE_ID__';
+  var CONFIRM_TEMPLATE_ID='__EMAILJS_CONFIRM_TEMPLATE_ID__';
+  var OWNER_EMAIL='asmith@tcrhrconsulting.net';
+
+  function esc(s){
+    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function ownerHtml(d){
+    return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/></head><body style="margin:0;padding:0;background:#f4f1f8;font-family:Helvetica Neue,Arial,sans-serif;">'
+      +'<table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f1f8;padding:40px 20px;"><tr><td align="center">'
+      +'<table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(74,40,120,.12);">'
+      +'<tr><td style="background:#4a2878;padding:32px 40px;">'
+      +'<p style="margin:0;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#d4cce0;">Armvet LLC</p>'
+      +'<h1 style="margin:8px 0 0;font-size:22px;font-weight:700;color:#fff;">New Website Submission</h1>'
+      +'</td></tr>'
+      +'<tr><td style="background:#B8973A;padding:10px 40px;">'
+      +'<p style="margin:0;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#111;font-weight:600;">Action Required — Review &amp; Respond</p>'
+      +'</td></tr>'
+      +'<tr><td style="padding:32px 40px 16px;">'
+      +'<p style="margin:0 0 24px;font-size:15px;color:#4a4a47;line-height:1.6;">A new message was submitted through <strong>armvet.com</strong>.</p>'
+      +'<table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border:1px solid #e0dce8;">'
+      +'<tr><td style="background:#f4f1f8;padding:10px 16px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8a7aa0;border-bottom:1px solid #e0dce8;width:36%;">Name</td>'
+      +'<td style="padding:10px 16px;font-size:15px;color:#111;border-bottom:1px solid #e0dce8;">'+esc(d.first_name)+' '+esc(d.last_name)+'</td></tr>'
+      +'<tr><td style="background:#f4f1f8;padding:10px 16px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8a7aa0;border-bottom:1px solid #e0dce8;">Email</td>'
+      +'<td style="padding:10px 16px;font-size:15px;color:#111;border-bottom:1px solid #e0dce8;"><a href="mailto:'+esc(d.email)+'" style="color:#4a2878;">'+esc(d.email)+'</a></td></tr>'
+      +'<tr><td style="background:#f4f1f8;padding:10px 16px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8a7aa0;border-bottom:1px solid #e0dce8;">Phone</td>'
+      +'<td style="padding:10px 16px;font-size:15px;color:#111;border-bottom:1px solid #e0dce8;">'+(esc(d.phone)||'—')+'</td></tr>'
+      +'<tr><td style="background:#f4f1f8;padding:10px 16px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8a7aa0;border-bottom:1px solid #e0dce8;">Organization</td>'
+      +'<td style="padding:10px 16px;font-size:15px;color:#111;border-bottom:1px solid #e0dce8;">'+(esc(d.organization)||'—')+'</td></tr>'
+      +'<tr><td style="background:#f4f1f8;padding:10px 16px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8a7aa0;border-bottom:1px solid #e0dce8;">Area of Interest</td>'
+      +'<td style="padding:10px 16px;font-size:15px;color:#111;border-bottom:1px solid #e0dce8;">'+(esc(d.area_of_interest)||'—')+'</td></tr>'
+      +'<tr><td style="background:#f4f1f8;padding:10px 16px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8a7aa0;vertical-align:top;">Message</td>'
+      +'<td style="padding:10px 16px;font-size:15px;color:#111;line-height:1.7;white-space:pre-wrap;">'+esc(d.message)+'</td></tr>'
+      +'</table></td></tr>'
+      +'<tr><td style="padding:24px 40px 40px;">'
+      +'<a href="mailto:'+esc(d.email)+'?subject=Re: Your Armvet Inquiry" style="display:inline-block;background:#4a2878;color:#fff;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:14px 28px;">Reply to '+esc(d.first_name)+'</a>'
+      +'</td></tr>'
+      +'<tr><td style="background:#f4f1f8;padding:20px 40px;border-top:1px solid #e0dce8;">'
+      +'<p style="margin:0;font-size:12px;color:#8a7aa0;">Sent via the contact form at armvet.com</p>'
+      +'</td></tr>'
+      +'</table></td></tr></table></body></html>';
+  }
+
+  function confirmHtml(d){
+    var area=d.area_of_interest||'General Inquiry';
+    return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/></head><body style="margin:0;padding:0;background:#f4f1f8;font-family:Helvetica Neue,Arial,sans-serif;">'
+      +'<table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f1f8;padding:40px 20px;"><tr><td align="center">'
+      +'<table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(74,40,120,.12);">'
+      +'<tr><td style="background:#4a2878;padding:40px 40px 32px;">'
+      +'<p style="margin:0;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#d4cce0;">Armvet LLC</p>'
+      +'<h1 style="margin:10px 0 0;font-size:28px;font-weight:800;color:#fff;line-height:1.2;">We got your<br>message.</h1>'
+      +'</td></tr>'
+      +'<tr><td style="background:#B8973A;height:4px;"></td></tr>'
+      +'<tr><td style="padding:40px 40px 32px;">'
+      +'<p style="margin:0 0 20px;font-size:17px;color:#111;font-weight:600;">Hello '+esc(d.first_name)+',</p>'
+      +'<p style="margin:0 0 20px;font-size:15px;color:#4a4a47;line-height:1.7;">Thank you for reaching out to Armvet LLC. We\'ve received your inquiry regarding <strong style="color:#4a2878;">'+esc(area)+'</strong> and will be in touch shortly.</p>'
+      +'<p style="margin:0 0 32px;font-size:15px;color:#4a4a47;line-height:1.7;">In the meantime, feel free to book a free 30-minute consultation directly on our calendar.</p>'
+      +'<table cellpadding="0" cellspacing="0"><tr>'
+      +'<td style="background:#4a2878;border-radius:4px;">'
+      +'<a href="https://calendly.com/armvet-llc-info/30min" style="display:inline-block;padding:14px 28px;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#fff;text-decoration:none;">Book a Consultation</a>'
+      +'</td></tr></table>'
+      +'</td></tr>'
+      +'<tr><td style="padding:0 40px;"><hr style="border:none;border-top:1px solid #e0dce8;margin:0;"/></td></tr>'
+      +'<tr><td style="padding:32px 40px;">'
+      +'<p style="margin:0 0 16px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8a7aa0;font-weight:600;">What Happens Next</p>'
+      +'<table width="100%" cellpadding="0" cellspacing="0">'
+      +'<tr><td style="padding:10px 0;border-bottom:1px solid #f4f1f8;"><table cellpadding="0" cellspacing="0"><tr>'
+      +'<td style="width:28px;vertical-align:top;padding-top:1px;"><span style="display:inline-block;width:20px;height:20px;background:#4a2878;color:#fff;font-size:11px;font-weight:700;text-align:center;line-height:20px;border-radius:50%;">1</span></td>'
+      +'<td style="font-size:14px;color:#2a2a28;line-height:1.6;padding-left:10px;">Anson Smith or a member of our team will review your message.</td>'
+      +'</tr></table></td></tr>'
+      +'<tr><td style="padding:10px 0;border-bottom:1px solid #f4f1f8;"><table cellpadding="0" cellspacing="0"><tr>'
+      +'<td style="width:28px;vertical-align:top;padding-top:1px;"><span style="display:inline-block;width:20px;height:20px;background:#4a2878;color:#fff;font-size:11px;font-weight:700;text-align:center;line-height:20px;border-radius:50%;">2</span></td>'
+      +'<td style="font-size:14px;color:#2a2a28;line-height:1.6;padding-left:10px;">You\'ll receive a personal response within 1-2 business days.</td>'
+      +'</tr></table></td></tr>'
+      +'<tr><td style="padding:10px 0;"><table cellpadding="0" cellspacing="0"><tr>'
+      +'<td style="width:28px;vertical-align:top;padding-top:1px;"><span style="display:inline-block;width:20px;height:20px;background:#4a2878;color:#fff;font-size:11px;font-weight:700;text-align:center;line-height:20px;border-radius:50%;">3</span></td>'
+      +'<td style="font-size:14px;color:#2a2a28;line-height:1.6;padding-left:10px;">We\'ll discuss your needs and how Armvet can best support your mission.</td>'
+      +'</tr></table></td></tr>'
+      +'</table></td></tr>'
+      +'<tr><td style="background:#111;padding:24px 40px;">'
+      +'<table width="100%" cellpadding="0" cellspacing="0"><tr>'
+      +'<td><p style="margin:0;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;">ARMVET LLC</p>'
+      +'<p style="margin:4px 0 0;font-size:11px;color:#8a7aa0;">Leadership Development &amp; Federal HR Consulting</p></td>'
+      +'<td align="right"><p style="margin:0;font-size:12px;color:#8a7aa0;">SBA Certified SDVOSB</p>'
+      +'<p style="margin:4px 0 0;"><a href="https://armvet.com" style="font-size:12px;color:#B8973A;text-decoration:none;">armvet.com</a></p></td>'
+      +'</tr></table>'
+      +'</td></tr>'
+      +'</table></td></tr></table></body></html>';
+  }
+
+  function sendEmail(templateId,params){
+    return fetch('https://api.emailjs.com/api/v1.0/email/send',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        service_id: EMAILJS_SERVICE_ID,
+        template_id: templateId,
+        user_id: EMAILJS_PUBLIC_KEY,
+        template_params: params
+      })
+    }).then(function(r){
+      if(!r.ok) return r.text().then(function(t){throw new Error(t);});
+    });
+  }
+
+  var form=document.getElementById('contact-form');
+  var btn=document.getElementById('contact-submit');
+  var status=document.getElementById('contact-status');
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var d={
+      first_name: form.first_name.value.trim(),
+      last_name: form.last_name.value.trim(),
+      organization: form.organization.value.trim(),
+      email: form.email.value.trim(),
+      phone: form.phone.value.trim(),
+      area_of_interest: form.area_of_interest.value,
+      message: form.message.value.trim()
+    };
+    btn.disabled=true;
+    btn.textContent='Sending\u2026';
+    status.className='form-status';
+    status.textContent='';
+    Promise.all([
+      sendEmail(OWNER_TEMPLATE_ID,{
+        to_email: OWNER_EMAIL,
+        subject: 'New inquiry from '+d.first_name+' '+d.last_name+' \u2014 Armvet.com',
+        html_body: ownerHtml(d)
+      }),
+      sendEmail(CONFIRM_TEMPLATE_ID,{
+        to_email: d.email,
+        subject: 'We received your message \u2014 Armvet LLC',
+        html_body: confirmHtml(d)
+      })
+    ]).then(function(){
+      status.className='form-status success';
+      status.textContent='Message sent! We\'ll be in touch within 1\u20132 business days.';
+      form.reset();
+    }).catch(function(){
+      status.className='form-status error';
+      status.textContent='Something went wrong. Please try again or email us directly at asmith@tcrhrconsulting.net.';
+    }).finally(function(){
+      btn.disabled=false;
+      btn.textContent='Send Message';
+    });
+  });
 })();
 
 </script>

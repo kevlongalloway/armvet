@@ -7,3 +7,11 @@ services:
     envVars:
       - key: SITE_DOMAIN
         value: armvet.com
+      - key: EMAILJS_PUBLIC_KEY
+        sync: false
+      - key: EMAILJS_SERVICE_ID
+        sync: false
+      - key: EMAILJS_OWNER_TEMPLATE_ID
+        sync: false
+      - key: EMAILJS_CONFIRM_TEMPLATE_ID
+        sync: false
