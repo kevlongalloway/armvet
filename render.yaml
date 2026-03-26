@@ -6,4 +6,4 @@ services:
     staticPublishPath: dist
     envVars:
       - key: SITE_DOMAIN
-        value: armvet.com
+        value: armvet-llc.com
