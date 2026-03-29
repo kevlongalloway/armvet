@@ -1,0 +1,68 @@
+# ============================================================
+# Armvet LLC – Apache configuration for Bluehost
+# ============================================================
+
+# ── Force HTTPS (AutoSSL / Let's Encrypt) ──────────────────
+RewriteEngine On
+
+# Redirect HTTP → HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect www → non-www (change to non-www → www if preferred)
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+# ── SPA fallback: route everything to index.html ──────────
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+
+# ── Security headers ───────────────────────────────────────
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    # HSTS – tells browsers to always use HTTPS (enable after SSL is confirmed working)
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# ── Compression (gzip) ─────────────────────────────────────
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/javascript
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE font/woff font/woff2
+</IfModule>
+
+# ── Browser caching ────────────────────────────────────────
+<IfModule mod_expires.c>
+    ExpiresActive On
+    # HTML – no cache so updates deploy immediately
+    ExpiresByType text/html "access plus 0 seconds"
+    # Images
+    ExpiresByType image/png  "access plus 1 year"
+    ExpiresByType image/jpg  "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif  "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    # Fonts
+    ExpiresByType font/woff   "access plus 1 year"
+    ExpiresByType font/woff2  "access plus 1 year"
+    # CSS / JS
+    ExpiresByType text/css        "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# ── Prevent access to sensitive files ─────────────────────
+<FilesMatch "(^\.htaccess|\.git|\.cpanel\.yml|build\.sh)">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# ── Default charset ────────────────────────────────────────
+AddDefaultCharset UTF-8

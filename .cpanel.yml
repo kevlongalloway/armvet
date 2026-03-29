@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/$USER/public_html/
+    - source /home/$USER/.armvet.env 2>/dev/null || true
+    - bash build.sh
+    - /bin/cp -r dist/. $DEPLOYPATH
+    - echo "Deployed $SITE_DOMAIN to $DEPLOYPATH"
