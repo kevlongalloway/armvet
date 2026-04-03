@@ -117,7 +117,7 @@ nav {
   display: flex; align-items: center;
   padding: 0 1.1rem;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.58rem; letter-spacing: 0.12em;
+  font-size: 0.68rem; letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--mute); text-decoration: none;
   border-right: 1px solid var(--line);
@@ -134,7 +134,7 @@ nav {
 }
 .nav-right a {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.58rem; letter-spacing: 0.14em;
+  font-size: 0.68rem; letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--blk); text-decoration: none;
   border: 1px solid var(--blk);
@@ -184,14 +184,14 @@ nav {
 
 .hero-tag {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.58rem; letter-spacing: 0.22em;
+  font-size: 0.7rem; letter-spacing: 0.22em;
   text-transform: uppercase; color: var(--mute);
   margin-bottom: 3rem;
 }
 
 .hero-h1 {
   font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(3.5rem, 8vw, 8.5rem);
+  font-size: clamp(2.4rem, 5.5vw, 6rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
   color: var(--blk);
@@ -205,7 +205,7 @@ nav {
 
 .hero-sub {
   margin-top: 3rem;
-  font-size: 1rem; font-weight: 300;
+  font-size: 1.1rem; font-weight: 300;
   color: var(--mute); line-height: 1.75;
   max-width: 400px;
 }
@@ -220,7 +220,7 @@ nav {
 }
 .hero-btns a {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.6rem; letter-spacing: 0.16em;
+  font-size: 0.7rem; letter-spacing: 0.16em;
   text-transform: uppercase; text-decoration: none;
   padding: 0.75rem 1.6rem;
   transition: background 0.15s, color 0.15s;
@@ -261,7 +261,7 @@ nav {
 }
 .hf-desc {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.55rem; letter-spacing: 0.11em;
+  font-size: 0.65rem; letter-spacing: 0.11em;
   text-transform: uppercase; color: rgba(255,255,255,0.6);
 }
 
@@ -282,7 +282,7 @@ nav {
 }
 .hbc-text {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.57rem; letter-spacing: 0.1em;
+  font-size: 0.7rem; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--mute);
 }
 
@@ -302,19 +302,19 @@ nav {
 }
 .sh-index {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.6rem; letter-spacing: 0.18em;
+  font-size: 0.72rem; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--gld);
 }
 .sh-rule { height: 1px; background: linear-gradient(90deg, var(--gld) 0%, var(--pu) 40%, var(--line) 100%); }
 .sh-label {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.6rem; letter-spacing: 0.18em;
+  font-size: 0.72rem; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--mute);
 }
 
 h2.display {
   font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(2.2rem, 5vw, 5rem);
+  font-size: clamp(2.6rem, 5.5vw, 5.5rem);
   line-height: 0.95; letter-spacing: -0.025em;
   color: var(--blk);
 }
@@ -324,7 +324,7 @@ h2.display em {
 }
 
 p.body {
-  font-size: 1.08rem; font-weight: 300;
+  font-size: 1.15rem; font-weight: 300;
   color: var(--mute); line-height: 1.85;
 }
 
@@ -332,7 +332,7 @@ p.body {
 .btn {
   display: inline-block;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.6rem; letter-spacing: 0.16em;
+  font-size: 0.7rem; letter-spacing: 0.16em;
   text-transform: uppercase; text-decoration: none;
   padding: 0.75rem 1.6rem; cursor: pointer;
   border: none; transition: all 0.2s;
@@ -477,7 +477,7 @@ p.body {
   text-transform: uppercase; color: var(--g3);
   margin-bottom: 0.6rem;
 }
-.svc-desc { font-size: 1rem; font-weight: 300; color: var(--mute); line-height: 1.75; }
+.svc-desc { font-size: 1.05rem; font-weight: 300; color: var(--mute); line-height: 1.75; }
 
 /* service expand panel */
 .svc-panel {
@@ -528,6 +528,21 @@ p.body {
 }
 .pt-detail { font-size: 1rem; font-weight: 300; color: rgba(255,255,255,0.65); line-height: 1.7; }
 
+/* ─── HERO COMPASS ─── */
+.hero-compass {
+  display: flex; justify-content: center; align-items: center;
+  margin-bottom: 2rem;
+}
+.hero-compass img {
+  width: 100%; max-width: 340px; max-height: 220px;
+  object-fit: contain;
+  border-radius: 2px;
+  opacity: 0.92;
+}
+@media(max-width:900px){
+  .hero-compass { display: none; }
+}
+
 /* ─── ABOUT ─── */
 .founder-photo-wrap {
   display: flex;
@@ -537,21 +552,25 @@ p.body {
   border-bottom: 1px solid var(--line);
 }
 .founder-photo {
-  width: 260px;
-  height: 320px;
+  width: 100%;
+  max-height: 420px;
   object-fit: cover;
   object-position: center top;
   display: block;
   border: 4px solid var(--gld);
-  box-shadow: 0 8px 32px rgba(92,45,145,0.2);
+  box-shadow: 0 8px 32px rgba(92,45,145,0.25);
 }
 .founder-photo-caption {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.58rem;
+  font-size: 0.65rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--mute);
-  margin-top: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+.founder-photo-in-col {
+  margin-bottom: 0.5rem;
 }
 .about-wrap {
   display: grid; grid-template-columns: 1fr 1fr;
@@ -560,6 +579,7 @@ p.body {
 .about-left {
   padding: 5rem 4rem;
   border-right: 1px solid var(--line);
+  background: var(--g2);
 }
 .about-right {
   padding: 5rem 4rem;
@@ -603,9 +623,9 @@ p.body {
   color: var(--mute);
 }
 
-.about-body { font-size: 1.06rem; font-weight: 300; color: var(--mute); line-height: 1.9; }
+.about-body { font-size: 1.13rem; font-weight: 300; color: var(--mute); line-height: 1.9; }
 .about-body p { margin-bottom: 1.3rem; }
-.about-body p:first-child { font-size: 1.05rem; color: var(--blk); font-weight: 400; margin-bottom: 1.5rem; }
+.about-body p:first-child { font-size: 1.13rem; color: var(--blk); font-weight: 400; margin-bottom: 1.5rem; }
 .metric-row {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 1px; background: var(--line);
@@ -654,7 +674,7 @@ p.body {
   text-transform: uppercase; color: var(--g3);
   margin-bottom: 0.8rem;
 }
-.cap-content { font-size: 1rem; font-weight: 300; color: var(--mute); line-height: 1.75; }
+.cap-content { font-size: 1.05rem; font-weight: 300; color: var(--mute); line-height: 1.75; }
 .cap-content strong { color: var(--blk); font-weight: 500; }
 .cap-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
 .cap-tag {
@@ -885,7 +905,7 @@ footer {
     border-bottom: 1px solid var(--line);
     height: 50px;
     padding: 0 1.5rem;
-    font-size: 0.65rem;
+    font-size: 0.78rem;
   }
   .nav-right { display: none; }
   .hamburger { display: flex; }
@@ -998,6 +1018,9 @@ footer {
       </div>
       <div class="hero-right">
         <div class="hero-big-number">20+</div>
+        <div class="hero-compass">
+          <img src="images/IMG_1071.png" alt="Leadership — Armvet" />
+        </div>
         <div class="hero-facts">
 
           <!-- NASA -->
@@ -1455,10 +1478,6 @@ footer {
     <div class="sh-rule"></div>
     <span class="sh-label">Founder & Company</span>
   </div>
-  <div class="founder-photo-wrap">
-    <img src="images/founder.jpg" alt="Anson Smith, President &amp; Founder, Armvet LLC" class="founder-photo">
-    <div class="founder-photo-caption">President &amp; Founder · Armvet, LLC</div>
-  </div>
   <div class="about-wrap">
     <div class="about-left">
       <div class="founder-strip">
@@ -1479,6 +1498,10 @@ footer {
             <span class="tag">HubZone Certified</span>
           </div>
         </div>
+      </div>
+      <div class="founder-photo-in-col">
+        <img src="images/founder.jpg" alt="Anson Smith, President &amp; Founder, Armvet LLC" class="founder-photo">
+        <div class="founder-photo-caption">President &amp; Founder · Armvet, LLC</div>
       </div>
       <div class="metric-row">
 
@@ -1643,12 +1666,12 @@ footer {
           <div class="cap-lbl">Company Overview</div>
           <div class="cap-content" style="font-size:1rem; color:var(--blk2)">Armvet, LLC is a Service-Disabled Veteran-Owned Small Business delivering leadership development, organizational culture training, and federal human capital consulting. Founded by a retired NASA HR Director and multi-level Command Sergeant Major.</div>
         </div>
-        <div class="cap-cell"><div class="cap-lbl">Business Data</div><div class="cap-content"><strong>Armvet, LLC</strong><br>Type: Small Business<br>Contact: Anson Smith, President<br>Phone: 540-419-4074<br>Email: asmith@tcrhrconsulting.net</div></div>
-        <div class="cap-cell"><div class="cap-lbl">Core Competencies</div><div class="cap-content">Leadership Development & Coaching<br>Organizational Culture Training<br>Federal HR & Workforce Consulting<br>Human Capital Modernization<br>Talent Acquisition & Onboarding<br>Executive Speaking & Facilitation</div></div>
-        <div class="cap-cell"><div class="cap-lbl">Differentiators</div><div class="cap-content">NASA HR Director-level federal experience<br>Army National Guard Deputy G-1<br>Multi-level Command Sergeant Major<br>Evidence-based field-tested frameworks<br>SBA-certified SDVOSB status<br>SBA HubZone Certified</div></div>
-        <div class="cap-cell"><div class="cap-lbl">NAICS Codes</div><div class="cap-content" style="margin-bottom:0.6rem">Primary codes:</div><div class="cap-tags"><span class="cap-tag">611430</span><span class="cap-tag">541612</span><span class="cap-tag">541611</span><span class="cap-tag">611699</span></div></div>
-        <div class="cap-cell"><div class="cap-lbl">Certifications</div><div class="cap-tags" style="margin-top:0.3rem"><span class="cap-tag">SBA SDVOSB Certified</span><span class="cap-tag">SBA HubZone Certified</span><span class="cap-tag">Veteran-Owned</span><span class="cap-tag">Small Business</span></div></div>
-        <div class="cap-cell"><div class="cap-lbl">Past Performance</div><div class="cap-content">Air Force, Army National Guard, NASA HR Modernization, DEOMI Keynotes, TRADOC Courses, National Leadership Forums</div></div>
+        <div class="cap-cell" style="background:rgba(74,40,120,0.07);border-left:4px solid var(--pu)"><div class="cap-lbl">Business Data</div><div class="cap-content"><strong>Armvet, LLC</strong><br>Type: Small Business<br>Contact: Anson Smith, President<br>Phone: 540-419-4074<br>Email: asmith@tcrhrconsulting.net</div></div>
+        <div class="cap-cell" style="background:rgba(184,151,58,0.09);border-left:4px solid var(--gld)"><div class="cap-lbl">Core Competencies</div><div class="cap-content">Leadership Development & Coaching<br>Organizational Culture Training<br>Federal HR & Workforce Consulting<br>Human Capital Modernization<br>Talent Acquisition & Onboarding<br>Executive Speaking & Facilitation</div></div>
+        <div class="cap-cell" style="background:rgba(11,61,145,0.06);border-left:4px solid #0B3D91"><div class="cap-lbl">Differentiators</div><div class="cap-content">NASA HR Director-level federal experience<br>Army National Guard Deputy G-1<br>Multi-level Command Sergeant Major<br>Evidence-based field-tested frameworks<br>SBA-certified SDVOSB status<br>SBA HubZone Certified</div></div>
+        <div class="cap-cell" style="background:rgba(138,122,160,0.1);border-left:4px solid var(--g3)"><div class="cap-lbl">NAICS Codes</div><div class="cap-content" style="margin-bottom:0.6rem">Primary codes:</div><div class="cap-tags"><span class="cap-tag">611430</span><span class="cap-tag">541612</span><span class="cap-tag">541611</span><span class="cap-tag">611699</span></div></div>
+        <div class="cap-cell" style="background:rgba(26,110,48,0.06);border-left:4px solid #2e7d32"><div class="cap-lbl">Certifications</div><div class="cap-tags" style="margin-top:0.3rem"><span class="cap-tag">SBA SDVOSB Certified</span><span class="cap-tag">SBA HubZone Certified</span><span class="cap-tag">Veteran-Owned</span><span class="cap-tag">Small Business</span></div></div>
+        <div class="cap-cell" style="background:rgba(30,18,48,0.07);border-left:4px solid var(--blk2)"><div class="cap-lbl">Past Performance</div><div class="cap-content">Air Force, Army National Guard, NASA HR Modernization, DEOMI Keynotes, TRADOC Courses, National Leadership Forums</div></div>
       </div>
       <div style="margin-top:2rem"><a class="btn btn-blk" href="#" onclick="go('contact');return false">Request Full Capability Statement</a></div>
     </div>
