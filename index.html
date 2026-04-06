@@ -172,7 +172,7 @@ nav {
 .hero-left {
   padding: 5vw 4vw 5vw 5vw;
   border-right: 1px solid var(--line);
-  display: flex; flex-direction: column; justify-content: space-between;
+  display: flex; flex-direction: column; justify-content: center; gap: 2.5rem;
 }
 .hero-right {
   background: #1e1230;
@@ -198,7 +198,6 @@ nav {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.7rem; letter-spacing: 0.22em;
   text-transform: uppercase; color: var(--mute);
-  margin-bottom: 3rem;
 }
 
 .hero-h1 {
@@ -958,6 +957,12 @@ footer {
 @media(min-width:901px){
   .hero-h1 { font-size: clamp(1.6rem, 2.8vw, 3.2rem); }
 }
+@media(min-width:1400px){
+  .hero { max-height: 95vh; }
+  .hero-main { align-items: center; }
+  .hero-left { padding: 4vw 3vw 4vw 4vw; }
+  .hero-right { padding: 3vw 3vw; }
+}
 @media(max-width:560px){
   .cap-grid { grid-template-columns: 1fr; }
   .cap-cell.wide { grid-column: span 1; }
@@ -1031,7 +1036,6 @@ footer {
             <a href="#" onclick="go('services');return false">View Services</a>
           </div>
         </div>
-        <div style="height:1px"></div>
       </div>
       <div class="hero-right">
         <div class="hero-big-number">20+</div>
