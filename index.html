@@ -172,21 +172,31 @@ nav {
 .hero-left {
   padding: 5vw 4vw 5vw 5vw;
   border-right: 1px solid var(--line);
-  display: flex; flex-direction: column; justify-content: space-between;
+  display: flex; flex-direction: column; justify-content: center; gap: 2.5rem;
 }
 .hero-right {
   background: #1e1230;
   padding: 5vw 4vw;
-  display: flex; flex-direction: column; justify-content: flex-end;
+  display: flex; flex-direction: column; justify-content: center;
   position: relative; overflow: hidden;
-  clip-path: polygon(5% 0, 100% 0, 100% 100%, 0 100%);
+}
+.hero-right-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+.hero-right-logo img {
+  width: 60%;
+  max-width: 220px;
+  height: auto;
 }
 
 .hero-tag {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.7rem; letter-spacing: 0.22em;
   text-transform: uppercase; color: var(--mute);
-  margin-bottom: 3rem;
 }
 
 .hero-h1 {
@@ -571,6 +581,9 @@ p.body {
 }
 .founder-photo-in-col {
   margin-bottom: 0.5rem;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .about-wrap {
   display: grid; grid-template-columns: 1fr 1fr;
@@ -912,6 +925,7 @@ footer {
   .page { padding-top: 80px; }
   .hero-main { grid-template-columns: 1fr; }
   .hero-right { min-height: 280px; padding: 2.5rem; clip-path: none; }
+  .hero-right-logo { display: none; }
   .hero-bottom { grid-template-columns: 1fr 1fr; }
   .hero-bottom-cell:nth-child(3), .hero-bottom-cell:nth-child(4) { border-top: 1px solid var(--line); }
   .mission-wrap { grid-template-columns: 1fr; }
@@ -938,6 +952,15 @@ footer {
   .contact-left, .contact-right { padding: 3rem 1.5rem; }
   .section-header { padding: 2rem 1.5rem; }
   .metric-row { grid-template-columns: 1fr 1fr; }
+}
+@media(min-width:901px){
+  .hero-h1 { font-size: clamp(1.6rem, 2.8vw, 3.2rem); }
+}
+@media(min-width:1400px){
+  .hero { max-height: 95vh; }
+  .hero-main { align-items: center; }
+  .hero-left { padding: 4vw 3vw 4vw 4vw; }
+  .hero-right { padding: 3vw 3vw; }
 }
 @media(max-width:560px){
   .cap-grid { grid-template-columns: 1fr; }
@@ -1004,9 +1027,7 @@ footer {
         <div class="hero-tag">Est. Leadership Consulting &nbsp;·&nbsp; Washington DC / National</div>
         <div>
           <div class="hero-h1">
-            LEADER<br>
-            SHIP<br>
-            <span class="italic-word">That<br>Endures.</span>
+            We build leaders who create clarity, build trust, and <span class="italic-word">drive disciplined execution.</span>
           </div>
           <p class="hero-sub">Armvet delivers executive-level leadership development, organizational culture training, and federal human capital consulting grounded in military precision and modern leadership science.</p>
           <div class="hero-btns">
@@ -1014,12 +1035,11 @@ footer {
             <a href="#" onclick="go('services');return false">View Services</a>
           </div>
         </div>
-        <div style="height:1px"></div>
       </div>
       <div class="hero-right">
         <div class="hero-big-number">20+</div>
-        <div class="hero-compass">
-          <img src="images/IMG_1071.png" alt="Leadership — Armvet" />
+        <div class="hero-right-logo">
+          <img src="images/logo.png" alt="Armvet" />
         </div>
         <div class="hero-facts">
 
@@ -1152,7 +1172,7 @@ footer {
     <span class="sh-label">Our Purpose</span>
   </div>
   <div class="mission-full">
-    <div class="pull-quote">"We build leaders who create clarity, build trust, and <em>drive disciplined execution.</em>"</div>
+    <div class="pull-quote">LEADERSHIP <em>That Endures.</em></div>
     <div class="mission-full-body">
       <p class="body" style="margin-bottom:1.3rem">Armvet strengthens organizations by developing leaders who create clarity, build trust, and drive disciplined execution. We integrate military precision, federal HR expertise, and modern leadership science to elevate people and performance.</p>
       <p class="body">From executive coaching to culture transformation programs, every engagement is built around practical, repeatable leadership systems that produce measurable results in military, federal, and corporate environments.</p>
@@ -1480,6 +1500,10 @@ footer {
   </div>
   <div class="about-wrap">
     <div class="about-left">
+      <div class="founder-photo-in-col">
+        <img src="images/founder.jpg" alt="Anson Smith, President &amp; Founder, Armvet LLC" class="founder-photo">
+        <div class="founder-photo-caption">President &amp; Founder · Armvet, LLC</div>
+      </div>
       <div class="founder-strip">
         <div class="fs-accent"></div>
         <div class="fs-body">
@@ -1498,10 +1522,6 @@ footer {
             <span class="tag">HubZone Certified</span>
           </div>
         </div>
-      </div>
-      <div class="founder-photo-in-col">
-        <img src="images/founder.jpg" alt="Anson Smith, President &amp; Founder, Armvet LLC" class="founder-photo">
-        <div class="founder-photo-caption">President &amp; Founder · Armvet, LLC</div>
       </div>
       <div class="metric-row">
 
