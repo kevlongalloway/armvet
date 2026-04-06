@@ -177,9 +177,22 @@ nav {
 .hero-right {
   background: #1e1230;
   padding: 5vw 4vw;
-  display: flex; flex-direction: column; justify-content: flex-end;
+  display: flex; flex-direction: column; justify-content: center;
   position: relative; overflow: hidden;
   clip-path: polygon(5% 0, 100% 0, 100% 100%, 0 100%);
+}
+.hero-right-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+.hero-right-logo img {
+  height: 52px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
 }
 
 .hero-tag {
@@ -571,6 +584,9 @@ p.body {
 }
 .founder-photo-in-col {
   margin-bottom: 0.5rem;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .about-wrap {
   display: grid; grid-template-columns: 1fr 1fr;
@@ -912,6 +928,7 @@ footer {
   .page { padding-top: 80px; }
   .hero-main { grid-template-columns: 1fr; }
   .hero-right { min-height: 280px; padding: 2.5rem; clip-path: none; }
+  .hero-right-logo { display: none; }
   .hero-bottom { grid-template-columns: 1fr 1fr; }
   .hero-bottom-cell:nth-child(3), .hero-bottom-cell:nth-child(4) { border-top: 1px solid var(--line); }
   .mission-wrap { grid-template-columns: 1fr; }
@@ -1004,9 +1021,7 @@ footer {
         <div class="hero-tag">Est. Leadership Consulting &nbsp;·&nbsp; Washington DC / National</div>
         <div>
           <div class="hero-h1">
-            LEADER<br>
-            SHIP<br>
-            <span class="italic-word">That<br>Endures.</span>
+            We build leaders who create clarity, build trust, and <span class="italic-word">drive disciplined execution.</span>
           </div>
           <p class="hero-sub">Armvet delivers executive-level leadership development, organizational culture training, and federal human capital consulting grounded in military precision and modern leadership science.</p>
           <div class="hero-btns">
@@ -1020,6 +1035,9 @@ footer {
         <div class="hero-big-number">20+</div>
         <div class="hero-compass">
           <img src="images/IMG_1071.png" alt="Leadership — Armvet" />
+        </div>
+        <div class="hero-right-logo">
+          <img src="images/logo.png" alt="Armvet" />
         </div>
         <div class="hero-facts">
 
@@ -1152,7 +1170,7 @@ footer {
     <span class="sh-label">Our Purpose</span>
   </div>
   <div class="mission-full">
-    <div class="pull-quote">"We build leaders who create clarity, build trust, and <em>drive disciplined execution.</em>"</div>
+    <div class="pull-quote">LEADERSHIP <em>That Endures.</em></div>
     <div class="mission-full-body">
       <p class="body" style="margin-bottom:1.3rem">Armvet strengthens organizations by developing leaders who create clarity, build trust, and drive disciplined execution. We integrate military precision, federal HR expertise, and modern leadership science to elevate people and performance.</p>
       <p class="body">From executive coaching to culture transformation programs, every engagement is built around practical, repeatable leadership systems that produce measurable results in military, federal, and corporate environments.</p>
