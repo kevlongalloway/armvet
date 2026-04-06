@@ -955,6 +955,14 @@ footer {
   .section-header { padding: 2rem 1.5rem; }
   .metric-row { grid-template-columns: 1fr 1fr; }
 }
+@media(min-width:901px){
+  .hero { min-height: calc(72vh - 80px); }
+  .hero-left { padding: 3.5vw 3vw 3.5vw 4vw; }
+  .hero-right { padding: 3.5vw 3vw; }
+  .hero-h1 { font-size: clamp(1.8rem, 3.5vw, 3.8rem); }
+  .hero-sub { margin-top: 1.5rem; font-size: 0.95rem; }
+  .hero-btns { margin-top: 2rem; }
+}
 @media(max-width:560px){
   .cap-grid { grid-template-columns: 1fr; }
   .cap-cell.wide { grid-column: span 1; }
@@ -1494,6 +1502,10 @@ footer {
   </div>
   <div class="about-wrap">
     <div class="about-left">
+      <div class="founder-photo-in-col">
+        <img src="images/founder.jpg" alt="Anson Smith, President &amp; Founder, Armvet LLC" class="founder-photo">
+        <div class="founder-photo-caption">President &amp; Founder · Armvet, LLC</div>
+      </div>
       <div class="founder-strip">
         <div class="fs-accent"></div>
         <div class="fs-body">
@@ -1512,10 +1524,6 @@ footer {
             <span class="tag">HubZone Certified</span>
           </div>
         </div>
-      </div>
-      <div class="founder-photo-in-col">
-        <img src="images/founder.jpg" alt="Anson Smith, President &amp; Founder, Armvet LLC" class="founder-photo">
-        <div class="founder-photo-caption">President &amp; Founder · Armvet, LLC</div>
       </div>
       <div class="metric-row">
 
