@@ -841,6 +841,10 @@ p.body {
 .bk-change { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.38); text-decoration: none; display: inline-block; margin-bottom: 1.2rem; }
 .bk-change:hover { color: rgba(255,255,255,0.65); }
 .cal-box .fg label { color: rgba(255,255,255,0.45); }
+.cal-box .fg input, .cal-box .fg textarea, .cal-box .fg select { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9); }
+.cal-box .fg input::placeholder, .cal-box .fg textarea::placeholder { color: rgba(255,255,255,0.25); }
+.cal-box .fg input:focus, .cal-box .fg textarea:focus, .cal-box .fg select:focus { border-color: rgba(255,255,255,0.4); }
+.cal-box .fg select option { background: #1e1230; color: rgba(255,255,255,0.9); }
 .cal-box .form-error { margin-top: 0.6rem; margin-bottom: 0; }
 
 .form-heading { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.8rem; }
@@ -2149,16 +2153,72 @@ footer {
       </div>
       <div class="cal-box" id="booking-box">
         <div class="cal-lbl">Schedule a Consultation</div>
-        <p>Ready to get started? Book a free consultation directly on our calendar.</p>
-        <a class="btn btn-green" href="https://calendly.com/armvet-llc-info/30min" target="_blank" rel="noopener noreferrer" style="display:inline-block;width:100%;text-align:center;box-sizing:border-box">Book a Consultation</a>
+
+        <!-- Step 1: pick a slot -->
+        <div id="bk-step1">
+          <p>Select an available time or request your preferred date.</p>
+          <div id="bk-loading" class="bk-loading">Loading availability…</div>
+
+          <div id="bk-slots" style="display:none">
+            <div class="bk-nav-header">
+              <button class="bk-nav-btn" id="bk-prev" onclick="bkNav(-1)" aria-label="Previous day">‹</button>
+              <div class="bk-nav-center">
+                <div class="bk-day-label" id="bk-day-label"></div>
+                <div class="bk-day-sub" id="bk-day-sub"></div>
+              </div>
+              <button class="bk-nav-btn" id="bk-next" onclick="bkNav(1)" aria-label="Next day">›</button>
+            </div>
+            <div class="bk-time-grid" id="bk-time-grid"></div>
+          </div>
+
+          <div id="bk-no-slots" style="display:none">
+            <p class="bk-empty-msg">No scheduled slots — enter a preferred date and time and we'll reach out to confirm.</p>
+            <div class="form-row" style="margin-top:1rem">
+              <div class="fg"><label>Preferred Date</label><input id="bk-pref-date" type="date"/></div>
+              <div class="fg"><label>Preferred Time</label><input id="bk-pref-time" type="time" value="09:00"/></div>
+            </div>
+            <button class="btn btn-green" style="width:100%;margin-top:0.5rem" onclick="bkSelectManual()">Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: contact details -->
+        <div id="bk-step2" style="display:none">
+          <div class="bk-chosen" id="bk-chosen-display">
+            <div class="bk-chosen-date" id="bk-chosen-date-text"></div>
+            <div class="bk-chosen-time" id="bk-chosen-time-text"></div>
+          </div>
+          <a class="bk-change" href="#" onclick="bkBack();return false;">← Change time</a>
+          <div id="bf-msg" class="form-error" style="display:none"></div>
+          <form id="booking-form" novalidate>
+            <div class="form-row">
+              <div class="fg"><label>Name</label><input name="name" type="text" placeholder="Full name" required/></div>
+              <div class="fg"><label>Email</label><input name="email" type="email" placeholder="your@email.gov" required/></div>
+            </div>
+            <div class="form-row">
+              <div class="fg"><label>Phone</label><input name="phone" type="tel" placeholder="(555) 000-0000"/></div>
+              <div class="fg"><label>Organization</label><input name="org" type="text" placeholder="Agency or company"/></div>
+            </div>
+            <div class="fg">
+              <label>Service</label>
+              <select name="service" id="bf-service">
+                <option value="">Select a service…</option>
+              </select>
+            </div>
+            <div class="fg"><label>Message <span style="font-weight:300;opacity:.6">(optional)</span></label><textarea name="message" placeholder="Tell us about your needs…" style="min-height:70px;resize:vertical"></textarea></div>
+            <button type="submit" class="btn btn-green" style="width:100%">Request Consultation</button>
+          </form>
+        </div>
+
+        <!-- Step 3: success -->
+        <div id="bk-step3" class="form-success" style="display:none">
+          Your consultation request has been submitted! We'll confirm your time shortly.
+        </div>
       </div>
     </div>
     <div class="contact-right">
       <div class="form-heading">Send a Message</div>
-      <form id="contact-form" action="https://formsubmit.co/asmith@tcrhrconsulting.net" method="POST">
-        <input type="hidden" name="_subject" value="New message via Armvet.com"/>
-        <input type="hidden" name="_captcha" value="false"/>
-        <input type="hidden" name="_template" value="table"/>
+      <div id="cf-msg" class="form-error" style="display:none"></div>
+      <form id="contact-form" novalidate>
         <div class="form-row">
           <div class="fg"><label>First Name</label><input name="first_name" type="text" placeholder="First" required/></div>
           <div class="fg"><label>Last Name</label><input name="last_name" type="text" placeholder="Last" required/></div>
@@ -2168,17 +2228,11 @@ footer {
         <div class="fg"><label>Phone</label><input name="phone" type="tel" placeholder="(555) 000-0000"/></div>
         <div class="fg">
           <label>Area of Interest</label>
-          <select name="area_of_interest">
-            <option value="">Select a service...</option>
-            <option>Leadership Development</option>
-            <option>Organizational Culture Training</option>
-            <option>Federal HR Consulting</option>
-            <option>Speaking Engagements</option>
-            <option>Workforce Planning</option>
-            <option>General Inquiry</option>
+          <select name="area_of_interest" id="cf-service">
+            <option value="">Select a service…</option>
           </select>
         </div>
-        <div class="fg"><label>Message</label><textarea name="message" placeholder="Tell us about your organization and what you're looking for..." required></textarea></div>
+        <div class="fg"><label>Message</label><textarea name="message" placeholder="Tell us about your organization and what you're looking for…" required></textarea></div>
         <button type="submit" class="btn btn-blk" style="width:100%">Send Message</button>
       </form>
     </div>
@@ -2205,6 +2259,8 @@ footer {
 </footer>
 
 <script>
+const API_URL = '__API_URL__';
+
 function go(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
@@ -2213,6 +2269,7 @@ function go(id){
   if(el)el.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
   closeMenu();
+  if(id==='contact') initContactPage();
 }
 function toggleMenu(){
   const m=document.getElementById('navCenter');
@@ -2249,6 +2306,220 @@ function tcTog(id){
   }
 }
 
+
+// ── API Integration ──────────────────────────────────────────
+let _cpReady = false;
+let _bkSlots = [], _bkDates = [], _bkDayIdx = 0, _bkSel = null;
+
+function initContactPage(){
+  if(_cpReady) return;
+  _cpReady = true;
+
+  const bkForm = document.getElementById('booking-form');
+  const cfForm = document.getElementById('contact-form');
+  if(bkForm) bkForm.addEventListener('submit', submitBookingForm);
+  if(cfForm) cfForm.addEventListener('submit', submitContactForm);
+
+  if(!API_URL){
+    document.getElementById('bk-loading').style.display='none';
+    document.getElementById('bk-no-slots').style.display='';
+    return;
+  }
+  _loadPublicConfig();
+  _loadSlots();
+}
+
+async function _loadPublicConfig(){
+  try{
+    const r = await fetch(API_URL+'/api/public/config');
+    if(!r.ok) return;
+    const cfg = await r.json();
+    _fillSelect('bf-service', cfg.services||[]);
+    _fillSelect('cf-service', cfg.services||[]);
+  }catch(e){ /* non-fatal */ }
+}
+
+function _fillSelect(id, items){
+  const el = document.getElementById(id);
+  if(!el||!items.length) return;
+  el.innerHTML = '<option value="">Select a service…</option>';
+  items.forEach(s=>{ const o=document.createElement('option'); o.value=s; o.textContent=s; el.appendChild(o); });
+}
+
+async function _loadSlots(){
+  const loading = document.getElementById('bk-loading');
+  const slotsDiv = document.getElementById('bk-slots');
+  const noSlots  = document.getElementById('bk-no-slots');
+  try{
+    const r = await fetch(API_URL+'/api/public/availability');
+    if(!r.ok) throw new Error();
+    _bkSlots = await r.json();
+    _bkDates = [...new Set(_bkSlots.map(s=>s.date))].sort();
+  }catch(e){ _bkSlots=[]; _bkDates=[]; }
+
+  loading.style.display='none';
+  if(_bkDates.length){
+    _bkDayIdx=0;
+    slotsDiv.style.display='';
+    _bkRenderDay();
+  } else {
+    noSlots.style.display='';
+  }
+}
+
+function _bkRenderDay(){
+  const date = _bkDates[_bkDayIdx];
+  const d = new Date(date+'T12:00:00');
+  document.getElementById('bk-day-label').textContent = d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+  document.getElementById('bk-day-sub').textContent   = (_bkDayIdx+1)+' of '+_bkDates.length;
+  document.getElementById('bk-prev').disabled = _bkDayIdx===0;
+  document.getElementById('bk-next').disabled = _bkDayIdx===_bkDates.length-1;
+  const grid = document.getElementById('bk-time-grid');
+  grid.innerHTML='';
+  _bkSlots.filter(s=>s.date===date).forEach(slot=>{
+    const btn=document.createElement('button');
+    btn.type='button'; btn.className='bk-time-btn';
+    btn.innerHTML='<span class="bk-time-main">'+_fmt12(slot.startTime)+'</span>'
+      +'<span class="bk-time-dur">'+slot.durationMinutes+' min</span>'
+      +(slot.label?'<span class="bk-time-note">'+slot.label+'</span>':'');
+    btn.addEventListener('click',()=>bkSelectSlot(slot));
+    grid.appendChild(btn);
+  });
+}
+
+function bkNav(dir){
+  _bkDayIdx=Math.max(0,Math.min(_bkDates.length-1,_bkDayIdx+dir));
+  _bkRenderDay();
+}
+
+function bkSelectSlot(slot){
+  _bkSel={id:slot.id,date:slot.date,time:slot.startTime,dur:slot.durationMinutes};
+  _bkShowStep2(slot.date, slot.startTime, slot.durationMinutes+' min');
+}
+
+function bkSelectManual(){
+  const date=document.getElementById('bk-pref-date').value;
+  const time=document.getElementById('bk-pref-time').value;
+  if(!date){ alert('Please select a preferred date.'); return; }
+  _bkSel={id:null,date,time};
+  _bkShowStep2(date,time,'Preferred time');
+}
+
+function _bkShowStep2(date,time,sub){
+  const d=new Date(date+'T12:00:00');
+  document.getElementById('bk-chosen-date-text').textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+  document.getElementById('bk-chosen-time-text').textContent=(time?_fmt12(time)+' — ':'')+sub;
+  document.getElementById('bk-step1').style.display='none';
+  document.getElementById('bk-step2').style.display='';
+  _msgHide('bf-msg');
+}
+
+function bkBack(){
+  document.getElementById('bk-step2').style.display='none';
+  document.getElementById('bk-step1').style.display='';
+}
+
+async function submitBookingForm(e){
+  e.preventDefault();
+  const form=e.target, btn=form.querySelector('[type="submit"]');
+  const name=form.name.value.trim(), email=form.email.value.trim();
+  if(!name||!email||!email.includes('@')){
+    _msgShow('bf-msg','Name and a valid email are required.',true); return;
+  }
+  btn.disabled=true; btn.textContent='Submitting…';
+  _msgHide('bf-msg');
+  try{
+    const csrf=await _getCsrf();
+    const body={name,email};
+    const phone=form.phone.value.trim(), org=form.org.value.trim();
+    const service=form.service.value, msg=form.message.value.trim();
+    if(phone) body.phone=phone;
+    if(org)   body.org=org;
+    if(service) body.service=service;
+    if(msg)   body.message=msg;
+    if(_bkSel&&_bkSel.id)   body.slotId=_bkSel.id;
+    else{
+      if(_bkSel&&_bkSel.date) body.date=_bkSel.date;
+      if(_bkSel&&_bkSel.time) body.time=_bkSel.time;
+    }
+    const r=await fetch(API_URL+'/api/public/bookings',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-CSRF-Token':csrf},
+      body:JSON.stringify(body)
+    });
+    if(r.ok){
+      document.getElementById('bk-step2').style.display='none';
+      document.getElementById('bk-step3').style.display='';
+      form.reset();
+    } else {
+      const d=await r.json().catch(()=>({}));
+      const m=r.status===409?'That slot was just taken — go back and select another.':(d.error||'Submission failed. Please try again.');
+      _msgShow('bf-msg',m,true);
+    }
+  }catch(err){ _msgShow('bf-msg','Network error — please check your connection and try again.',true); }
+  finally{ btn.disabled=false; btn.textContent='Request Consultation'; }
+}
+
+async function submitContactForm(e){
+  e.preventDefault();
+  const form=e.target, btn=form.querySelector('[type="submit"]');
+  const fn=form.first_name.value.trim(), ln=form.last_name.value.trim();
+  const name=[fn,ln].filter(Boolean).join(' ');
+  const email=form.email.value.trim();
+  if(!name||!email||!email.includes('@')){
+    _msgShow('cf-msg','Name and a valid email are required.',true); return;
+  }
+  btn.disabled=true; btn.textContent='Sending…';
+  _msgHide('cf-msg');
+  try{
+    const csrf=await _getCsrf();
+    const body={name,email};
+    const phone=form.phone.value.trim(), org=form.organization.value.trim();
+    const subject=form.area_of_interest.value, msgText=form.message.value.trim();
+    if(phone) body.phone=phone;
+    if(subject) body.subject=subject;
+    const fullMsg=org?'Organization: '+org+'\n\n'+msgText:msgText;
+    if(fullMsg) body.message=fullMsg;
+    const r=await fetch(API_URL+'/api/public/contacts',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-CSRF-Token':csrf},
+      body:JSON.stringify(body)
+    });
+    if(r.ok){
+      _msgShow('cf-msg',"Thank you! We'll be in touch soon.",false);
+      form.reset();
+    } else {
+      const d=await r.json().catch(()=>({}));
+      _msgShow('cf-msg',d.error||'Submission failed. Please try again.',true);
+    }
+  }catch(err){ _msgShow('cf-msg','Network error — please check your connection and try again.',true); }
+  finally{ btn.disabled=false; btn.textContent='Send Message'; }
+}
+
+async function _getCsrf(){
+  const r=await fetch(API_URL+'/api/public/csrf-token');
+  if(!r.ok) throw new Error('CSRF fetch failed');
+  return (await r.json()).token;
+}
+
+function _fmt12(t){
+  if(!t) return '';
+  const[h,m]=t.split(':').map(Number);
+  return (h%12||12)+':'+(m<10?'0':'')+m+(h<12?' AM':' PM');
+}
+
+function _msgShow(id,text,isError){
+  const el=document.getElementById(id);
+  if(!el) return;
+  el.textContent=text;
+  el.className=isError?'form-error':'form-success';
+  el.style.display='';
+}
+
+function _msgHide(id){
+  const el=document.getElementById(id);
+  if(el){ el.style.display='none'; el.textContent=''; }
+}
 
 // ── Ticker touch drag ────────────────────────────────────────
 (function(){

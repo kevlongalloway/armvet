@@ -7,3 +7,5 @@ services:
     envVars:
       - key: SITE_DOMAIN
         value: armvet-llc.com
+      - key: VITE_API_URL
+        sync: false
