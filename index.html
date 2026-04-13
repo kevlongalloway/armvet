@@ -1087,7 +1087,7 @@ footer {
               </svg>
             </div>
             <div class="hf-text">
-              <div class="hf-val">ANG Deputy G-1</div>
+              <div class="hf-val">ARNG Deputy G-1</div>
               <div class="hf-desc">Army National Guard · Human Resources Enterprise</div>
             </div>
           </div>
@@ -1515,11 +1515,11 @@ footer {
           <div class="fs-role">President & Founder · Armvet, LLC</div>
           <div class="fs-contact">
             <div class="fs-cline">☎ 540-419-4074</div>
-            <div class="fs-cline">@ asmith@tcrhrconsulting.net</div>
+            <div class="fs-cline">@ armvethr@gmail.com</div>
           </div>
           <div class="tag-cloud">
             <span class="tag">NASA HR Director</span>
-            <span class="tag">Deputy G-1 ANG</span>
+            <span class="tag">Deputy G-1 ARNG</span>
             <span class="tag">Command Sergeant Major</span>
             <span class="tag">SDVOSB</span>
             <span class="tag">SBA Certified</span>
@@ -1548,7 +1548,7 @@ footer {
           <div class="metric-lbl">HR Director</div>
         </div>
 
-        <!-- ANG -->
+        <!-- ARNG -->
         <div class="metric">
           <div class="metric-logo">
             <svg viewBox="0 0 124 148" width="34" height="40" aria-label="Army National Guard" role="img">
@@ -1561,7 +1561,7 @@ footer {
               <text x="62" y="127" text-anchor="middle" font-size="17" fill="#FFB800">★</text>
             </svg>
           </div>
-          <div class="metric-val">ANG</div>
+          <div class="metric-val">ARNG</div>
           <div class="metric-lbl">Deputy G-1</div>
         </div>
 
@@ -1690,7 +1690,7 @@ footer {
           <div class="cap-lbl">Company Overview</div>
           <div class="cap-content" style="font-size:1rem; color:var(--blk2)">Armvet, LLC is a Service-Disabled Veteran-Owned Small Business delivering leadership development, organizational culture training, and federal human capital consulting. Founded by a retired NASA HR Director and multi-level Command Sergeant Major.</div>
         </div>
-        <div class="cap-cell" style="background:rgba(74,40,120,0.07);border-left:4px solid var(--pu)"><div class="cap-lbl">Business Data</div><div class="cap-content"><strong>Armvet, LLC</strong><br>Type: Small Business<br>Contact: Anson Smith, President<br>Phone: 540-419-4074<br>Email: asmith@tcrhrconsulting.net</div></div>
+        <div class="cap-cell" style="background:rgba(74,40,120,0.07);border-left:4px solid var(--pu)"><div class="cap-lbl">Business Data</div><div class="cap-content"><strong>Armvet, LLC</strong><br>Type: Small Business<br>Contact: Anson Smith, President<br>Phone: 540-419-4074<br>Email: armvethr@gmail.com</div></div>
         <div class="cap-cell" style="background:rgba(184,151,58,0.09);border-left:4px solid var(--gld)"><div class="cap-lbl">Core Competencies</div><div class="cap-content">Leadership Development & Coaching<br>Organizational Culture Training<br>Federal HR & Workforce Consulting<br>Human Capital Modernization<br>Talent Acquisition & Onboarding<br>Executive Speaking & Facilitation</div></div>
         <div class="cap-cell" style="background:rgba(11,61,145,0.06);border-left:4px solid #0B3D91"><div class="cap-lbl">Differentiators</div><div class="cap-content">NASA HR Director-level federal experience<br>Army National Guard Deputy G-1<br>Multi-level Command Sergeant Major<br>Evidence-based field-tested frameworks<br>SBA-certified SDVOSB status<br>SBA HubZone Certified</div></div>
         <div class="cap-cell" style="background:rgba(138,122,160,0.1);border-left:4px solid var(--g3)"><div class="cap-lbl">NAICS Codes</div><div class="cap-content" style="margin-bottom:0.6rem">Primary codes:</div><div class="cap-tags"><span class="cap-tag">611430</span><span class="cap-tag">541612</span><span class="cap-tag">541611</span><span class="cap-tag">611699</span></div></div>
@@ -2148,7 +2148,7 @@ footer {
       <div style="margin-top:2rem; margin-bottom:2.5rem">
         <div class="c-row"><div class="c-key">Name</div><div class="c-val">Anson Smith — President, Armvet, LLC</div></div>
         <div class="c-row"><div class="c-key">Phone</div><div class="c-val">540-419-4074</div></div>
-        <div class="c-row"><div class="c-key">Email</div><div class="c-val">asmith@tcrhrconsulting.net</div></div>
+        <div class="c-row"><div class="c-key">Email</div><div class="c-val">armvethr@gmail.com</div></div>
         <div class="c-row"><div class="c-key">Status</div><div class="c-val">SBA Certified SDVOSB · HubZone Certified · Veteran-Owned</div></div>
       </div>
       <div class="cal-box" id="booking-box">
@@ -2247,7 +2247,7 @@ footer {
   <div class="footer-cell">
     <div>
       <div class="footer-mono">540-419-4074</div>
-      <div class="footer-mono">asmith@tcrhrconsulting.net</div>
+      <div class="footer-mono">armvethr@gmail.com</div>
     </div>
   </div>
   <div class="footer-cell">
@@ -2308,25 +2308,51 @@ function tcTog(id){
 
 
 // ── API Integration ──────────────────────────────────────────
-let _cpReady = false;
+let _cfListeners = false;
 let _bkSlots = [], _bkDates = [], _bkDayIdx = 0, _bkSel = null;
 
 function initContactPage(){
-  if(_cpReady) return;
-  _cpReady = true;
+  // Attach form handlers once
+  if(!_cfListeners){
+    _cfListeners = true;
+    const bkForm = document.getElementById('booking-form');
+    const cfForm = document.getElementById('contact-form');
+    if(bkForm) bkForm.addEventListener('submit', submitBookingForm);
+    if(cfForm) cfForm.addEventListener('submit', submitContactForm);
+  }
 
-  const bkForm = document.getElementById('booking-form');
-  const cfForm = document.getElementById('contact-form');
-  if(bkForm) bkForm.addEventListener('submit', submitBookingForm);
-  if(cfForm) cfForm.addEventListener('submit', submitContactForm);
+  // Reset booking widget on every visit so slots are always fresh
+  _bkSlots=[]; _bkDates=[]; _bkDayIdx=0; _bkSel=null;
+  const s2=document.getElementById('bk-step2'), s3=document.getElementById('bk-step3');
+  if(s2) s2.style.display='none';
+  if(s3) s3.style.display='none';
+  document.getElementById('bk-step1').style.display='';
+  _bkView('loading');
 
-  if(!API_URL){
-    document.getElementById('bk-loading').style.display='none';
-    document.getElementById('bk-no-slots').style.display='';
+  if(!API_URL || API_URL==='__API_URL__'){
+    _bkView('none'); // no API configured — show preferred date/time form
     return;
   }
   _loadPublicConfig();
   _loadSlots();
+}
+
+// Slot-view state machine: 'loading' | 'slots' | 'none' | 'error'
+function _bkView(state){
+  const loading = document.getElementById('bk-loading');
+  const slots   = document.getElementById('bk-slots');
+  const noSlots = document.getElementById('bk-no-slots');
+  loading.style.display = (state==='loading'||state==='error') ? '' : 'none';
+  slots.style.display   = state==='slots'  ? '' : 'none';
+  noSlots.style.display = state==='none'   ? '' : 'none';
+  if(state==='loading'){
+    loading.textContent='Loading availability…';
+  }
+  if(state==='error'){
+    loading.innerHTML='Could not load availability. '
+      +'<a href="#" onclick="initContactPage();return false;" '
+      +'style="color:var(--gld);text-decoration:none">Retry ↺</a>';
+  }
 }
 
 async function _loadPublicConfig(){
@@ -2347,23 +2373,21 @@ function _fillSelect(id, items){
 }
 
 async function _loadSlots(){
-  const loading = document.getElementById('bk-loading');
-  const slotsDiv = document.getElementById('bk-slots');
-  const noSlots  = document.getElementById('bk-no-slots');
   try{
     const r = await fetch(API_URL+'/api/public/availability');
-    if(!r.ok) throw new Error();
+    if(!r.ok) throw new Error('HTTP '+r.status);
     _bkSlots = await r.json();
     _bkDates = [...new Set(_bkSlots.map(s=>s.date))].sort();
-  }catch(e){ _bkSlots=[]; _bkDates=[]; }
-
-  loading.style.display='none';
+  }catch(e){
+    _bkView('error'); // fetch failed — show retry, not the date/time fallback
+    return;
+  }
   if(_bkDates.length){
     _bkDayIdx=0;
-    slotsDiv.style.display='';
+    _bkView('slots');
     _bkRenderDay();
   } else {
-    noSlots.style.display='';
+    _bkView('none'); // API up, but no open slots → fallback date/time form
   }
 }
 
