@@ -2153,8 +2153,14 @@ footer {
       </div>
       <div class="cal-box" id="booking-box">
         <div class="cal-lbl">Schedule a Consultation</div>
+        <p>Ready to get started? Book a free consultation directly on our calendar.</p>
+        <a class="btn btn-green" href="https://calendly.com/armvet-llc-info/30min" target="_blank" rel="noopener noreferrer" style="display:inline-block;width:100%;text-align:center;box-sizing:border-box">Book a Consultation</a>
+      </div>
 
-        <!-- Step 1: pick a slot -->
+      <!-- API Booking Widget — commented out for later use
+      <div class="cal-box" id="booking-box">
+        <div class="cal-lbl">Schedule a Consultation</div>
+
         <div id="bk-step1">
           <p>Select an available time or request your preferred date.</p>
           <div id="bk-loading" class="bk-loading">Loading availability…</div>
@@ -2181,7 +2187,6 @@ footer {
           </div>
         </div>
 
-        <!-- Step 2: contact details -->
         <div id="bk-step2" style="display:none">
           <div class="bk-chosen" id="bk-chosen-display">
             <div class="bk-chosen-date" id="bk-chosen-date-text"></div>
@@ -2209,14 +2214,42 @@ footer {
           </form>
         </div>
 
-        <!-- Step 3: success -->
         <div id="bk-step3" class="form-success" style="display:none">
           Your consultation request has been submitted! We'll confirm your time shortly.
         </div>
       </div>
+      -->
     </div>
     <div class="contact-right">
       <div class="form-heading">Send a Message</div>
+      <form id="contact-form" action="https://formsubmit.co/armvethr@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New message via Armvet.com"/>
+        <input type="hidden" name="_captcha" value="false"/>
+        <input type="hidden" name="_template" value="table"/>
+        <div class="form-row">
+          <div class="fg"><label>First Name</label><input name="first_name" type="text" placeholder="First" required/></div>
+          <div class="fg"><label>Last Name</label><input name="last_name" type="text" placeholder="Last" required/></div>
+        </div>
+        <div class="fg"><label>Organization</label><input name="organization" type="text" placeholder="Your organization or agency"/></div>
+        <div class="fg"><label>Email</label><input name="email" type="email" placeholder="your@email.gov" required/></div>
+        <div class="fg"><label>Phone</label><input name="phone" type="tel" placeholder="(555) 000-0000"/></div>
+        <div class="fg">
+          <label>Area of Interest</label>
+          <select name="area_of_interest">
+            <option value="">Select a service...</option>
+            <option>Leadership Development</option>
+            <option>Organizational Culture Training</option>
+            <option>Federal HR Consulting</option>
+            <option>Speaking Engagements</option>
+            <option>Workforce Planning</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="fg"><label>Message</label><textarea name="message" placeholder="Tell us about your organization and what you're looking for..." required></textarea></div>
+        <button type="submit" class="btn btn-blk" style="width:100%">Send Message</button>
+      </form>
+
+      <!-- API Contact Form — commented out for later use
       <div id="cf-msg" class="form-error" style="display:none"></div>
       <form id="contact-form" novalidate>
         <div class="form-row">
@@ -2235,6 +2268,7 @@ footer {
         <div class="fg"><label>Message</label><textarea name="message" placeholder="Tell us about your organization and what you're looking for…" required></textarea></div>
         <button type="submit" class="btn btn-blk" style="width:100%">Send Message</button>
       </form>
+      -->
     </div>
   </div>
 </div><!-- /contact -->
@@ -2259,7 +2293,7 @@ footer {
 </footer>
 
 <script>
-const API_URL = 'https://armvet-api.kevlongalloway1999m.workers.dev';
+// const API_URL = 'https://armvet-api.kevlongalloway1999m.workers.dev'; // API integration — commented out for later use
 
 function go(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -2269,7 +2303,7 @@ function go(id){
   if(el)el.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
   closeMenu();
-  if(id==='contact') initContactPage();
+  // if(id==='contact') initContactPage(); // API integration — commented out for later use
 }
 function toggleMenu(){
   const m=document.getElementById('navCenter');
@@ -2307,12 +2341,13 @@ function tcTog(id){
 }
 
 
-// ── API Integration ──────────────────────────────────────────
+/* ── API Integration — commented out for later use ──────────────────────────
+const API_URL = '__API_URL__';
+
 let _cfListeners = false;
 let _bkSlots = [], _bkDates = [], _bkDayIdx = 0, _bkSel = null;
 
 function initContactPage(){
-  // Attach form handlers once
   if(!_cfListeners){
     _cfListeners = true;
     const bkForm = document.getElementById('booking-form');
@@ -2320,24 +2355,20 @@ function initContactPage(){
     if(bkForm) bkForm.addEventListener('submit', submitBookingForm);
     if(cfForm) cfForm.addEventListener('submit', submitContactForm);
   }
-
-  // Reset booking widget on every visit so slots are always fresh
   _bkSlots=[]; _bkDates=[]; _bkDayIdx=0; _bkSel=null;
   const s2=document.getElementById('bk-step2'), s3=document.getElementById('bk-step3');
   if(s2) s2.style.display='none';
   if(s3) s3.style.display='none';
   document.getElementById('bk-step1').style.display='';
   _bkView('loading');
-
   if(!API_URL || API_URL==='__API_URL__'){
-    _bkView('none'); // no API configured — show preferred date/time form
+    _bkView('none');
     return;
   }
   _loadPublicConfig();
   _loadSlots();
 }
 
-// Slot-view state machine: 'loading' | 'slots' | 'none' | 'error'
 function _bkView(state){
   const loading = document.getElementById('bk-loading');
   const slots   = document.getElementById('bk-slots');
@@ -2345,9 +2376,7 @@ function _bkView(state){
   loading.style.display = (state==='loading'||state==='error') ? '' : 'none';
   slots.style.display   = state==='slots'  ? '' : 'none';
   noSlots.style.display = state==='none'   ? '' : 'none';
-  if(state==='loading'){
-    loading.textContent='Loading availability…';
-  }
+  if(state==='loading') loading.textContent='Loading availability…';
   if(state==='error'){
     loading.innerHTML='Could not load availability. '
       +'<a href="#" onclick="initContactPage();return false;" '
@@ -2362,7 +2391,7 @@ async function _loadPublicConfig(){
     const cfg = await r.json();
     _fillSelect('bf-service', cfg.services||[]);
     _fillSelect('cf-service', cfg.services||[]);
-  }catch(e){ /* non-fatal */ }
+  }catch(e){ }
 }
 
 function _fillSelect(id, items){
@@ -2379,16 +2408,11 @@ async function _loadSlots(){
     _bkSlots = await r.json();
     _bkDates = [...new Set(_bkSlots.map(s=>s.date))].sort();
   }catch(e){
-    _bkView('error'); // fetch failed — show retry, not the date/time fallback
+    _bkView('error');
     return;
   }
-  if(_bkDates.length){
-    _bkDayIdx=0;
-    _bkView('slots');
-    _bkRenderDay();
-  } else {
-    _bkView('none'); // API up, but no open slots → fallback date/time form
-  }
+  if(_bkDates.length){ _bkDayIdx=0; _bkView('slots'); _bkRenderDay(); }
+  else { _bkView('none'); }
 }
 
 function _bkRenderDay(){
@@ -2544,6 +2568,7 @@ function _msgHide(id){
   const el=document.getElementById(id);
   if(el){ el.style.display='none'; el.textContent=''; }
 }
+── End API Integration ── */
 
 // ── Ticker touch drag ────────────────────────────────────────
 (function(){
